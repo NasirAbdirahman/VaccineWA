@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View } from 'react-native';
+import { View, StyleSheet } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { createDrawerNavigator } from '@react-navigation/drawer';
@@ -36,16 +36,16 @@ function HomeStackNavigator() {
         component={Results} 
         options = { ({ navigation}) => {
           return {
-            headerTitle: () => <Header navigation ={navigation} /*title='Providers'*//>   
+            headerTitle: () => <Header navigation = {navigation} /*title='Providers'*//>   
           }
         }} //options={({ route }) => ({ title: route.params.provider.name })}//
       />
       <HomeStack.Screen 
         name="Provider" 
         component={Provider} 
-        options = { ({ navigation}) => {
+        options = {({ navigation }) => {
           return {
-            headerTitle: () => <Header navigation ={navigation} title='Provider Info'/>   
+            headerTitle: () => <Header navigation = {navigation} /*title='Provider Info'*//>   
             }
         }} //options={({ route }) => ({ title: route.params.provider.name })}//
       />
@@ -60,7 +60,7 @@ const App = createDrawerNavigator();
 
 function AppNavigator() {
   return (
-    <App.Navigator>
+    <App.Navigator >
       
       <App.Screen name="Home" component={HomeStackNavigator}/>
       <App.Screen name="Covid-19 Vaccine FAQ" component={Provider}/>
@@ -82,7 +82,7 @@ class Main extends Component {
               paddingTop: Platform.OS === 'ios' ? 0 : Expo.Constants.statusBarHeight // Conditional Code.Making it specific for the IOS operating system/. Becasue we removed the statusBar/ 
         }} >
 
-        <NavigationContainer>
+        <NavigationContainer >
           <AppNavigator />
         </NavigationContainer>  
 
@@ -91,7 +91,16 @@ class Main extends Component {
   }
 }
 
-
+/*const styles= StyleSheet.create({
+  DrawerNavigator:{
+      color: '#70BAFF',
+      //textAlign:'center',
+      fontSize: 50,
+      //fontFamily:'Scheherazade_700Bold',
+      //letterSpacing: 1
+  },
+  
+})*/
 
 
 export default Main;

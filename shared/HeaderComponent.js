@@ -3,7 +3,7 @@ import { View, StyleSheet, Text } from 'react-native';
 import {Image} from 'react-native-elements';
 import { MaterialIcons } from '@expo/vector-icons';
 
-export default function Header({navigation, title}) {
+export default function Header({navigation, /*title*/}) {
     return (
         <View style={styles.Header}>
              <Image
@@ -14,12 +14,13 @@ export default function Header({navigation, title}) {
             />
             <MaterialIcons 
                 name='menu' style={styles.Icon} onPress={() => navigation.toggleDrawer()}
-            /> 
-            <View>
-                <Text style={styles.HeaderText}>{title}</Text>
-            </View>
+            />   
             
         </View>
+        /*
+        <View>
+            <Text style={styles.HeaderText}>{title}</Text>
+        </View>*/
     );
 }
 
@@ -48,11 +49,6 @@ const styles = StyleSheet.create({
         width: 180,
          
     },
-    /*drawerImage: {
-        margin: 10,
-        height: 60,
-        width: 60
-    },*/
     Icon: {
         position:'absolute',
         right:1,
