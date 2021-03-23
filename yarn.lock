@@ -1117,10 +1117,20 @@
   dependencies:
     "@types/hammerjs" "^2.0.36"
 
+"@expo-google-fonts/lateef@^0.1.0":
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/@expo-google-fonts/lateef/-/lateef-0.1.0.tgz#8915e339e333f84cd370673f786756b1b3dbaff5"
+  integrity sha512-kqMZLM0I3g2oWTl1MsUnohgLFPTSZ3/0gMji61cpwNQSJ0k409etF7ZsrEsYfefb83vH3FDnCp2pIM3e0vCINA==
+
 "@expo-google-fonts/scheherazade@^0.1.0":
   version "0.1.0"
   resolved "https://registry.yarnpkg.com/@expo-google-fonts/scheherazade/-/scheherazade-0.1.0.tgz#8334067289d1d64b148388eafa5e58da0f4801dc"
   integrity sha512-VBR9qcvdXl4MNW4FFfOFhDoWqIhHdMlxrXouJOJdnflZH2ydTltIRSWDkLx2vPLeG1MaZ64cMAl6lJaSgCwPMg==
+
+"@expo-google-fonts/source-sans-pro@^0.1.0":
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/@expo-google-fonts/source-sans-pro/-/source-sans-pro-0.1.0.tgz#fdb7b793f396d11ed9ed5ef45bc48fdd1551c8d1"
+  integrity sha512-AsjkuHsFUdJlYoTDWRG28hrhuNI0n+9sSHKwTlTea4FfYkWXUBogveD3C1zyaHPw5Qb/DdG+DVxBepfImznFnw==
 
 "@expo/config-plugins@1.0.21":
   version "1.0.21"
