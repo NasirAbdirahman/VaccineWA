@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import { View, Text, StyleSheet, FlatList } from 'react-native';
+import { View,ScrollView, Text, StyleSheet, FlatList } from 'react-native';
 import { Divider, Icon} from 'react-native-elements';
 import { PROVIDERDATA } from '../shared/ProviderData'; 
 
-        
+// Reviews the Vaccine Type offered and Informs the User//      
 function RenderVaccineType({providerdata}) {
 
     const renderVaccine = ({item}) => {
@@ -44,7 +44,8 @@ function RenderVaccineType({providerdata}) {
             } else if (item.vaccineTypes.includes("Unknown") && item.availability === "Yes") {
                 return (
                     <View style={{paddingLeft:10}}>
-                        <Text style={styles.Text}>Unknown : Vaccines are available but the Provider has not stated the type</Text>
+                        <Text style={styles.Text}>Unknown</Text>
+                        <Text>Vaccines are available but the Provider has not stated the type</Text>
                         <Text>In Stock:
                             <Icon 
                                 name={'check-circle'}
@@ -54,15 +55,17 @@ function RenderVaccineType({providerdata}) {
                         </Text>
                     </View>
                 )
-            } else if (item.availability === "NO")  { 
+            } else if (item.availability === "No")  { 
                 return (
-                <View>
-                    <Text style={styles.Text}> Vaccines Are Currently UnAvailable </Text>
-                    <Icon 
-                        name={'check-circle'}
-                        type= 'material-icons' 
-                        color='#70BAFF'
-                    /> 
+                <View style={{paddingLeft:10}}>
+                    <Text style={styles.Text}> Vaccines Are Currently UnAvailable</Text>
+                    <Text> In Stock:
+                        <Icon 
+                            name= 'highlight-off'
+                            type= 'material-icons' 
+                            color='#FF0000'
+                        /> 
+                        </Text>
                 </View> 
                 )
             } else { //May not need this code//
@@ -73,8 +76,6 @@ function RenderVaccineType({providerdata}) {
                  
 
     };
-
-
     return (
         <View>
             <FlatList
@@ -88,6 +89,8 @@ function RenderVaccineType({providerdata}) {
 
 }   
 
+
+// Displays The provider Data//
 function RenderProvider ({providerdata}) {
 
     const renderProviderDetails = ({item}) => {
@@ -105,7 +108,9 @@ function RenderProvider ({providerdata}) {
 
                 <View>
                     <Text style={styles.HeaderTitle}>Vaccine Types Available At This Location</Text>
-                       {/*  <View>
+                    
+                       {/* Another Way to Provide the vaccineType--But does not provide if type is Unknown.
+                        <View>
                             <Text style={styles.Text}>Moderna Covid Vaccine </Text>
                             <Text> 
                                 In Stock:
@@ -174,20 +179,18 @@ class Provider extends Component {
 
 
 
-    
-
     render () {
        
         const providerId = this.props.route.params.providerId; 
         const providerdata= this.state.providerdata.filter(provider => provider.id === providerId);
         
         return (
-            <View style={{paddingTop:10,paddingBottom:20, backgroundColor: '#ffffff'}}>
+            <ScrollView style={{paddingTop:10,paddingBottom:20, backgroundColor: '#ffffff'}}>
                 <RenderProvider providerdata={providerdata}/>
                 <RenderVaccineType providerdata={providerdata}/>
                
                 
-            </View>
+            </ScrollView>
             
                 
               
@@ -195,6 +198,10 @@ class Provider extends Component {
         ) 
     }
 }
+
+
+//StyleSheet//
+
 const styles = StyleSheet.create({
     HeaderTitle: {
         color: '#000',

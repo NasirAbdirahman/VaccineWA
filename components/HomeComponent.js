@@ -20,7 +20,7 @@ class Home extends Component {
         const { navigate } = this.props.navigation;
         return (
             
-            <View  style={{paddingTop:10,paddingBottom:20, backgroundColor: '#ffffff'}}>
+            <View  style={{paddingTop:10, paddingBottom:20, backgroundColor: '#ffffff'}}>
 
                 <Text style={styles.HeaderTitle}>Find A <Text style={styles.HeaderTitle2}>Covid-19 </Text>Vaccine Near You</Text>
 
@@ -56,6 +56,9 @@ class Home extends Component {
     }
 }
 
+
+
+//StyleSheet//
 
 const styles= StyleSheet.create({
     HeaderTitle: {
@@ -97,6 +100,7 @@ const styles= StyleSheet.create({
         paddingBottom:6,
         alignSelf: "center",
         fontSize: 25,
+        //bottom:1.5 = reveals light blue bg//
   
     },
     ButtonContainer: {
