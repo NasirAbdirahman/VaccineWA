@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, StyleSheet } from 'react-native';
+import { View } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { createDrawerNavigator } from '@react-navigation/drawer';
@@ -16,42 +16,42 @@ const HomeStack = createStackNavigator();
 
 function HomeStackNavigator() {
   return (
-    <HomeStack.Navigator>
+    <HomeStack.Navigator initialRouteName="Home">
       <HomeStack.Screen 
         name="Home" 
         component={Home} 
         options = { ({ navigation }) => {
           return {
-            headerTitle: () => <Header navigation ={navigation} /*title='Home'*//> ,
+            headerTitle: () => <Header navigation = {navigation} title='Home'/> ,
             headerTitleContainerStyle: {
-              paddingBottom: 15,
-              paddingTop: 10,
-              
-            },  
-          }
-        }}
-      />
-      <HomeStack.Screen 
-        name="Results" 
-        component={Results} 
-        options = { ({ navigation}) => {
-          return {
-            headerTitle: () => <Header navigation = {navigation} /*title='Providers'*//>   
-          }
-        }} //options={({ route }) => ({ title: route.params.provider.name })}//
-      />
-      <HomeStack.Screen 
-        name="Provider" 
-        component={Provider} 
-        options = {({ navigation }) => {
-          return {
-            headerTitle: () => <Header navigation = {navigation} /*title='Provider Info'*//>   
+                paddingBottom: 15,
+                paddingTop: 10,
+                
+              },  
             }
-        }} //options={({ route }) => ({ title: route.params.provider.name })}//
-      />
-    </HomeStack.Navigator>  
-  );
-}
+          }}
+        />
+        <HomeStack.Screen 
+          name="Results" 
+          component={Results} 
+          options = { ({ navigation}) => {
+            return {
+              headerTitle: () => <Header navigation = {navigation} title='Providers'/>   
+            }
+          }} //options={({ route }) => ({ title: route.params.provider.name })}//
+        />
+        <HomeStack.Screen 
+          name="Provider" 
+          component={Provider} 
+          options = {({ navigation }) => {
+            return {
+              headerTitle: () => <Header navigation = {navigation} title='Provider Info'/>   
+              }
+          }} //options={({ route }) => ({ title: route.params.provider.name })}//
+        />
+      </HomeStack.Navigator>  
+    );
+  }
 
 
 
@@ -62,7 +62,7 @@ function AppNavigator() {
   return (
     <App.Navigator >
       
-      <App.Screen name="Home" component={HomeStackNavigator}/>
+      <App.Screen name="Home"  component={HomeStackNavigator} />
       <App.Screen name="Covid-19 Vaccine FAQ" component={Provider}/>
       <App.Screen name="WA Vaccine Phases" component={HomeStackNavigator}/>
       <App.Screen name="Vaccine Eligibility Test" component={HomeStackNavigator}/>
@@ -83,6 +83,7 @@ class Main extends Component {
         }} >
 
         <NavigationContainer >
+          
           <AppNavigator />
         </NavigationContainer>  
 
