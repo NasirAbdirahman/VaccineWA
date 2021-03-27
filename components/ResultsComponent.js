@@ -28,11 +28,11 @@ function RenderProviders ({providerdata, navigation}) {
     const renderProviderItem = ({item}) => {
        
         return  (
-            <View style={{padding:5, paddingLeft:10}}>
+            <View style={{paddingTop:10, paddingLeft:10}}>
     
                 <Text style={styles.Title}>{item.name} </Text>
                 
-                <Text style={styles.Title2}>{item.address} , {item.zipCode}</Text>
+                <Text style={styles.Title2}>{item.address},{item.zipCode}</Text>
                 <Text style={styles.Title2}> 
                     In Stock:
                     <Icon 
@@ -42,9 +42,9 @@ function RenderProviders ({providerdata, navigation}) {
                     /> 
                 </Text> 
 
-                <Text style={styles.Title2}>Last Updated: {item.lastUpdated} </Text>
+                <Text style={styles.Text}>Last Updated: {item.lastUpdated} </Text>
 
-                <View style={{left:130, bottom:50 }}>
+                <View style={{left:140, bottom:55 }}>
                         <Button
                             buttonStyle={styles.Button}
                             containerStyle={styles.ButtonContainer}
@@ -56,7 +56,7 @@ function RenderProviders ({providerdata, navigation}) {
                             onPress={() => navigation.navigate('Provider', {providerId: item.id})}
                         />
                 </View>
-                <Divider style={{ backgroundColor: '#B1DDF9', width:'100%', alignSelf:'center', margin:1, padding:0.5}}/>
+                <Divider style={{ backgroundColor: '#B1DDF9', width:'100%', alignSelf:'center', margin:1, padding:1}}/>
   
             </View>
             
@@ -124,13 +124,9 @@ class Results extends Component {
                         > 
                     </Button>
 
-                    <Divider style={{ backgroundColor: '#B1DDF9', width:'85%', alignSelf:'center', top:15, padding:0.5}}/>
+                    <Divider style={{ backgroundColor: '#B1DDF9', width:'85%', alignSelf:'center', top:18, padding:1}}/>
                 </View>
-                
-                
-                
-                <RenderProviders providerdata={providerdata} navigation = {navigation}/>
-
+                <RenderProviders providerdata={providerdata} navigation={navigation}/>
             </ScrollView>
         )
     }
@@ -143,8 +139,8 @@ const styles = StyleSheet.create({
     HeaderTitle: {
         color: '#000',
         textAlign:'center',
-        fontSize: 30,
-        fontFamily:'Scheherazade_700Bold',
+        fontSize: 25,
+        fontFamily:'SourceSansPro_700Bold',
         letterSpacing: 1,
     },
     HeaderTitle2: {
@@ -159,21 +155,19 @@ const styles = StyleSheet.create({
         fontSize: 18,
         fontFamily:'SourceSansPro_700Bold',
         letterSpacing: 1,
+        paddingBottom:3
         
     },
     Title2: {
         color: '#000',
-        fontSize: 16,
+        fontSize: 17,
         fontFamily:'SourceSansPro_600SemiBold',
         letterSpacing: 1,
-        paddingTop:5
-        
     },
     Text: {
         fontSize: 16,
         fontFamily:'SourceSansPro_600SemiBold',
         letterSpacing: 1,
-        //paddingLeft:5,
         paddingTop:10,
         color:'#7F7F7F'
       

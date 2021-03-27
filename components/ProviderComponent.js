@@ -1,81 +1,174 @@
 import React, { Component } from 'react';
 import { View,ScrollView, Text, StyleSheet, FlatList } from 'react-native';
-import { Divider, Icon} from 'react-native-elements';
+import { Divider, Icon, Button} from 'react-native-elements';
 import { PROVIDERDATA } from '../shared/ProviderData'; 
 
 // Reviews the Vaccine Type offered and Informs the User//      
 function RenderVaccineType({providerdata}) {
 
     const renderVaccine = ({item}) => {
-            if (item.vaccineTypes.includes("Moderna") && item.availability === "Yes") {
-                return (
-                    <View>
-                        <Text style={styles.Text}>Moderna Covid Vaccine </Text>
-            
-                        <Icon 
-                            name={'check-circle'}
-                            type= 'material-icons' 
-                            color='#70BAFF'
-                        /> 
-                    </View>
-                )
-            } else if ( item.vaccineTypes.includes("Pfizer") && item.availability === "Yes") {
-                return (
-                    <View>
-                        <Text style={styles.Text}>Pfizer/BioNTech Covid Vaccine </Text>
-                        <Icon 
-                            name={'check-circle'}
-                            type= 'material-icons' 
-                            color='#70BAFF'
-                        /> 
-                    </View>
-                )
-            } else if ( item.vaccineTypes.includes("J&J/Janssen") && item.availability === "Yes" ) {
-                return(
-                    <View>
-                        <Text style={styles.Text}>Johnson & Johnson’s Janssen Covid Vaccine</Text>
-                        <Icon 
-                            name={'check-circle'}
-                            type= 'material-icons' 
-                            color='#70BAFF'
-                        /> 
-                    </View>
-                )
-            } else if (item.vaccineTypes.includes("Unknown") && item.availability === "Yes") {
-                return (
-                    <View style={{paddingLeft:10}}>
-                        <Text style={styles.Text}>Unknown</Text>
-                        <Text>Vaccines are available but the Provider has not stated the type</Text>
-                        <Text>In Stock:
-                            <Icon 
-                                name={'check-circle'}
-                                type= 'material-icons' 
-                                color='#70BAFF'
-                            /> 
-                        </Text>
-                    </View>
-                )
-            } else if (item.availability === "No")  { 
-                return (
-                <View style={{paddingLeft:10}}>
-                    <Text style={styles.Text}> Vaccines Are Currently UnAvailable</Text>
-                    <Text> In Stock:
-                        <Icon 
-                            name= 'highlight-off'
-                            type= 'material-icons' 
-                            color='#FF0000'
-                        /> 
-                        </Text>
-                </View> 
-                )
-            } else { //May not need this code//
-                return (
-                <View/>
-                ) //May not need this code//
-            }
-                 
 
+        if (item.availability === "Yes" && item.vaccineTypes === "Moderna") {
+            return (
+                <View>
+                    <Text style={styles.Text}>Moderna Covid Vaccine</Text>
+                    <Text style={styles.Text2}>In Stock:
+                        <Icon 
+                            name='check-circle'
+                            type= 'material-icons' 
+                            color='#70BAFF'
+                            left={1}
+                            top={2} 
+                        /> 
+                    </Text>
+                </View>
+            ) 
+        } else if ( item.availability === "Yes" && item.vaccineTypes === "Pfizer" ) {
+            return (
+                <View>
+                    <Text style={styles.Text}>Pfizer/BioNTech Covid Vaccine </Text>
+                    <Text style={styles.Text2}>In Stock:
+                        <Icon 
+                            name={'check-circle'}
+                            type= 'material-icons' 
+                            color='#70BAFF'
+                            left={1}
+                            top={2} 
+                        />   
+                    </Text>  
+                </View>
+            )
+        } else if ( item.availability === "Yes" && item.vaccineTypes === "J&J/Janssen" ) {
+            return (
+                <View>
+                    <Text style={styles.Text}>Johnson & Johnson’s Janssen Covid Vaccine</Text>
+                    <Text style={styles.Text2}>In Stock:
+                        <Icon 
+                            name={'check-circle'}
+                            type= 'material-icons' 
+                            color='#70BAFF'
+                            left={1}
+                            top={2} 
+                        /> 
+                    </Text>
+                </View>
+            )
+
+        } else if ( item.availability === "Yes" && item.vaccineTypes.includes("J&J/Janssen" && "Moderna")) {
+            return (
+                <View>
+                    <Text style={styles.Text}>Moderna Covid Vaccine </Text>
+                    <Text style={styles.Text2}>In Stock:    
+                        <Icon 
+                            name='check-circle'
+                            type= 'material-icons' 
+                            color='#70BAFF'
+                            left={1}
+                            top={2} 
+                        />  
+                    </Text>
+
+                    <Text style={styles.Text}>Johnson & Johnson’s Janssen Covid Vaccine</Text>
+                    <Text style={styles.Text2}>In Stock:
+                        <Icon 
+                            name={'check-circle'}
+                            type= 'material-icons' 
+                            color='#70BAFF'
+                            left={1}
+                            top={2} 
+                        /> 
+                    </Text>
+                </View>
+            )
+        } else if (item.availability === "Yes" && item.vaccineTypes.includes("J&J/Janssen" && "Pfizer")) {
+            return (
+                <View>
+                   
+                    <Text style={styles.Text}>Johnson & Johnson’s Janssen Covid Vaccine</Text>
+                    <Text style={styles.Text2}>In Stock:
+                        <Icon 
+                            name={'check-circle'}
+                            type= 'material-icons' 
+                            color='#70BAFF'
+                            left={1}
+                            top={2} 
+                        /> 
+                    </Text>
+
+                    <Text style={styles.Text}>Pfizer/BioNTech Covid Vaccine </Text>
+                    <Text style={styles.Text2}>In Stock:
+                        <Icon 
+                            name={'check-circle'}
+                            type= 'material-icons' 
+                            color='#70BAFF'
+                            left={1}
+                            top={2} 
+                        /> 
+                    </Text>
+                </View>
+            )
+        } else if (item.availability === "Yes" && item.vaccineTypes.includes("Moderna" && "Pfizer")) {
+            return(
+                <View>
+                     <Text style={styles.Text}>Moderna Covid Vaccine</Text>
+                     <Text style={styles.Text2}>In Stock:
+                        <Icon 
+                            name='check-circle'
+                            type= 'material-icons' 
+                            color='#70BAFF'
+                            left={1}
+                            top={2} 
+                        /> 
+                    </Text>
+
+                    <Text style={styles.Text}>Pfizer/BioNTech Covid Vaccine</Text> 
+                    <Text style={styles.Text2}>In Stock:
+                        <Icon 
+                            name={'check-circle'}
+                            type= 'material-icons' 
+                            color='#70BAFF'
+                            left={1}
+                            top={2} 
+                        /> 
+                    </Text>
+                </View>
+            )
+        } else if (item.availability === "Yes" && item.vaccineTypes.includes("Unknown")) {
+            return (
+                <View>
+                    <Text style={styles.Text}>Unknown</Text>
+                    <Text style={styles.Text}>Vaccines are available but the Provider has not stated the type</Text>
+                    <Text style={styles.Text2}>In Stock:
+                        <Icon 
+                            name={'check-circle'}
+                            type= 'material-icons' 
+                            color='#70BAFF'
+                            left={1}
+                            top={2} 
+                            
+                        /> 
+                    </Text>
+                </View>
+            )
+        } else (item.availability === "No"); { 
+            return (
+            <View>
+                <Text style={styles.Text}> Vaccines Are Currently UnAvailable</Text>
+                <Text style={styles.Text2}> In Stock:
+                    <Icon 
+                        name= 'highlight-off'
+                        type= 'material-icons' 
+                        color='#FF0000'
+                        left={1}
+                            top={2} 
+                    /> 
+                    </Text>
+            </View> 
+            )
+        }
     };
+
+
     return (
         <View>
             <FlatList
@@ -91,58 +184,142 @@ function RenderVaccineType({providerdata}) {
 
 
 // Displays The provider Data//
-function RenderProvider ({providerdata}) {
+function RenderProvider ({providerdata, navigation}) {
 
     const renderProviderDetails = ({item}) => {
         return (
-            <View style={{paddingLeft:10}}>
-                <Text style={styles.HeaderTitle}>{item.name}</Text>
-                <Text>{item.id}</Text>
-                <Text style={styles.Text}>{item.address}, {item.zipCode}</Text>
-                <Text style={styles.Text}>Vaccine availability is subject to change.</Text>
-                <Text style={styles.Text}>Find out if you can get a Covid-19 vaccine at this location.</Text>
+            <View style={{paddingTop:10,paddingLeft:10, paddingBottom:20}}>
 
-                {/* All Links will go here..Will need to use the navigation props*/}
+                <View style={{paddingBottom:10}}>
+                    <Text style={styles.HeaderTitle}>{item.name}</Text>
+                </View>
 
-                <Divider style={{ backgroundColor: '#B1DDF9', width:'100%', alignSelf:'center', margin: 10, padding:0.5}}/>
+                <View style={{paddingBottom:10}}>
+                    <Text style={styles.Text}>{item.address}, {item.zipCode}</Text>
+                    <Text style={styles.Text2}>Vaccine availability is subject to change.</Text>
+                    <Text style={styles.Text2}>Find out if you can get a Covid-19 vaccine at this location.</Text>
+                </View>
+
+                <View style={{paddingTop:7,paddingBottom:7}}>
+                    {/* All Links will go here..Will need to use the navigation props*/}
+                    <Button 
+                        buttonStyle={styles.Button}
+                        containerStyle={styles.ButtonContainer}
+                        titleStyle={styles.Button}
+                        title="Check Available Appointments"
+                        icon={{
+                            name:'launch',
+                            type: 'material-icons' ,
+                            color:'#fff'
+                        }}
+                        onPress={() =>  navigation.goBack()}
+                        > 
+                    </Button>
+                </View>
+
+                <View style={{paddingTop:10,flexDirection: "row"}}>
+                    <View >
+                        <Text style={styles.Text}>
+                            <Icon
+                                name='directions'
+                                type= 'material-icons' 
+                                color='#70BAFF'
+                                top={3}
+                                onPress={() => navigation.navigate({/*OPEN UP MAPS API*/})} 
+                            />
+                            <Text style={styles.Text}> Directions</Text>
+                        </Text>
+                    </View>
+
+                    <View style={{paddingTop:5,left:40}}>
+                        <Text>
+                            <Icon
+                                name='launch'
+                                type= 'material-icons' 
+                                color='#70BAFF'
+                                top={3}
+                                onPress={() => navigation.navigate({/*OPENS UP BROWSER EXTENSION*/})} 
+                            />
+                            <Text style={styles.Text}> Website</Text> 
+                        </Text>
+                    </View>
+                </View>
+
+                <View style={{paddingTop:10, flexDirection: "row",}}>
+                    <View>
+                        <Text>
+                            <Icon
+                                name='call'
+                                type= 'material-icons' 
+                                color='#70BAFF'
+                                top={3}
+                                onPress={() => navigation.navigate({/*OPENS UP PHONE API*/})} 
+                            />
+                           <Text style={styles.Text}> Phone</Text> 
+                        </Text>
+                    </View>
+
+                    <View style={{left:80}}>
+                        <Text>
+                            <Icon
+                                name='mail'
+                                type= 'material-icons' 
+                                color='#70BAFF'
+                                top={5}
+                                onPress={() => navigation.navigate({/*OPENS UP MAIL API*/} )} 
+                                
+                            />
+                            <Text style={styles.Text}> Email</Text> 
+                        </Text>
+                        
+                    </View>
+                </View>
+
+                <Divider style={{ backgroundColor: '#B1DDF9', width:'100%', alignSelf:'center', margin: 10, padding:1}}/>
+
+                <View style={{paddingBottom:10}}>
+                    <Text style={styles.Title}>Vaccine Types Available At This Location</Text>
+                </View>
 
                 <View>
-                    <Text style={styles.HeaderTitle}>Vaccine Types Available At This Location</Text>
-                    
-                       {/* Another Way to Provide the vaccineType--But does not provide if type is Unknown.
-                        <View>
-                            <Text style={styles.Text}>Moderna Covid Vaccine </Text>
-                            <Text> 
-                                In Stock:
-                                <Icon 
-                                    name={item.vaccineTypes.includes("Moderna") && item.availability === "Yes" || item.vaccineTypes === "Unknown" && item.availability === "Yes" // Allows Checkss to show even if vaccinetype is unknown. fixed bug that showed 'x' when type was unknown but vaccines avaiible ? 'check-circle' : 'highlight-off' }//before includes(),using ==/=== did not work due to data array not seperating vaccinesType name//
-                                    type= 'material-icons' 
-                                    color={item.vaccineTypes.includes("Moderna") && item.availability === "Yes" || item.vaccineTypes === "Unknown" && item.availability === "Yes" ? Icon.color='#70BAFF': Icon.color='#FF0000'}
-                                /> 
-                            </Text> 
-                            <Text style={styles.Text}>Pfizer/BioNTech Covid Vaccine </Text>
-                            <Text> 
-                                In Stock:
-                                <Icon 
-                                    name={item.vaccineTypes.includes("Pfizer") && item.availability === "Yes" || item.vaccineTypes === "Unknown" && item.availability === "Yes" ? 'check-circle' : 'highlight-off' }
-                                    type= 'material-icons' 
-                                    color={item.vaccineTypes.includes("Pfizer") && item.availability === "Yes" || item.vaccineTypes === "Unknown" && item.availability === "Yes" ? Icon.color='#70BAFF': Icon.color='#FF0000'}
-                                /> 
-                                
-                            </Text> 
-                            <Text style={styles.Text}>Johnson & Johnson’s Janssen Covid Vaccine</Text>
-                            <Text> 
-                                In Stock:
-                                <Icon 
-                                    name={item.vaccineTypes.includes("J&J/Janssen") && item.availability === "Yes" || item.vaccineTypes === "Unknown" && item.availability === "Yes" ? 'check-circle' : 'highlight-off' }
-                                    type= 'material-icons' 
-                                    color={item.vaccineTypes.includes("J&J/Janssen") && item.availability === "Yes" || item.vaccineTypes === "Unknown" && item.availability === "Yes" ? Icon.color='#70BAFF': Icon.color='#FF0000'}
-                                /> 
-                            </Text> 
-                        </View>
-                 {// All Links will go here..Will need to use the navigation props//} */}
+                    <RenderVaccineType providerdata={providerdata}/>
+                    <Text style={styles.Text2}>Last Updated: {item.lastUpdated}</Text>
+                    <Text /*NEEDS TO LINK TO INFO */style={styles.Link}>Covid-19 Vaccine Variations? </Text> 
+
                 </View> 
 
+                <Divider style={{ backgroundColor: '#B1DDF9', width:'100%', alignSelf:'center', margin: 10, padding:1}}/>
+
+                <View>
+                    <Text style={styles.Title}>Hours</Text>
+                    <Text style={styles.Text2}>Sunday  -  10am - 6pm</Text> 
+                    <Text style={styles.Text2}>Monday  -  10am - 6pm</Text>
+                    <Text style={styles.Text2}>Tuesday  -  10am - 6pm</Text>
+                    <Text style={styles.Text2}>Wednesday  -  10am - 6pm</Text>
+                    <Text style={styles.Text2}>Thursday  -  10am - 6pm</Text>
+                    <Text style={styles.Text2}>Friday  -  10am - 6pm</Text>
+                    <Text style={styles.Text2}>Saturday  -  10am - 6pm</Text>
+                </View>
+
+                <Divider style={{ backgroundColor: '#B1DDF9', width:'100%', alignSelf:'center', margin: 10, padding:1}}/>
+
+                <View>
+                    <Text style={styles.Title}>Provider Instructions For The Public</Text>
+                    <Text style={styles.Text}>{item.instructions}</Text>    
+                </View>
+
+                <Divider style={{ backgroundColor: '#B1DDF9', width:'100%', alignSelf:'center', margin: 10, padding:1}}/>
+
+                <View>
+                    <Text style={styles.Title}>Things To Know</Text>
+                    <Text style={styles.Text2}>Vaccine Availability Is Subject To Change. </Text> 
+                    <Text style={styles.Text2}>Vaccines By Appointment Only.</Text>
+                    <Text style={styles.Text2}>You Must Wear A Mask To The Appointment.</Text>
+                    <Text style={styles.Text2}>Please Wear A Short Sleeved Shirt.</Text>
+                </View>
+
+                <Divider style={{ backgroundColor: '#B1DDF9', width:'100%', alignSelf:'center', margin: 10, padding:1}}/>
+                    
             </View>
                  
         );
@@ -180,20 +357,15 @@ class Provider extends Component {
 
 
     render () {
+        const { navigation } = this.props;
        
         const providerId = this.props.route.params.providerId; 
         const providerdata= this.state.providerdata.filter(provider => provider.id === providerId);
         
         return (
             <ScrollView style={{paddingTop:10,paddingBottom:20, backgroundColor: '#ffffff'}}>
-                <RenderProvider providerdata={providerdata}/>
-                <RenderVaccineType providerdata={providerdata}/>
-               
-                
-            </ScrollView>
-            
-                
-              
+                <RenderProvider providerdata={providerdata} navigation={navigation}/>  
+            </ScrollView>    
             
         ) 
     }
@@ -205,38 +377,34 @@ class Provider extends Component {
 const styles = StyleSheet.create({
     HeaderTitle: {
         color: '#000',
-        //textAlign:'center',
         fontSize: 23,
-        fontFamily:'Scheherazade_700Bold',
+        fontFamily:'SourceSansPro_700Bold',
         letterSpacing: 1,
-        //paddingLeft:10,
-    },
-    /*HeaderTitle2: {
-        color: '#70BAFF',
-        textAlign:'center',
-        fontSize: 35,
-        letterSpacing: 1,
+        fontWeight:'bold'
         
-    },*/
+    },
+    Title: { //Provider Font Styling//
+        color: '#000',
+        fontSize: 19,
+        fontFamily:'SourceSansPro_700Bold',
+        letterSpacing: 1,
+        paddingBottom:5,
+    },
     Text: {
-        fontSize: 15,
+        fontSize: 17,
         fontFamily:'SourceSansPro_600SemiBold',
         letterSpacing: 1,
-        //paddingLeft:5,
         paddingTop:5,
-        color:'#7F7F7F'
-      
-        
+        paddingBottom:5,
+        color:'#000'
+     
     },
     Text2: {
         fontSize: 16,
-        fontFamily:'SourceSansPro_700Bold',
+        fontFamily:'SourceSansPro_600SemiBold',
         letterSpacing: 1,
-        paddingLeft:5,
-        paddingTop:7,
-        color:'#000'
-        
-        
+        paddingBottom:3,
+        color:'#7F7F7F'//#70BAFF-Alt. Color//  
     },
     Button: {
         backgroundColor:'#70BAFF',
@@ -245,8 +413,7 @@ const styles = StyleSheet.create({
         paddingTop:6,
         paddingBottom:6,
         alignSelf: "center",
-        fontSize: 15,
-  
+        fontSize: 20,
     },
     ButtonContainer: {
         elevation:15,
@@ -256,11 +423,14 @@ const styles = StyleSheet.create({
         padding:1.5,
         borderRadius:25,
     },
-    /*Input: {
-        paddingTop:10,
-        fontFamily:'SourceSansPro_600SemiBold',
-        letterSpacing: 1,
-    }*/
+    Link:{
+        textAlign:'center',
+        fontSize: 16,
+        fontFamily:'SourceSansPro_700Bold',
+        color: '#70BAFF',
+        paddingTop:10
+        
+    }
     
 })
 
