@@ -23,17 +23,18 @@ class Home extends Component {
             <View  style={{paddingTop:10, paddingBottom:20, backgroundColor: '#ffffff'}}>
 
                 <Text style={styles.HeaderTitle}>Find A <Text style={styles.HeaderTitle2}>Covid-19 </Text>Vaccine Near You</Text>
+               {/*<Text style={styles.Text}>A Volunteer-driven effort  for a healthy Washington</Text>*/}
 
-                <Divider style={{ backgroundColor: '#B1DDF9', width:'85%', alignSelf:'center', bottom:10, padding:0.5}}/>
+                <Divider style={{ backgroundColor: '#B1DDF9', width:'85%', alignSelf:'center', padding:1}}/>
 
-                <Text style={styles.Text}>Type A 5-Digit Zip Code</Text>
+                <Text style={styles.Title}>Type A 5-Digit Zip Code</Text>
                 <Input placeholder='Zip Code' 
                     style={styles.Input}
                     value={this.state.zipcode}
                     onChangeText= {(zipcode) => this.setState({zipcode})}
                 />
 
-                <Text style={styles.Text2}>Within</Text>
+                <Text style={styles.Title}>Within</Text>
                 <Input 
                     placeholder='10 Miles' 
                     style={styles.Input}
@@ -45,7 +46,6 @@ class Home extends Component {
                     buttonStyle={styles.Button}
                     containerStyle={styles.ButtonContainer}
                     titleStyle={styles.Button}
-                    
                     title="Search For Vaccines"
                     onPress={() =>  navigate('Results', {zipCode: this.state.zipcode})}> 
                 </Button>
@@ -75,7 +75,7 @@ const styles= StyleSheet.create({
         letterSpacing: 1,
         
     },
-    Text: {
+    Title: {
         fontSize: 20,
         fontFamily:'SourceSansPro_600SemiBold',
         letterSpacing: 1,
@@ -84,14 +84,14 @@ const styles= StyleSheet.create({
       
         
     },
-    Text2: {
-        fontSize: 20,
+    /*Text: {
+        fontSize: 16,
         fontFamily:'SourceSansPro_600SemiBold',
         letterSpacing: 1,
         paddingLeft:5,
         paddingTop:7
         
-    },
+    },*/
     Button: {
         backgroundColor:'#70BAFF',
         borderRadius:25,

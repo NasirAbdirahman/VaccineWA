@@ -1,30 +1,12 @@
 import React, { Component } from 'react';
-import { View, ScrollView, Text, StyleSheet, FlatList} from 'react-native';
-import { Button, Divider, Card, Icon } from 'react-native-elements';
+import { View, ScrollView, Text, StyleSheet, FlatList, SafeAreaView} from 'react-native';
+import { Button, Divider, Icon } from 'react-native-elements';
 import { PROVIDERDATA } from '../shared/ProviderData';
 
 
-/*
-
-<Button onPress={() =>  navigation('Provider', {providerId: item.id})}></Button>
-
-<Button onPress={() =>  navigate('Provider', {providerId: item.id})} ></Button>
-
-<View style={{margin: 4}}>
-                
-
-                <Text style={{fontSize: 14}}>{item.name} </Text>
-                <Text style={{fontSize: 12}}>{item.address} {item.zipCode}</Text>
-                <Text  style={{fontSize: 12}}> {item.id}</Text>
-                
-            
-            </View>
-            
-*/
 
 function RenderProviders ({providerdata, navigation}) {
-   //const { navigation } = this.props;
-    
+
     const renderProviderItem = ({item}) => {
        
         return  (
@@ -45,17 +27,18 @@ function RenderProviders ({providerdata, navigation}) {
                 <Text style={styles.Text}>Last Updated: {item.lastUpdated} </Text>
 
                 <View style={{left:140, bottom:55 }}>
-                        <Button
-                            buttonStyle={styles.Button}
-                            containerStyle={styles.ButtonContainer}
-                            icon={{
-                                name:'forward',//keyboard-arrow-right//
-                                type: 'material-icons' ,
-                                color:'#fff',
-                            }}
-                            onPress={() => navigation.navigate('Provider', {providerId: item.id})}
-                        />
+                    <Button
+                        buttonStyle={styles.Button}
+                        containerStyle={styles.ButtonContainer}
+                        icon={{
+                            name:'forward',//keyboard-arrow-right//
+                            type: 'material-icons' ,
+                            color:'#fff',
+                        }}
+                        onPress={() => navigation.navigate('Provider', {providerId: item.id})}
+                    />
                 </View>
+
                 <Divider style={{ backgroundColor: '#B1DDF9', width:'100%', alignSelf:'center', margin:1, padding:1}}/>
   
             </View>
@@ -70,7 +53,8 @@ function RenderProviders ({providerdata, navigation}) {
                 renderItem={renderProviderItem}
                 keyExtractor={item => item.id.toString()} //Because all the Providers have a unique ID, we can set this to use the ID//
             />
-       </View>
+        </View>
+      
 
     );
 }
@@ -106,7 +90,9 @@ class Results extends Component {
 
     
         return (
+            
             <ScrollView style={{paddingTop:15,paddingBottom:20, backgroundColor: '#ffffff'}}>
+                
                 <Text style={styles.HeaderTitle}>We Found <Text style={styles.HeaderTitle2}>{totalProviders}</Text> Providers Near You</Text>
 
                 <View style={{paddingLeft:7, paddingBottom:30}}>
@@ -119,15 +105,20 @@ class Results extends Component {
                         containerStyle={styles.ButtonContainer}
                         titleStyle={styles.Button}
                         
-                        title="Edit Search"
-                        onPress={() =>  navigation.goBack()}
-                        > 
+                        title="Edit Your Search"
+                        onPress={() =>  navigation.goBack()}> 
                     </Button>
 
                     <Divider style={{ backgroundColor: '#B1DDF9', width:'85%', alignSelf:'center', top:18, padding:1}}/>
                 </View>
+                
+
                 <RenderProviders providerdata={providerdata} navigation={navigation}/>
+               
+
+
             </ScrollView>
+            
         )
     }
 }
@@ -201,32 +192,8 @@ const styles = StyleSheet.create({
         padding:1.5,
         borderRadius:25,
     },
-    /*ForwardButton: {
-        backgroundColor:'#70BAFF',
-        borderRadius:25,
-        padding:4,
-        paddingTop:6,
-        paddingBottom:6,
-        alignSelf: "center",
-        fontSize: 15,
-        
-        //left:120,
-        //bottom:10
-  
-    },
-    ForwardButtonContainer: {
-        elevation:15,
-        alignSelf: "center",
-        backgroundColor:'#B1DDF9',
-        shadowColor:'#70BAFF',
-        //padding:1.5,
-        borderRadius:25,
-       left:120,
-       bottom:10
-    },*/
     
-    
-})
+});
 
 
 export default Results;

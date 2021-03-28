@@ -23,7 +23,7 @@ function RenderVaccineType({providerdata}) {
                     </Text>
                 </View>
             ) 
-        } else if ( item.availability === "Yes" && item.vaccineTypes === "Pfizer" ) {
+        } else if (item.availability === "Yes" && item.vaccineTypes === "Pfizer" ) {
             return (
                 <View>
                     <Text style={styles.Text}>Pfizer/BioNTech Covid Vaccine </Text>
@@ -38,7 +38,7 @@ function RenderVaccineType({providerdata}) {
                     </Text>  
                 </View>
             )
-        } else if ( item.availability === "Yes" && item.vaccineTypes === "J&J/Janssen" ) {
+        } else if (item.availability === "Yes" && item.vaccineTypes === "J&J/Janssen" ) {
             return (
                 <View>
                     <Text style={styles.Text}>Johnson & Johnson’s Janssen Covid Vaccine</Text>
@@ -190,6 +190,29 @@ function RenderProvider ({providerdata, navigation}) {
         return (
             <View style={{paddingTop:10,paddingLeft:10, paddingBottom:20}}>
 
+                {/*Back Button to Search Results*/}
+                <View style={{flexDirection: "row"}}>
+                
+                    <Button
+                        buttonStyle={styles.Button}
+                        containerStyle={styles.ButtonContainer} 
+                        icon={{
+                            name:'arrow-back',//arrow-back-ios//
+                            type: 'material-icons' ,
+                            color:'#fff',
+                            
+                            
+                        }}
+                        //title="Return To Search Results"
+                        //titleStyle={styles.titleStyle}
+                        onPress={() => navigation.goBack()} 
+                    />  
+                    <Text style={styles.Text3}> Return To Search Results</Text>
+                </View>
+                
+                <Divider style={{ backgroundColor: '#B1DDF9', width:'100%', alignSelf:'center', margin: 10, padding:1}}/>
+
+                {/* Provider Information*/}
                 <View style={{paddingBottom:10}}>
                     <Text style={styles.HeaderTitle}>{item.name}</Text>
                 </View>
@@ -200,8 +223,8 @@ function RenderProvider ({providerdata, navigation}) {
                     <Text style={styles.Text2}>Find out if you can get a Covid-19 vaccine at this location.</Text>
                 </View>
 
+                {/*Contact Information For Every Provider*/}
                 <View style={{paddingTop:7,paddingBottom:7}}>
-                    {/* All Links will go here..Will need to use the navigation props*/}
                     <Button 
                         buttonStyle={styles.Button}
                         containerStyle={styles.ButtonContainer}
@@ -212,7 +235,7 @@ function RenderProvider ({providerdata, navigation}) {
                             type: 'material-icons' ,
                             color:'#fff'
                         }}
-                        onPress={() =>  navigation.goBack()}
+                        onPress={() =>  navigation.goBack()} //Not going anywhere//
                         > 
                     </Button>
                 </View>
@@ -277,6 +300,7 @@ function RenderProvider ({providerdata, navigation}) {
 
                 <Divider style={{ backgroundColor: '#B1DDF9', width:'100%', alignSelf:'center', margin: 10, padding:1}}/>
 
+                {/* Instructions & Information For Every Provider*/}
                 <View style={{paddingBottom:10}}>
                     <Text style={styles.Title}>Vaccine Types Available At This Location</Text>
                 </View>
@@ -362,10 +386,10 @@ class Provider extends Component {
         const providerId = this.props.route.params.providerId; 
         const providerdata= this.state.providerdata.filter(provider => provider.id === providerId);
         
-        return (
-            <ScrollView style={{paddingTop:10,paddingBottom:20, backgroundColor: '#ffffff'}}>
+        return ( //Removed ScrollView & Warning disappeared. Does not chnage functionality//
+            <View style={{paddingTop:10,paddingBottom:20, backgroundColor: '#ffffff'}}> 
                 <RenderProvider providerdata={providerdata} navigation={navigation}/>  
-            </ScrollView>    
+            </View>    
             
         ) 
     }
@@ -406,10 +430,16 @@ const styles = StyleSheet.create({
         paddingBottom:3,
         color:'#7F7F7F'//#70BAFF-Alt. Color//  
     },
+    Text3: {
+        fontFamily:'SourceSansPro_600SemiBold',
+        fontSize: 15,
+        letterSpacing: 1,   
+        top:11
+    },
     Button: {
         backgroundColor:'#70BAFF',
         borderRadius:25,
-        padding:4,
+        padding:6,
         paddingTop:6,
         paddingBottom:6,
         alignSelf: "center",

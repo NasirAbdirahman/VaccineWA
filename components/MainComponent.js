@@ -36,7 +36,8 @@ function HomeStackNavigator() {
           component={Results} 
           options = { ({ navigation}) => {
             return {
-              headerTitle: () => <Header navigation = {navigation} title='Providers'/>   
+              headerTitle: () => <Header navigation = {navigation} title='Providers'/> ,
+              headerLeft: () => null //Removes the Back Arrow in The Header//
             }
           }} //options={({ route }) => ({ title: route.params.provider.name })}//
         />
@@ -45,7 +46,8 @@ function HomeStackNavigator() {
           component={Provider} 
           options = {({ navigation }) => {
             return {
-              headerTitle: () => <Header navigation = {navigation} title='Provider Info'/>   
+              headerTitle: () => <Header navigation = {navigation} title='Provider Info'/>,
+              headerLeft: () => null   //Removes the Back Arrow in The Header//
               }
           }} //options={({ route }) => ({ title: route.params.provider.name })}//
         />
