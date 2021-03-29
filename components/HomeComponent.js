@@ -64,14 +64,14 @@ const styles= StyleSheet.create({
     HeaderTitle: {
         color: '#000',
         textAlign:'center',
-        fontSize: 27,
-        fontFamily:'Scheherazade_700Bold',
+        fontSize: 23,
+        fontFamily:'SourceSansPro_700Bold',
         letterSpacing: 1,
     },
     HeaderTitle2: {
         color: '#70BAFF',
         textAlign:'center',
-        fontSize: 35,
+        fontSize: 27,
         letterSpacing: 1,
         
     },

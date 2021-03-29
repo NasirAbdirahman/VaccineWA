@@ -188,153 +188,163 @@ function RenderProvider ({providerdata, navigation}) {
 
     const renderProviderDetails = ({item}) => {
         return (
-            <View style={{paddingTop:10,paddingLeft:10, paddingBottom:20}}>
+            <View>
 
-                {/*Back Button to Search Results*/}
-                <View style={{flexDirection: "row"}}>
-                
-                    <Button
-                        buttonStyle={styles.Button}
-                        containerStyle={styles.ButtonContainer} 
-                        icon={{
-                            name:'arrow-back',//arrow-back-ios//
-                            type: 'material-icons' ,
-                            color:'#fff',
-                            
-                            
-                        }}
-                        //title="Return To Search Results"
-                        //titleStyle={styles.titleStyle}
-                        onPress={() => navigation.goBack()} 
-                    />  
-                    <Text style={styles.Text3}> Return To Search Results</Text>
-                </View>
-                
-                <Divider style={{ backgroundColor: '#B1DDF9', width:'100%', alignSelf:'center', margin: 10, padding:1}}/>
-
-                {/* Provider Information*/}
-                <View style={{paddingBottom:10}}>
-                    <Text style={styles.HeaderTitle}>{item.name}</Text>
-                </View>
-
-                <View style={{paddingBottom:10}}>
-                    <Text style={styles.Text}>{item.address}, {item.zipCode}</Text>
-                    <Text style={styles.Text2}>Vaccine availability is subject to change.</Text>
-                    <Text style={styles.Text2}>Find out if you can get a Covid-19 vaccine at this location.</Text>
-                </View>
-
-                {/*Contact Information For Every Provider*/}
-                <View style={{paddingTop:7,paddingBottom:7}}>
-                    <Button 
-                        buttonStyle={styles.Button}
-                        containerStyle={styles.ButtonContainer}
-                        titleStyle={styles.Button}
-                        title="Check Available Appointments"
-                        icon={{
-                            name:'launch',
-                            type: 'material-icons' ,
-                            color:'#fff'
-                        }}
-                        onPress={() =>  navigation.goBack()} //Not going anywhere//
-                        > 
-                    </Button>
-                </View>
-
-                <View style={{paddingTop:10,flexDirection: "row"}}>
-                    <View >
-                        <Text style={styles.Text}>
-                            <Icon
-                                name='directions'
-                                type= 'material-icons' 
-                                color='#70BAFF'
-                                top={3}
-                                onPress={() => navigation.navigate({/*OPEN UP MAPS API*/})} 
-                            />
-                            <Text style={styles.Text}> Directions</Text>
-                        </Text>
-                    </View>
-
-                    <View style={{paddingTop:5,left:40}}>
-                        <Text>
-                            <Icon
-                                name='launch'
-                                type= 'material-icons' 
-                                color='#70BAFF'
-                                top={3}
-                                onPress={() => navigation.navigate({/*OPENS UP BROWSER EXTENSION*/})} 
-                            />
-                            <Text style={styles.Text}> Website</Text> 
-                        </Text>
-                    </View>
-                </View>
-
-                <View style={{paddingTop:10, flexDirection: "row",}}>
-                    <View>
-                        <Text>
-                            <Icon
-                                name='call'
-                                type= 'material-icons' 
-                                color='#70BAFF'
-                                top={3}
-                                onPress={() => navigation.navigate({/*OPENS UP PHONE API*/})} 
-                            />
-                           <Text style={styles.Text}> Phone</Text> 
-                        </Text>
-                    </View>
-
-                    <View style={{left:80}}>
-                        <Text>
-                            <Icon
-                                name='mail'
-                                type= 'material-icons' 
-                                color='#70BAFF'
-                                top={5}
-                                onPress={() => navigation.navigate({/*OPENS UP MAIL API*/} )} 
+                <View style={{paddingLeft:5}}>
+                    {/*Back Button to Search Results*/}
+                    <View style={{flexDirection: "row"}}>                
+                        <Button
+                            buttonStyle={styles.Button}
+                            containerStyle={styles.ButtonContainer} 
+                            icon={{
+                                name:'arrow-back',//arrow-back-ios//
+                                type: 'material-icons' ,
+                                color:'#fff',
                                 
-                            />
-                            <Text style={styles.Text}> Email</Text> 
-                        </Text>
-                        
+                                
+                            }}
+                            //title="Return To Search Results"
+                            //titleStyle={styles.titleStyle}
+                            onPress={() => navigation.goBack()} 
+                        />  
+                        <Text style={styles.Text3}> Return To Search Results</Text>
+                    </View>
+                </View>
+                    
+                <Divider style={{ backgroundColor: '#B1DDF9', width:'100%', alignSelf:'center', margin: 10, padding:1}}/>
+
+                {/* Provider Information*/}         
+                <View style={{paddingTop:10,paddingLeft:7, paddingBottom:20}}>
+                    
+                    <View style={{paddingBottom:10}}>
+                        <Text style={styles.HeaderTitle}>{item.name}</Text>
+                    </View>
+
+                    <View style={{paddingBottom:10}}>
+                        <Text style={styles.Text}>{item.address}, {item.zipCode}</Text>
+                        <Text style={styles.Text2}>Vaccine availability is subject to change.</Text>
+                        <Text style={styles.Text2}>Find out if you can get a Covid-19 vaccine at this location.</Text>
+                    </View>
+
+                    {/*Contact Information For Every Provider*/}
+                    <View style={{paddingTop:7,paddingBottom:7}}>
+                        <Button 
+                            buttonStyle={styles.Button}
+                            containerStyle={styles.ButtonContainer}
+                            titleStyle={styles.Button}
+                            title="Check Available Appointments"
+                            icon={{
+                                name:'launch',
+                                type: 'material-icons' ,
+                                color:'#fff'
+                            }}
+                            onPress={() =>  navigation.goBack()} //Not going anywhere//
+                            > 
+                        </Button>
+                    </View>
+
+                    <View style={{paddingTop:10,flexDirection: "row"}}>
+                        <View >
+                            <Text style={styles.Text}>
+                                <Icon
+                                    name='directions'
+                                    type= 'material-icons' 
+                                    color='#70BAFF'
+                                    top={3}
+                                    onPress={() => navigation.navigate({/*OPEN UP MAPS API*/})} 
+                                />
+                                <Text style={styles.Text}> Directions</Text>
+                            </Text>
+                        </View>
+
+                        <View style={{paddingTop:5,left:40}}>
+                            <Text>
+                                <Icon
+                                    name='launch'
+                                    type= 'material-icons' 
+                                    color='#70BAFF'
+                                    top={3}
+                                    onPress={() => navigation.navigate({/*OPENS UP BROWSER EXTENSION*/})} 
+                                />
+                                <Text style={styles.Text}> Website</Text> 
+                            </Text>
+                        </View>
+                    </View>
+
+                    <View style={{paddingTop:10, flexDirection: "row",}}>
+                        <View>
+                            <Text>
+                                <Icon
+                                    name='call'
+                                    type= 'material-icons' 
+                                    color='#70BAFF'
+                                    top={3}
+                                    onPress={() => navigation.navigate({/*OPENS UP PHONE API*/})} 
+                                />
+                            <Text style={styles.Text}> Phone</Text> 
+                            </Text>
+                        </View>
+
+                        <View style={{left:80}}>
+                            <Text>
+                                <Icon
+                                    name='mail'
+                                    type= 'material-icons' 
+                                    color='#70BAFF'
+                                    top={5}
+                                    onPress={() => navigation.navigate({/*OPENS UP MAIL API*/} )} 
+                                    
+                                />
+                                <Text style={styles.Text}> Email</Text> 
+                            </Text>
+                            
+                        </View>
                     </View>
                 </View>
 
-                <Divider style={{ backgroundColor: '#B1DDF9', width:'100%', alignSelf:'center', margin: 10, padding:1}}/>
+                <Divider style={{ backgroundColor: '#B1DDF9', width:'85%', alignSelf:'center', margin: 10, padding:1}}/>
 
                 {/* Instructions & Information For Every Provider*/}
-                <View style={{paddingBottom:10}}>
-                    <Text style={styles.Title}>Vaccine Types Available At This Location</Text>
-                </View>
+                <View style={{paddingTop:10,paddingLeft:7, paddingBottom:20}}>
+                    <View style={{paddingBottom:10}}>
+                        <Text style={styles.Title}>Vaccine Types Available At This Location</Text>
+                    </View>
 
-                <View>
-                    <RenderVaccineType providerdata={providerdata}/>
-                    <Text style={styles.Text2}>Last Updated: {item.lastUpdated}</Text>
-                    <Text /*NEEDS TO LINK TO INFO */style={styles.Link}>Covid-19 Vaccine Variations? </Text> 
+                    <View>
+                        <RenderVaccineType providerdata={providerdata}/>
+                        <Text style={styles.Text2}>Last Updated: {item.lastUpdated}</Text>
+                        <Text /*NEEDS TO LINK TO INFO */style={styles.Link}>Covid-19 Vaccine Variations? </Text> 
 
-                </View> 
-
-                <Divider style={{ backgroundColor: '#B1DDF9', width:'100%', alignSelf:'center', margin: 10, padding:1}}/>
-
-                <View>
-                    <Text style={styles.Title}>Hours</Text>
-                    <Text style={styles.Text2}>Sunday  -  10am - 6pm</Text> 
-                    <Text style={styles.Text2}>Monday  -  10am - 6pm</Text>
-                    <Text style={styles.Text2}>Tuesday  -  10am - 6pm</Text>
-                    <Text style={styles.Text2}>Wednesday  -  10am - 6pm</Text>
-                    <Text style={styles.Text2}>Thursday  -  10am - 6pm</Text>
-                    <Text style={styles.Text2}>Friday  -  10am - 6pm</Text>
-                    <Text style={styles.Text2}>Saturday  -  10am - 6pm</Text>
+                    </View> 
                 </View>
 
                 <Divider style={{ backgroundColor: '#B1DDF9', width:'100%', alignSelf:'center', margin: 10, padding:1}}/>
 
-                <View>
-                    <Text style={styles.Title}>Provider Instructions For The Public</Text>
-                    <Text style={styles.Text}>{item.instructions}</Text>    
+                <View style={{paddingTop:10,paddingLeft:7, paddingBottom:20}}>
+                    <View>
+                        <Text style={styles.Title}>Hours</Text>
+                        <Text style={styles.Text2}>Sunday  -  10am - 6pm</Text> 
+                        <Text style={styles.Text2}>Monday  -  10am - 6pm</Text>
+                        <Text style={styles.Text2}>Tuesday  -  10am - 6pm</Text>
+                        <Text style={styles.Text2}>Wednesday  -  10am - 6pm</Text>
+                        <Text style={styles.Text2}>Thursday  -  10am - 6pm</Text>
+                        <Text style={styles.Text2}>Friday  -  10am - 6pm</Text>
+                        <Text style={styles.Text2}>Saturday  -  10am - 6pm</Text>
+                    </View>
                 </View>
 
                 <Divider style={{ backgroundColor: '#B1DDF9', width:'100%', alignSelf:'center', margin: 10, padding:1}}/>
 
-                <View>
+                <View style={{paddingTop:10,paddingLeft:7, paddingBottom:20}}>
+                    <View>
+                        <Text style={styles.Title}>Provider Instructions For The Public</Text>
+                        <Text style={styles.Text}>{item.instructions}</Text>    
+                    </View>
+                </View>
+
+                <Divider style={{ backgroundColor: '#B1DDF9', width:'100%', alignSelf:'center', margin: 10, padding:1}}/>
+
+                <View style={{paddingTop:10,paddingLeft:7, paddingBottom:20}}>
                     <Text style={styles.Title}>Things To Know</Text>
                     <Text style={styles.Text2}>Vaccine Availability Is Subject To Change. </Text> 
                     <Text style={styles.Text2}>Vaccines By Appointment Only.</Text>
@@ -343,7 +353,7 @@ function RenderProvider ({providerdata, navigation}) {
                 </View>
 
                 <Divider style={{ backgroundColor: '#B1DDF9', width:'100%', alignSelf:'center', margin: 10, padding:1}}/>
-                    
+                         
             </View>
                  
         );

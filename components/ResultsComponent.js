@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, ScrollView, Text, StyleSheet, FlatList, SafeAreaView} from 'react-native';
+import { View, ScrollView, Text, StyleSheet, FlatList} from 'react-native';
 import { Button, Divider, Icon } from 'react-native-elements';
 import { PROVIDERDATA } from '../shared/ProviderData';
 
@@ -10,37 +10,39 @@ function RenderProviders ({providerdata, navigation}) {
     const renderProviderItem = ({item}) => {
        
         return  (
-            <View style={{paddingTop:10, paddingLeft:10}}>
-    
-                <Text style={styles.Title}>{item.name} </Text>
-                
-                <Text style={styles.Title2}>{item.address},{item.zipCode}</Text>
-                <Text style={styles.Title2}> 
-                    In Stock:
-                    <Icon 
-                        name={item.availability === "Yes" ? 'check-circle' : 'highlight-off' }
-                        type= 'material-icons' 
-                        color={item.availability === "Yes" ? Icon.color='#70BAFF': Icon.color='#FF0000'}
-                    /> 
-                </Text> 
+            <View>
+                <View style={{paddingTop:10, paddingLeft:7}}>
+        
+                    <Text style={styles.Title}>{item.name} </Text>
+                    
+                    <Text style={styles.Title2}>{item.address},{item.zipCode}</Text>
+                    <Text style={styles.Title2}> 
+                        In Stock:
+                        <Icon 
+                            name={item.availability === "Yes" ? 'check-circle' : 'highlight-off' }
+                            type= 'material-icons' 
+                            color={item.availability === "Yes" ? Icon.color='#70BAFF': Icon.color='#FF0000'}
+                        /> 
+                    </Text> 
 
-                <Text style={styles.Text}>Last Updated: {item.lastUpdated} </Text>
+                    <Text style={styles.Text}>Last Updated: {item.lastUpdated} </Text>
 
-                <View style={{left:140, bottom:55 }}>
-                    <Button
-                        buttonStyle={styles.Button}
-                        containerStyle={styles.ButtonContainer}
-                        icon={{
-                            name:'forward',//keyboard-arrow-right//
-                            type: 'material-icons' ,
-                            color:'#fff',
-                        }}
-                        onPress={() => navigation.navigate('Provider', {providerId: item.id})}
-                    />
+                    <View style={{left:140, bottom:55 }}>
+                        <Button
+                            buttonStyle={styles.Button}
+                            containerStyle={styles.ButtonContainer}
+                            icon={{
+                                name:'forward',//keyboard-arrow-right//
+                                type: 'material-icons' ,
+                                color:'#fff',
+                            }}
+                            onPress={() => navigation.navigate('Provider', {providerId: item.id})}
+                        />
+                    </View>       
                 </View>
 
                 <Divider style={{ backgroundColor: '#B1DDF9', width:'100%', alignSelf:'center', margin:1, padding:1}}/>
-  
+            
             </View>
             
         );
@@ -115,8 +117,6 @@ class Results extends Component {
 
                 <RenderProviders providerdata={providerdata} navigation={navigation}/>
                
-
-
             </ScrollView>
             
         )
