@@ -8,7 +8,7 @@ import Provider from './ProviderComponent';
 import Results from './ResultsComponent';
 import Header from '../shared/HeaderComponent';
 import Eligibility from './EligibilityComponent';
-
+import VaccinePhases from './VaccinePhasesComponent';
 
 
 
@@ -17,10 +17,14 @@ const HomeStack = createStackNavigator();
 
 function HomeStackNavigator() {
   return (
-    <HomeStack.Navigator initialRouteName="Home">
-      <HomeStack.Screen 
-        name="Home" 
+    <HomeStack.Navigator
+      initialRouteName='Home'
+      >
+      <HomeStack.Screen
+        name='Home' 
         component={Home} 
+        //Screen={Home}
+        //initialRouteName='Home'
         options = { ({ navigation }) => {
           return {
             headerTitle: () => <Header navigation = {navigation} title='Home'/> ,
@@ -33,24 +37,29 @@ function HomeStackNavigator() {
           }}
         />
       <HomeStack.Screen 
-        name="Results" 
+        name='Results' 
         component={Results} 
         options = { ({ navigation}) => {
           return {
-            headerTitle: () => <Header navigation = {navigation} title='Providers'/> ,
+            headerTitle: () => <Header navigation = {navigation} title='Results'/> ,
             headerLeft: () => null //Removes the Back Arrow in The Header//
           }
         }} //options={({ route }) => ({ title: route.params.provider.name })}//
       />
       <HomeStack.Screen 
-        name="Provider" 
+        name='Provider' 
         component={Provider} 
         options = {({ navigation }) => {
           return {
-            headerTitle: () => <Header navigation = {navigation} title='Provider Info'/>,
+            headerTitle: () => <Header navigation = {navigation} title='Provider'/>,
             headerLeft: () => null   //Removes the Back Arrow in The Header//
-            }
+          }
         }} //options={({ route }) => ({ title: route.params.provider.name })}//
+      />
+      <HomeStack.Screen 
+        name='Eligibility' 
+        component={Eligibility} 
+        
       />
     </HomeStack.Navigator>  
   );
@@ -62,13 +71,13 @@ const EligibilityStack = createStackNavigator();
 
 function EligibilityStackNavigator() {
   return (
-    <EligibilityStack.Navigator initialRouteName="Home">
+    <EligibilityStack.Navigator initialRouteName="Eligibility">
       <EligibilityStack.Screen 
-        name="Eligibility Page" 
+        name="Eligibility" 
         component={Eligibility} 
         options = { ({ navigation }) => {
           return {
-            headerTitle: () => <Header navigation = {navigation} title='Home'/> ,
+            headerTitle: () => <Header navigation = {navigation} title='Eligibility'/> ,
             headerTitleContainerStyle: {
                 paddingBottom: 15,
                 paddingTop: 10,
@@ -77,16 +86,16 @@ function EligibilityStackNavigator() {
             }
           }}
         />
-        {/*<EligibilityStack.Screen 
-          name="Results" 
-          component={Results} 
+        <EligibilityStack.Screen 
+          name="Vaccine Phases" 
+          component={VaccinePhases} 
           options = { ({ navigation}) => {
             return {
-              headerTitle: () => <Header navigation = {navigation} title='Providers'/> ,
+              headerTitle: () => <Header navigation = {navigation} title='Vaccine Phases'/> ,
               headerLeft: () => null //Removes the Back Arrow in The Header//
             }
-          }} //options={({ route }) => ({ title: route.params.provider.name })}//
-        />*/}
+          }}
+        />
         {/*<Eligibilitytack.Screen 
           name="Provider" 
           component={Provider} 
@@ -108,11 +117,11 @@ const App = createDrawerNavigator();
 
 function AppNavigator() {
   return (
-    <App.Navigator >
+    <App.Navigator>
       
-      <App.Screen name="Home"  component={HomeStackNavigator} />
-      <App.Screen name="Covid-19 Vaccine FAQ" component={Provider}/>
-      <App.Screen name="WA Vaccine Phases" component={HomeStackNavigator} />
+      <App.Screen name="Home"  component={HomeStackNavigator}/> 
+      <App.Screen name="Covid-19 Vaccine FAQ" component={EligibilityStackNavigator}/>
+      <App.Screen name="WA Vaccine Phases" component={EligibilityStackNavigator} />
       <App.Screen name="Vaccine Eligibility Test" component={EligibilityStackNavigator} />
       <App.Screen name="FAQ" component={HomeStackNavigator}/>
 
@@ -131,7 +140,6 @@ class Main extends Component {
         }} >
 
         <NavigationContainer >
-          
           <AppNavigator />
         </NavigationContainer>  
 

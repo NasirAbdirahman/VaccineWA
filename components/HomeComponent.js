@@ -1,6 +1,6 @@
-import React, { Component } from 'react';
+import React, { Component, useRef } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
-import { Input, Button, Divider} from 'react-native-elements';
+import { Input, Button, Divider, Tooltip } from 'react-native-elements';
 
 
 
@@ -10,22 +10,53 @@ class Home extends Component {
         this.state = {
           zipcode: '',
         };
+        
       }
 
     static navigationOptions = {
         title: 'Home',
     };
+  
+    
+  
+    
 
     render () {
+        
         const { navigate } = this.props.navigation;
         return (
             
-            <View  style={{paddingTop:10, paddingBottom:20, backgroundColor: '#ffffff'}}>
+            <View style={{paddingTop:15, paddingBottom:20, backgroundColor: '#ffffff'}}>
 
                 <Text style={styles.HeaderTitle}>Find A <Text style={styles.HeaderTitle2}>Covid-19 </Text>Vaccine Near You</Text>
                {/*<Text style={styles.Text}>A Volunteer-driven effort  for a healthy Washington</Text>*/}
 
                 <Divider style={{ backgroundColor: '#B1DDF9', width:'85%', alignSelf:'center', padding:1}}/>
+                
+                {/* Pop Up Eligibility Question*/}
+                
+                <Tooltip
+                    popover={ 
+                        <View>
+                            <Text style={styles.TooltipText}>Are You Eligibile For The Covid-19 Vaccine?{"\n"}{"\n"}Take The Official Quiz? </Text>
+                            <Button 
+                                buttonStyle={styles.Button}
+                                //containerStyle={styles.ButtonContainer}
+                                //titleStyle={styles.TooltipText}
+                                title="Quiz"
+                                onPress={() =>  navigate('Eligibility')}> 
+                            </Button>
+                        </View>
+                    
+                    }
+                    containerStyle={styles.TooltipContainer}
+                    height={130}
+                    width={200}
+                    withPointer={false} 
+                    >
+                    <Text style={styles.Tooltip}>?</Text>
+
+                </Tooltip>
 
                 <Text style={styles.Title}>Type A 5-Digit Zip Code</Text>
                 <Input placeholder='Zip Code' 
@@ -49,6 +80,7 @@ class Home extends Component {
                     title="Search For Vaccines"
                     onPress={() =>  navigate('Results', {zipCode: this.state.zipcode})}> 
                 </Button>
+                
                 
             
             </View>
@@ -77,21 +109,22 @@ const styles= StyleSheet.create({
     },
     Title: {
         fontSize: 20,
-        fontFamily:'SourceSansPro_600SemiBold',
+        fontFamily:'SourceSansPro_700Bold',
         letterSpacing: 1,
         paddingLeft:5,
-        paddingTop:50,
+        paddingTop:30,
       
         
     },
-    /*Text: {
+    Text: {
         fontSize: 16,
         fontFamily:'SourceSansPro_600SemiBold',
         letterSpacing: 1,
         paddingLeft:5,
-        paddingTop:7
+        paddingTop:7,
+        //color:'#fff'
         
-    },*/
+    },
     Button: {
         backgroundColor:'#70BAFF',
         borderRadius:25,
@@ -115,7 +148,29 @@ const styles= StyleSheet.create({
         paddingTop:10,
         fontFamily:'SourceSansPro_600SemiBold',
         letterSpacing: 1,
-    }
+    },
+    Tooltip: {
+        alignSelf:'flex-end',
+        backgroundColor:'#B1DDF9',
+        shadowColor:'#70BAFF',
+        fontSize:30,
+        borderTopLeftRadius:15,
+        borderBottomLeftRadius:15,
+        padding:7,
+        top:10,
+        color:'#fff'
+    },
+    TooltipText: {
+        fontSize:18,
+        fontFamily:'SourceSansPro_600SemiBold',
+        
+    },
+    TooltipContainer: {
+        elevation:15,
+        backgroundColor:'#B1DDF9',
+        shadowColor:'#70BAFF',
+        borderRadius:25,
+    },
     
 })
 

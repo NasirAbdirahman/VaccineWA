@@ -1,38 +1,42 @@
 import React, { Component } from 'react';
-import { View, ScrollView, Text, StyleSheet, FlatList} from 'react-native';
-import { Button, Divider, Icon } from 'react-native-elements';
+import { View, ScrollView, Text, StyleSheet} from 'react-native';
+import { Button, Divider } from 'react-native-elements';
 
 
 class Eligibility extends Component {
 
 
     static navigationOptions = {
-        title: 'Eligibility Page'
+        title: 'Eligibility'
     };
 
     render () {
+
         return (
+            
            
             <ScrollView style={{paddingTop:15,paddingBottom:20, backgroundColor: '#ffffff'}}>
-
-                <View style={{paddingLeft:7, paddingBottom:15}}>      
+                 
+                <View style={{paddingLeft:7, paddingBottom:20}}>      
                     <Text style={styles.HeaderTitle}>Check your Covid-19 Vaccine Eligibility</Text>          
                     <Text style={styles.Text}>By Answering the <Text style={styles.Text2}>Official State Phase Finder</Text> Questionnaire, you can see when You are eligible to receive the vaccine.</Text>  
                 </View>
 
-                <Button 
-                    buttonStyle={styles.Button}
-                    containerStyle={styles.ButtonContainer}
-                    titleStyle={styles.Button}
-                    
-                    title="Start"
-                    //onPress={() =>  navigation.goBack()}
-                    > 
-                </Button>
+                <View style={{paddingBottom:15}}>
+                    <Button 
+                        buttonStyle={styles.Button}
+                        containerStyle={styles.ButtonContainer}
+                        titleStyle={styles.Button}
+                        
+                        title="Start"
+                        //onPress={() =>  navigation.goBack()} {NEEDS TO GO TO FORM START}
+                        > 
+                    </Button>
+                </View>
 
                 <Divider style={{ backgroundColor: '#B1DDF9', width:'100%', alignSelf:'center', margin:10, padding:1}}/>
 
-                <View style={{paddingLeft:7, paddingBottom:30}}>
+                <View style={{paddingLeft:7, paddingTop:10, paddingBottom:15}}>
                     <Text style={styles.Title}>Why A Questionnaire?</Text>
                     <Text style={styles.Text}>Due to a limited vaccine supply, we need to provide the vaccine in phases. 
                         We are starting with <Text style={styles.Text2}>people who are most at risk such as healthcare workers, elders, vulnerable individuals, and high-risk critical workers.</Text> Our goal is for this process to be as fair and transparent as possible. 
@@ -44,7 +48,7 @@ class Eligibility extends Component {
 
                 <Divider style={{ backgroundColor: '#B1DDF9', width:'85%', alignSelf:'center', margin:10, padding:1}}/>
 
-                <View style={{paddingLeft:7, paddingBottom:30}}>
+                <View style={{paddingLeft:7,paddingTop:10, paddingBottom:15}}>
                     <Text style={styles.Title}>Who can Receive The Vaccine?</Text>
                     <Text style={styles.Text}><Text style={styles.Text2}>Everyone will be eligible to receive the COVID-19 vaccine over the coming months.</Text> </Text>
                     <Text style={styles.Text2}>The COVID-19 vaccine is free for all, regardless of whether you have private health insurance, are uninsured, or are on Medicare.</Text>
@@ -54,7 +58,7 @@ class Eligibility extends Component {
 
                 <Divider style={{ backgroundColor: '#B1DDF9', width:'85%', alignSelf:'center', margin:10, padding:1}}/>
 
-                <View style={{paddingLeft:7, paddingBottom:30}}>
+                <View style={{paddingLeft:7, paddingTop:10, paddingBottom:15}}>
                     <Text style={styles.Title}>How do I know if I am Eligible?</Text>
                     <Text style={styles.Text}>Please complete the following questions to determine whether you are eligible to get the COVID-19 vaccine now. </Text>
                     <Text style={styles.Text2}>Please know we will NOT share your information with anyone. We will use it to assess eligibility and inform planning.</Text>
@@ -64,12 +68,11 @@ class Eligibility extends Component {
 
                 <Divider style={{ backgroundColor: '#B1DDF9', width:'85%', alignSelf:'center', margin:10, padding:1}}/>
 
-                <View style={{paddingLeft:7, paddingBottom:30}}>
+                <View style={{paddingLeft:7, paddingTop:10, paddingBottom:50}}>
                     <Text style={styles.Title}>How About If I Am Not Eligible?</Text>
                     <Text style={styles.Text}>If you are not eligible yet, please provide contact information and the Washington State Department of Health will provide updates on COVID vaccinations and notify you when you become eligible.</Text>
                     <Text style={styles.Text2}>We can contact you via phone, text, email or through this App and let you know when you’re eligible to receive the vaccine.</Text>
-                    <Text style={styles.Text}>Or you can also check back later.</Text>
-                    
+                    <Text style={styles.Text}>Or you can also check back later.</Text>                   
                 </View>
 
             </ScrollView>
@@ -157,4 +160,4 @@ const styles = StyleSheet.create({
 });
 
 
-export  default Eligibility;
+export default Eligibility;
