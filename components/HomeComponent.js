@@ -1,6 +1,7 @@
 import React, { Component, useRef } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import { Input, Button, Divider, Tooltip } from 'react-native-elements';
+import Modal from 'react-native-modal';
 
 
 
@@ -9,17 +10,20 @@ class Home extends Component {
         super(props);
         this.state = {
           zipcode: '',
+          showModal: false,
         };
         
-      }
+    }
 
     static navigationOptions = {
         title: 'Home',
     };
   
+    toggleModal = () => {
+        this.setState({showModal : !this.state.showModal})
+    }
     
   
-    
 
     render () {
         
@@ -33,7 +37,7 @@ class Home extends Component {
 
                 <Divider style={{ backgroundColor: '#B1DDF9', width:'85%', alignSelf:'center', padding:1}}/>
                 
-                {/* Pop Up Eligibility Question*/}
+                {/* Pop Up Eligibility Question
                 
                 <Tooltip
                     popover={ 
@@ -56,7 +60,43 @@ class Home extends Component {
                     >
                     <Text style={styles.Tooltip}>?</Text>
 
-                </Tooltip>
+                </Tooltip>*/}
+
+                {/* Pop Up Eligibility Question*/}
+                    <Text style={styles.ModalTrigger} onPress={this.toggleModal}> ?</Text>
+
+                    <View >
+
+                        <Modal 
+                            isVisible={this.state.showModal}
+                            onBackdropPress={() => this.setState({showModal : !this.state.showModal})}
+                            onSwipeComplete={() => this.setState({showModal : !this.state.showModal})} swipeDirection="left" 
+                            animationIn={'slideInRight'} animationOut={'slideOutRight'} animationOutTiming={500}
+                            style={styles.ModalContainer}
+                            backdropColor='#fff'
+                            backdropOpacity={0.65}
+                          
+                            >
+
+                            <View>
+                                <Text style={styles.ModalText}>Are You Eligible For A Covid-19 Vaccine?</Text>
+
+                                <Button 
+                                    buttonStyle={styles.ModalButton}
+                                    containerStyle={styles.ButtonContainer}
+                                    titleStyle={styles.ModalText}
+                                    onPress={() =>  navigate('Eligibility',this.setState({showModal : !this.state.showModal}))}
+                                    
+                                    title="Find Out"
+                                    //onPress={() =>  navigation.goBack()} {NEEDS TO GO TO FORM START}
+                                /> 
+                            
+                            </View>
+
+                        </Modal>
+                    </View>
+                    
+                
 
                 <Text style={styles.Title}>Type A 5-Digit Zip Code</Text>
                 <Input placeholder='Zip Code' 
@@ -149,27 +189,38 @@ const styles= StyleSheet.create({
         fontFamily:'SourceSansPro_600SemiBold',
         letterSpacing: 1,
     },
-    Tooltip: {
+    ModalContainer: {
+        backgroundColor:'#B1DDF9',
+        opacity:0.80,
+        shadowColor:'#70BAFF',
+        borderRadius:25,
+        width:200,
+        maxHeight:200,
+        top:160,
+        left:165,
+        paddingLeft:5
+    },
+    ModalTrigger: {
         alignSelf:'flex-end',
         backgroundColor:'#B1DDF9',
         shadowColor:'#70BAFF',
         fontSize:30,
         borderTopLeftRadius:15,
         borderBottomLeftRadius:15,
-        padding:7,
+        padding:10,
         top:10,
         color:'#fff'
     },
-    TooltipText: {
-        fontSize:18,
-        fontFamily:'SourceSansPro_600SemiBold',
-        
-    },
-    TooltipContainer: {
-        elevation:15,
-        backgroundColor:'#B1DDF9',
-        shadowColor:'#70BAFF',
+    ModalButton: {
+        backgroundColor:'#70BAFF',
         borderRadius:25,
+        fontSize: 18,
+    },
+    ModalText: {
+        fontSize: 23,
+        fontFamily:'SourceSansPro_700Bold',
+        letterSpacing: 1,
+        paddingTop:7,
     },
     
 })

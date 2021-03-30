@@ -23,8 +23,6 @@ function HomeStackNavigator() {
       <HomeStack.Screen
         name='Home' 
         component={Home} 
-        //Screen={Home}
-        //initialRouteName='Home'
         options = { ({ navigation }) => {
           return {
             headerTitle: () => <Header navigation = {navigation} title='Home'/> ,
@@ -42,9 +40,9 @@ function HomeStackNavigator() {
         options = { ({ navigation}) => {
           return {
             headerTitle: () => <Header navigation = {navigation} title='Results'/> ,
-            headerLeft: () => null //Removes the Back Arrow in The Header//
+            //headerLeft: () => null //Removes the Back Arrow in The Header//
           }
-        }} //options={({ route }) => ({ title: route.params.provider.name })}//
+        }}
       />
       <HomeStack.Screen 
         name='Provider' 
@@ -54,11 +52,17 @@ function HomeStackNavigator() {
             headerTitle: () => <Header navigation = {navigation} title='Provider'/>,
             headerLeft: () => null   //Removes the Back Arrow in The Header//
           }
-        }} //options={({ route }) => ({ title: route.params.provider.name })}//
+        }}
       />
       <HomeStack.Screen 
         name='Eligibility' 
         component={Eligibility} 
+        options = {({ navigation }) => {
+          return {
+            headerTitle: () => <Header navigation = {navigation} title='Eligibility'/>,
+            //headerLeft: () => null   //Removes the Back Arrow in The Header//
+          }
+        }} 
         
       />
     </HomeStack.Navigator>  

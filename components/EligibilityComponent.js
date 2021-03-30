@@ -32,7 +32,7 @@ class Eligibility extends Component {
                         //onPress={() =>  navigation.goBack()} {NEEDS TO GO TO FORM START}
                         > 
                     </Button>
-                    <Text>Hey</Text>
+                   
                 </View>
 
                 <Divider style={{ backgroundColor: '#B1DDF9', width:'100%', alignSelf:'center', margin:10, padding:1}}/>
