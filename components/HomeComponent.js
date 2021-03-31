@@ -64,34 +64,32 @@ class Home extends Component {
                 {/* Pop Up Eligibility Question*/}
                     <Text style={styles.ModalTrigger} onPress={this.toggleModal}> ?</Text>
 
-                    <View >{/* May be able to delete*/}
+                    <Modal 
+                        isVisible={this.state.showModal}
+                        onBackdropPress={() => this.setState({showModal : !this.state.showModal})}
+                        onSwipeComplete={() => this.setState({showModal : !this.state.showModal})} swipeDirection="left" 
+                        animationIn={'slideInRight'} animationOut={'slideOutRight'} animationOutTiming={500}
+                        style={styles.ModalContainer}
+                        backdropColor='#fff'
+                        backdropOpacity={0.65}
+                        
+                        >
 
-                        <Modal 
-                            isVisible={this.state.showModal}
-                            onBackdropPress={() => this.setState({showModal : !this.state.showModal})}
-                            onSwipeComplete={() => this.setState({showModal : !this.state.showModal})} swipeDirection="left" 
-                            animationIn={'slideInRight'} animationOut={'slideOutRight'} animationOutTiming={500}
-                            style={styles.ModalContainer}
-                            backdropColor='#fff'
-                            backdropOpacity={0.65}
-                          
-                            >
+                        <View>
+                            <Text style={styles.ModalText}>Are You Eligible For A Covid-19 Vaccine?</Text>
 
-                            <View>
-                                <Text style={styles.ModalText}>Are You Eligible For A Covid-19 Vaccine?</Text>
+                            <Button 
+                                buttonStyle={styles.ModalButton}
+                                containerStyle={styles.ButtonContainer}
+                                titleStyle={styles.ModalText}
+                                title="Find Out"
+                                onPress={() =>  navigate('Eligibility',this.setState({showModal : !this.state.showModal}))}
+                            /> 
+                        
+                        </View>
 
-                                <Button 
-                                    buttonStyle={styles.ModalButton}
-                                    containerStyle={styles.ButtonContainer}
-                                    titleStyle={styles.ModalText}
-                                    title="Find Out"
-                                    onPress={() =>  navigate('Eligibility',this.setState({showModal : !this.state.showModal}))}
-                                /> 
-                            
-                            </View>
-
-                        </Modal>
-                    </View>
+                    </Modal>
+                  
                     
                 
 
