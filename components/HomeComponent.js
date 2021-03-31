@@ -30,10 +30,9 @@ class Home extends Component {
         const { navigate } = this.props.navigation;
         return (
             
-            <View style={{paddingTop:15, paddingBottom:20, backgroundColor: '#ffffff'}}>
+            <View style={{paddingTop:15, paddingBottom:200, backgroundColor: '#ffffff'}}>
 
                 <Text style={styles.HeaderTitle}>Find A <Text style={styles.HeaderTitle2}>Covid-19 </Text>Vaccine Near You</Text>
-               {/*<Text style={styles.Text}>A Volunteer-driven effort  for a healthy Washington</Text>*/}
 
                 <Divider style={{ backgroundColor: '#B1DDF9', width:'85%', alignSelf:'center', padding:1}}/>
                 
@@ -65,7 +64,7 @@ class Home extends Component {
                 {/* Pop Up Eligibility Question*/}
                     <Text style={styles.ModalTrigger} onPress={this.toggleModal}> ?</Text>
 
-                    <View >
+                    <View >{/* May be able to delete*/}
 
                         <Modal 
                             isVisible={this.state.showModal}
@@ -85,10 +84,8 @@ class Home extends Component {
                                     buttonStyle={styles.ModalButton}
                                     containerStyle={styles.ButtonContainer}
                                     titleStyle={styles.ModalText}
-                                    onPress={() =>  navigate('Eligibility',this.setState({showModal : !this.state.showModal}))}
-                                    
                                     title="Find Out"
-                                    //onPress={() =>  navigation.goBack()} {NEEDS TO GO TO FORM START}
+                                    onPress={() =>  navigate('Eligibility',this.setState({showModal : !this.state.showModal}))}
                                 /> 
                             
                             </View>
@@ -122,7 +119,7 @@ class Home extends Component {
                 </Button>
                 
                 
-            
+                {/*<Text style={{fontSize: 18,fontFamily:'SourceSansPro_600SemiBold', paddingTop:100}}>A Volunteer-driven effort for a healthy Washington</Text>*/}
             </View>
         )
     }
@@ -189,6 +186,8 @@ const styles= StyleSheet.create({
         fontFamily:'SourceSansPro_600SemiBold',
         letterSpacing: 1,
     },
+
+    //Modal Styling//
     ModalContainer: {
         backgroundColor:'#B1DDF9',
         opacity:0.80,

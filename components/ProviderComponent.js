@@ -394,7 +394,7 @@ class Provider extends Component {
         const { navigation } = this.props;
        
         const providerId = this.props.route.params.providerId; 
-        const providerdata= this.state.providerdata.filter(provider => provider.id === providerId);
+        const providerdata = this.state.providerdata.filter(provider => provider.id === providerId);
         
         return ( //Removed ScrollView & Warning disappeared. Does not chnage functionality//
             <View style={{paddingTop:10,paddingBottom:20, backgroundColor: '#ffffff'}}> 

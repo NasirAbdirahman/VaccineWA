@@ -27,8 +27,8 @@ function HomeStackNavigator() {
           return {
             headerTitle: () => <Header navigation = {navigation} title='Home'/> ,
             headerTitleContainerStyle: {
-                paddingBottom: 15,
-                paddingTop: 10,
+                //paddingBottom: 5,
+                paddingTop: 4,
                 
               },  
             }

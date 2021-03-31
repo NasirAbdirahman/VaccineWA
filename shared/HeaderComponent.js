@@ -30,10 +30,9 @@ const styles = StyleSheet.create({
         width:'100%',
         height: '100%',
         flexDirection:'row',
-        //paddingTop:8,
+        //paddingTop:15,
         alignItems: 'center',
         borderBottomColor:'#000000',
-        //flex: 1,
         
         
     },
@@ -52,6 +51,7 @@ const styles = StyleSheet.create({
     Icon: {
         position:'absolute',
         right:1,
+        top:7,
         fontSize: 45,
         color:'#70BAFF',
         borderWidth:1,
