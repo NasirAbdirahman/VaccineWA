@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View,ScrollView, Text, StyleSheet, FlatList } from 'react-native';
+import { View, Text, StyleSheet, FlatList } from 'react-native';
 import { Divider, Icon, Button} from 'react-native-elements';
 import { PROVIDERDATA } from '../shared/ProviderData'; 
 
@@ -311,6 +311,7 @@ function RenderProvider ({providerdata, navigation}) {
                     </View>
 
                     <View>
+                        {/* Render Vaccine Function*/}
                         <RenderVaccineType providerdata={providerdata}/>
                         <Text style={styles.Text2}>Last Updated: {item.lastUpdated}</Text>
                         <Text /*NEEDS TO LINK TO INFO */style={styles.Link}>Covid-19 Vaccine Variations? </Text> 

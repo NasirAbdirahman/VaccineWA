@@ -1,3 +1,4 @@
+
 1)Hides The Virtualized Scroll Warning
 
 function RenderProviders ({providerdata, navigation}) {
@@ -212,3 +213,67 @@ function RenderProviders ({providerdata, navigation}) {
                                 /> 
                             </Text> 
                         </View>*/}
+
+
+
+//All The Zipcode Iterations I attempted with zipcodes Package//
+
+{/*function ZipCodeRadius ({providerdata}) {
+    //const zipcodes = require('zipcodes');
+    //const radiusZip = this.props.route.params.radius;
+    //const radius = zipcodes.radius('98032', 5);
+    
+
+    const zipcodes = require('zipcodes');
+
+    const zipRadius = zipcodes.radius(98032, 5);
+    const number = zipRadius,
+        codes = [],
+        sNumber = number.toString();
+        for (var i = 0, len = sNumber.length; i < len; i += 1) {
+            codes.push(+sNumber.charAt(i));
+        } 
+    
+    
+
+    const renderZipRadius = ({codes}, {item}) => {
+        if(item.zipCode === codes) {
+            return (
+                <View style={{paddingBottom:10, paddingLeft:7}}>
+                    
+                    <Text>{item.zipCode}</Text>
+                    <Text>{item.name}</Text>
+                    
+                    
+                </View>
+                
+            )
+        } else (item.zipCode ==="No"); {
+            return (
+                <View>
+                    <Text>No</Text>
+                </View>
+            )
+        }
+
+       
+    }
+
+    return (
+        <View>
+            <FlatList
+                data={providerdata}
+                renderItem={renderZipRadius}
+                keyExtractor={item => item.id.toString()} //Because all the Providers have a unique ID, we can set this to use the ID//
+            />
+        </View>
+    )
+    
+}*/}
+
+//const zipcodes = require('zipcodes');
+
+        //const zipRadius = zipcodes.radius(98032, 5);
+       
+//Attempting to Pass ZipCode to results page while restting state//
+{/*onPress={() =>  navigation.navigate('Results',this.setState({zipCode : ''}))}*/}{/* Wanted it to refresh page with the zipcode here as state,but NO.*/}

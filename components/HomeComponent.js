@@ -10,6 +10,7 @@ class Home extends Component {
         super(props);
         this.state = {
           zipcode: '',
+          //radius:'',Operational if we take radius//
           showModal: false,
         };
         
@@ -104,7 +105,10 @@ class Home extends Component {
                 <Input 
                     placeholder='10 Miles' 
                     style={styles.Input}
-                    rightIcon={{ type: 'material-icons', name: 'arrow-drop-down' , size:30}}
+                    //rightIcon={{ type: 'material-icons', name: 'arrow-drop-down' , size:30}}
+                    
+                    //value={this.state.radius} {/* If we allow radius Search to be incorportated. Code will be functioning*/}
+                    //onChangeText= {(radius) => this.setState({radius})}
                      
                 />
                 
@@ -113,7 +117,7 @@ class Home extends Component {
                     containerStyle={styles.ButtonContainer}
                     titleStyle={styles.Button}
                     title="Search For Vaccines"
-                    onPress={() =>  navigate('Results', {zipCode: this.state.zipcode})}> 
+                    onPress={() =>  navigate('Results', {zipCode: this.state.zipcode})}> {/*radius: this.state.radius}*/}
                 </Button>
                 
                 

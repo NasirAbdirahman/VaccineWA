@@ -9,6 +9,7 @@ import Results from './ResultsComponent';
 import Header from '../shared/HeaderComponent';
 import Eligibility from './EligibilityComponent';
 import VaccinePhases from './VaccinePhasesComponent';
+import RadiusProviderResults from './RadiusProviderResultsComponent';
 
 
 
@@ -51,6 +52,16 @@ function HomeStackNavigator() {
           return {
             headerTitle: () => <Header navigation = {navigation} title='Provider'/>,
             headerLeft: () => null   //Removes the Back Arrow in The Header//
+          }
+        }}
+      />
+      <HomeStack.Screen 
+        name='Radius Provider Results' 
+        component={RadiusProviderResults} 
+        options = {({ navigation }) => {
+          return {
+            headerTitle: () => <Header navigation = {navigation} title='Radius Provider Results'/>,
+            //headerLeft: () => null   //Removes the Back Arrow in The Header//
           }
         }}
       />
