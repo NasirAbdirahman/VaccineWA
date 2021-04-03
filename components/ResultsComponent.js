@@ -4,6 +4,7 @@ import { Button, Divider, Icon } from 'react-native-elements';
 import { PROVIDERDATA } from '../shared/ProviderData';
 import { ZIPCODEDATA } from '../shared/ZipCodeRadiusData';
 
+// Displays the zipcodes that are in a 15 mile radius of the zipcode entered in by the User//  
 function RenderZipRadius ({zipcodedata, navigation}) {
 
     const renderRadius = ({item}) => {
@@ -141,6 +142,7 @@ function RenderZipRadius ({zipcodedata, navigation}) {
     );
 }
 
+// Displays The providers within the zipcode searched//
 function RenderProviders ({providerdata, navigation}) {
 
     const renderProviderItem = ({item}) => {

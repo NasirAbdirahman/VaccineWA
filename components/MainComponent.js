@@ -80,21 +80,6 @@ function HomeStackNavigator() {
   );
 }
 
-{/*function VaccinePhasesScreen() {
-  return (
- 
-      <VaccinePhasesScreen.Screen
-        name="Vaccine Phases" 
-        component={VaccinePhases} 
-        options = { ({ navigation}) => {
-          return {
-            headerTitle: () => <Header navigation = {navigation} title='Vaccine Phases'/> ,
-            headerLeft: () => null //Removes the Back Arrow in The Header//
-          }
-        }}
-      />
-  );
-}*/}
 
 
 //Eligibility Stack Navigator//
@@ -115,32 +100,71 @@ function EligibilityStackNavigator() {
                 paddingTop: 10,
                 
               },  
+          }
+        }}
+      />
+      {/* Form Start Screen
+      <EligibilityStack.Screen 
+        name="Vaccine Phases" 
+        component={VaccinePhases} 
+        options = { ({ navigation}) => {
+          return {
+            headerTitle: () => <Header navigation = {navigation} title='Vaccine Phases'/> ,
+            headerLeft: () => null //Removes the Back Arrow in The Header//
+          }
+        }}
+      />
+      <Eligibilitytack.Screen 
+        name="Provider" 
+        component={Provider} 
+        options = {({ navigation }) => {
+          return {
+            headerTitle: () => <Header navigation = {navigation} title='Provider Info'/>,
+            headerLeft: () => null   //Removes the Back Arrow in The Header//
             }
-          }}
-        />
-        {/*<EligibilityStack.Screen 
-          name="Vaccine Phases" 
-          component={VaccinePhases} 
-          options = { ({ navigation}) => {
-            return {
-              headerTitle: () => <Header navigation = {navigation} title='Vaccine Phases'/> ,
-              headerLeft: () => null //Removes the Back Arrow in The Header//
+        }} //options={({ route }) => ({ title: route.params.provider.name })}//
+      />*/}
+    </EligibilityStack.Navigator>  
+  );
+}
+
+
+const VaccinePhasesStack = createStackNavigator();
+
+function VaccinePhasesStackNavigator() {
+  return (
+    <VaccinePhasesStack.Navigator initialRouteName="Vaccine Phases">
+      <VaccinePhasesStack.Screen 
+        name="Vaccine Phases" 
+        component={VaccinePhases} 
+        options = { ({ navigation }) => {
+          return {
+            headerTitle: () => <Header navigation = {navigation} title='Vaccine Phases'/> ,
+            headerTitleContainerStyle: {
+                paddingBottom: 15,
+                paddingTop: 10,
+                
+              },  
             }
-          }}
-        />
-        <Eligibilitytack.Screen 
-          name="Provider" 
-          component={Provider} 
-          options = {({ navigation }) => {
-            return {
-              headerTitle: () => <Header navigation = {navigation} title='Provider Info'/>,
-              headerLeft: () => null   //Removes the Back Arrow in The Header//
-              }
-          }} //options={({ route }) => ({ title: route.params.provider.name })}//
-        />*/}
-      </EligibilityStack.Navigator>  
-    );
-  }
+        }}
+      />
+      <VaccinePhasesStack.Screen 
+        name="Eligibility" 
+        component={Eligibility} 
+        options = { ({ navigation }) => {
+          return {
+            headerTitle: () => <Header navigation = {navigation} title='Eligibility'/> ,
+            headerTitleContainerStyle: {
+                paddingBottom: 15,
+                paddingTop: 10,
+                
+              },  
+          }
+        }}
+      />
+    </VaccinePhasesStack.Navigator>
+  )
+}
 
 
 
@@ -153,7 +177,7 @@ function AppNavigator() {
       
       <App.Screen name="Home"  component={HomeStackNavigator}/> 
       <App.Screen name="Covid-19 Vaccine FAQ" component={EligibilityStackNavigator}/>
-      <App.Screen name="WA Vaccine Phases" component={VaccinePhases}/>
+      <App.Screen name="WA Vaccine Phases" component={VaccinePhasesStackNavigator}/>
       <App.Screen name="Vaccine Eligibility Test" component={EligibilityStackNavigator} />
       <App.Screen name="FAQ" component={HomeStackNavigator}/>
 

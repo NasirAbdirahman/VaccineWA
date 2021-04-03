@@ -7,7 +7,7 @@ class VaccinePhases extends Component {
 
 
     static navigationOptions = {
-        title: 'Vaccine Phases'
+        title: 'Vaccine Phases',
     };
 
     render () {
@@ -185,7 +185,7 @@ class VaccinePhases extends Component {
                 {/* Future Phases Section */}
                 <View style={{paddingTop:30, paddingBottom:30}}>      
                     <Text style={styles.SubHeader}>Future Phases</Text>  
-                    <Divider style={{ backgroundColor: '#B1DDF9', width:'15%', alignSelf:'center', margin:1, padding:1}}/>            
+                    <Divider style={{ backgroundColor: '#B1DDF9', width:'25%', alignSelf:'center', margin:1, padding:1}}/>            
                 </View>
 
                 <View style={{paddingBottom:30,alignSelf:'center', right:20}}>
@@ -228,8 +228,7 @@ class VaccinePhases extends Component {
                         />
                         
                     </View>
-                    
-                    
+     
                 </View>
 
             </ScrollView>
