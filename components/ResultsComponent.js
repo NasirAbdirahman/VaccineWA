@@ -250,7 +250,7 @@ class Results extends Component {
                 <Text style={styles.HeaderTitle}>We Found <Text style={styles.HeaderTitle2}>{totalProviders}</Text> Providers Near You</Text>
 
                 <View style={{paddingLeft:7, paddingBottom:30}}>
-                    <Text style={styles.Text}>Showing results for <Text style={styles.Text2}>{zipCode}</Text> within <Text style={styles.Text2}>10 miles</Text></Text>
+                    <Text style={styles.Text}>Showing all results within <Text style={styles.Text2}>{zipCode}</Text> </Text>
                     <Text style={styles.Text}>Vaccine availability is subject to change. Most locations <Text style={styles.Text2}>Require</Text> appointments</Text>
                     <Text style={styles.Text}>Click a location with Vaccines <Text style={styles.Text2}>'In Stock'</Text> to move forward.</Text>
                 

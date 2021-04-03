@@ -1,4 +1,4 @@
-import React, { Component, useRef } from 'react';
+import React, { Component } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import { Input, Button, Divider, Tooltip } from 'react-native-elements';
 import Modal from 'react-native-modal';
@@ -29,14 +29,17 @@ class Home extends Component {
     render () {
         
         const { navigate } = this.props.navigation;
+
         return (
             
             <View style={{paddingTop:15, paddingBottom:200, backgroundColor: '#ffffff'}}>
 
-                <Text style={styles.HeaderTitle}>Find A <Text style={styles.HeaderTitle2}>Covid-19 </Text>Vaccine Near You</Text>
-
-                <Divider style={{ backgroundColor: '#B1DDF9', width:'85%', alignSelf:'center', padding:1}}/>
+                <Text style={styles.HeaderTitle}>Find A <Text style={styles.HeaderTitle2}>Covid-19 </Text>Vaccine</Text>
+               
+                <Divider style={{ backgroundColor: '#B1DDF9', width:'85%', alignSelf:'center', padding:1, marginBottom:30}}/>
                 
+                <Text style={styles.Title}>Enter Your Zip Code</Text>
+                <Text style={styles.Title}>We'll Find The Closest Providers</Text>
                 {/* Pop Up Eligibility Question
                 
                 <Tooltip
@@ -63,54 +66,55 @@ class Home extends Component {
                 </Tooltip>*/}
 
                 {/* Pop Up Eligibility Question*/}
-                    <Text style={styles.ModalTrigger} onPress={this.toggleModal}> ?</Text>
+                <Text style={styles.ModalTrigger} onPress={this.toggleModal}> ?</Text>
 
-                    <Modal 
-                        isVisible={this.state.showModal}
-                        onBackdropPress={() => this.setState({showModal : !this.state.showModal})}
-                        onSwipeComplete={() => this.setState({showModal : !this.state.showModal})} swipeDirection="left" 
-                        animationIn={'slideInRight'} animationOut={'slideOutRight'} animationOutTiming={500}
-                        style={styles.ModalContainer}
-                        backdropColor='#fff'
-                        backdropOpacity={0.65}
-                        
-                        >
+                <Modal 
+                    isVisible={this.state.showModal}
+                    onBackdropPress={() => this.setState({showModal : !this.state.showModal})}
+                    onSwipeComplete={() => this.setState({showModal : !this.state.showModal})} swipeDirection="left" 
+                    animationIn={'slideInRight'} animationOut={'slideOutRight'} animationOutTiming={500}
+                    style={styles.ModalContainer}
+                    backdropColor='#fff'
+                    backdropOpacity={0.65}
+                    >
 
-                        <View>
-                            <Text style={styles.ModalText}>Are You Eligible For A Covid-19 Vaccine?</Text>
+                    <View>
+                        <Text style={styles.ModalText}>Are You Eligible For A Covid-19 Vaccine?</Text>
 
-                            <Button 
-                                buttonStyle={styles.ModalButton}
-                                containerStyle={styles.ButtonContainer}
-                                titleStyle={styles.ModalText}
-                                title="Find Out"
-                                onPress={() =>  navigate('Eligibility',this.setState({showModal : !this.state.showModal}))}
-                            /> 
-                        
-                        </View>
+                        <Button 
+                            buttonStyle={styles.ModalButton}
+                            containerStyle={styles.ButtonContainer}
+                            titleStyle={styles.ModalText}
+                            title="Find Out"
+                            onPress={() =>  navigate('Eligibility',this.setState({showModal : !this.state.showModal}))}
+                        /> 
+                    
+                    </View>
 
-                    </Modal>
+                </Modal>
                   
                     
                 
+                <View style={{paddingBottom:30}}>
+                    {/*<Text style={styles.Title}>Type A 5-Digit Zip Code</Text>*/}
+                    <Input placeholder='5-Digit ZIP Code' 
+                        style={styles.Input}
+                        value={this.state.zipcode}
+                        onChangeText= {(zipcode) => this.setState({zipcode})}
+                    />
+                </View>
 
-                <Text style={styles.Title}>Type A 5-Digit Zip Code</Text>
-                <Input placeholder='Zip Code' 
-                    style={styles.Input}
-                    value={this.state.zipcode}
-                    onChangeText= {(zipcode) => this.setState({zipcode})}
-                />
-
-                <Text style={styles.Title}>Within</Text>
+                {/* If we allow radius Search to be incorportated. Code will be functioning*/}
+                {/*<Text style={styles.Title}>Within</Text>
                 <Input 
                     placeholder='10 Miles' 
                     style={styles.Input}
                     //rightIcon={{ type: 'material-icons', name: 'arrow-drop-down' , size:30}}
                     
-                    //value={this.state.radius} {/* If we allow radius Search to be incorportated. Code will be functioning*/}
+                    //value={this.state.radius} 
                     //onChangeText= {(radius) => this.setState({radius})}
                      
-                />
+                />*/}
                 
                 <Button 
                     buttonStyle={styles.Button}
@@ -121,7 +125,8 @@ class Home extends Component {
                 </Button>
                 
                 
-                {/*<Text style={{fontSize: 18,fontFamily:'SourceSansPro_600SemiBold', paddingTop:100}}>A Volunteer-driven effort for a healthy Washington</Text>*/}
+                <Text style={{fontSize: 18,fontFamily:'SourceSansPro_600SemiBold',alignSelf:'center', paddingTop:140}}>
+                    Made With ❤️ for Washington</Text>
             </View>
         )
     }
@@ -135,27 +140,27 @@ const styles= StyleSheet.create({
     HeaderTitle: {
         color: '#000',
         textAlign:'center',
-        fontSize: 23,
+        fontSize: 30,
         fontFamily:'SourceSansPro_700Bold',
         letterSpacing: 1,
     },
     HeaderTitle2: {
         color: '#70BAFF',
         textAlign:'center',
-        fontSize: 27,
+        fontSize: 38,
         letterSpacing: 1,
         
     },
     Title: {
-        fontSize: 20,
+        fontSize: 22,
         fontFamily:'SourceSansPro_700Bold',
+        textAlign:'center',
         letterSpacing: 1,
-        paddingLeft:5,
-        paddingTop:30,
+        //paddingTop:10,
       
         
     },
-    Text: {
+    /*Text: {
         fontSize: 16,
         fontFamily:'SourceSansPro_600SemiBold',
         letterSpacing: 1,
@@ -163,7 +168,7 @@ const styles= StyleSheet.create({
         paddingTop:7,
         //color:'#fff'
         
-    },
+    },*/
     Button: {
         backgroundColor:'#70BAFF',
         borderRadius:25,
@@ -184,7 +189,8 @@ const styles= StyleSheet.create({
         borderRadius:25,
     },
     Input: {
-        paddingTop:10,
+        paddingTop:100,
+        paddingBottom:5,
         fontFamily:'SourceSansPro_600SemiBold',
         letterSpacing: 1,
     },
@@ -197,7 +203,7 @@ const styles= StyleSheet.create({
         borderRadius:25,
         width:200,
         maxHeight:200,
-        top:160,
+        top:180,
         left:165,
         paddingLeft:5
     },
@@ -205,11 +211,11 @@ const styles= StyleSheet.create({
         alignSelf:'flex-end',
         backgroundColor:'#B1DDF9',
         shadowColor:'#70BAFF',
-        fontSize:30,
+        fontSize:35,
         borderTopLeftRadius:15,
         borderBottomLeftRadius:15,
         padding:10,
-        top:10,
+        top:20,
         color:'#fff'
     },
     ModalButton: {

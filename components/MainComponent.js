@@ -80,6 +80,23 @@ function HomeStackNavigator() {
   );
 }
 
+{/*function VaccinePhasesScreen() {
+  return (
+ 
+      <VaccinePhasesScreen.Screen
+        name="Vaccine Phases" 
+        component={VaccinePhases} 
+        options = { ({ navigation}) => {
+          return {
+            headerTitle: () => <Header navigation = {navigation} title='Vaccine Phases'/> ,
+            headerLeft: () => null //Removes the Back Arrow in The Header//
+          }
+        }}
+      />
+  );
+}*/}
+
+
 //Eligibility Stack Navigator//
 
 const EligibilityStack = createStackNavigator();
@@ -101,7 +118,7 @@ function EligibilityStackNavigator() {
             }
           }}
         />
-        <EligibilityStack.Screen 
+        {/*<EligibilityStack.Screen 
           name="Vaccine Phases" 
           component={VaccinePhases} 
           options = { ({ navigation}) => {
@@ -111,7 +128,7 @@ function EligibilityStackNavigator() {
             }
           }}
         />
-        {/*<Eligibilitytack.Screen 
+        <Eligibilitytack.Screen 
           name="Provider" 
           component={Provider} 
           options = {({ navigation }) => {
@@ -136,7 +153,7 @@ function AppNavigator() {
       
       <App.Screen name="Home"  component={HomeStackNavigator}/> 
       <App.Screen name="Covid-19 Vaccine FAQ" component={EligibilityStackNavigator}/>
-      <App.Screen name="WA Vaccine Phases" component={EligibilityStackNavigator} />
+      <App.Screen name="WA Vaccine Phases" component={VaccinePhases}/>
       <App.Screen name="Vaccine Eligibility Test" component={EligibilityStackNavigator} />
       <App.Screen name="FAQ" component={HomeStackNavigator}/>
 

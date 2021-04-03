@@ -264,10 +264,10 @@ class RadiusProviderResults extends Component {
         return ( //Removed ScrollView & Warning disappeared. Does not chnage functionality//
             <ScrollView style={{paddingTop:15,paddingBottom:20, backgroundColor: '#ffffff'}}>
                 
-                <Text style={styles.HeaderTitle}>We Found <Text style={styles.HeaderTitle2}>{totalProviders}</Text> Providers Near You</Text>
+                <Text style={styles.HeaderTitle}>We Found <Text style={styles.HeaderTitle2}>{totalProviders}</Text> Providers In <Text style={styles.HeaderTitle2}>{providerId}</Text></Text>
 
                 <View style={{paddingLeft:7, paddingBottom:30}}>
-                    <Text style={styles.Text}>Showing results for <Text style={styles.Text2}>{providerId}</Text> within <Text style={styles.Text2}>10 miles</Text></Text>
+                    <Text style={styles.Text}>Showing results in <Text style={styles.Text2}>{providerId}</Text><Text> Within 15 Miles Of Your ZipCode</Text></Text>
                     <Text style={styles.Text}>Vaccine availability is subject to change. Most locations <Text style={styles.Text2}>Require</Text> appointments</Text>
                     <Text style={styles.Text}>Click a location with Vaccines <Text style={styles.Text2}>'In Stock'</Text> to move forward.</Text>
                 
@@ -276,7 +276,7 @@ class RadiusProviderResults extends Component {
                         containerStyle={styles.ButtonContainer}
                         titleStyle={styles.Button}
                         
-                        title="Edit Your Search"
+                        title="Return To Initial Search"
                         onPress={() =>  navigation.goBack()}> 
                     </Button>
 
@@ -298,14 +298,14 @@ const styles = StyleSheet.create({
     HeaderTitle: {
         color: '#000',
         textAlign:'center',
-        fontSize: 25,
+        fontSize: 24,
         fontFamily:'SourceSansPro_700Bold',
         letterSpacing: 1,    
     },
     HeaderTitle2: {
         color: '#70BAFF',
         textAlign:'center',
-        fontSize: 35,
+        fontSize: 32,
         letterSpacing: 1,    
     },
     Title: { //Provider Font Styling//
