@@ -119,8 +119,7 @@ const styles = StyleSheet.create({
         letterSpacing: 1,
         paddingTop:10,
         color:'#7F7F7F'
-      
-        
+    
     },
     Text2: {
         fontSize: 15,

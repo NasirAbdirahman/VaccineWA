@@ -1,52 +1,21 @@
 import React, { Component } from 'react';
-import { View, ScrollView, Text, StyleSheet, FlatList} from 'react-native';
-import { Button, Divider, ListItem } from 'react-native-elements';
+import { View, ScrollView, Text, StyleSheet } from 'react-native';
+import { Button, Divider, Icon} from 'react-native-elements';
 import Accordion from 'react-native-collapsible/Accordion';
 import { FAQDATA } from '../shared/FaqData';
 
 
-{/*function RenderQuestion ({providerdata}) {
-
-    const renderItem = ({ item }) => {
-        return (
-        <ListItem bottomDivider>
-            {/*<Avatar source={{uri: item.avatar_url}} />
-                <ListItem.Content>
-                <ListItem.Title>{item.name}</ListItem.Title>
-                <ListItem.Subtitle>{item.id}</ListItem.Subtitle>
-                <View >
-                    
-                    <Text>5 months ago</Text>
-                </View>
-                </ListItem.Content>
-            <ListItem.Chevron 
-            />
-        </ListItem>
-        )
-    };
-
-    return (
-        <View>
-            <FlatList
-                data={providerdata}
-                renderItem={renderItem}
-                //keyExtractor = (item, index) => index.toString()
-                keyExtractor={item => item.id.toString()} //Because all the Providers have a unique ID, we can set this to use the ID//
-            />
-        </View>
-    )
-
-};*/}
-
-
+//Renders The Header/Title of each Question//
 renderHeader = (section, _, isActive) => {
     return (
         <View style={[styles.header, isActive ? styles.active : styles.inactive]}> 
-            <Text style={styles.headerText}>{section.title}</Text>
+            <Text style={styles.headerText}>{section.id + 1 }) {section.title}</Text>
         </View>
     );
 };
 
+
+//Renders The Content/Text of each Answer//
 renderContent = (section, _, isActive) => {
     return (
         <View style={[styles.content, isActive ? styles.active : styles.inactive]}>
@@ -63,7 +32,7 @@ class FaqAccordion extends Component {
         this.state = {
             faqdata: FAQDATA,
             activeSections: [],
-            collapsed: false,
+            collapsed: true,
         };
        
     }
@@ -89,75 +58,156 @@ class FaqAccordion extends Component {
     render () {
 
         //const { navigate } = this.props.navigation;
+        const { navigation } = this.props;
 
-        const faqdata = this.state.faqdata;
+        const generalFaqData = this.state.faqdata.filter(question => question.id < 35);
+        const covidFaqData = this.state.faqdata.filter(question => question.id > 34);
         const { activeSections } = this.state;
 
 
 
         return (
            
-            <ScrollView style={{paddingTop:15,paddingBottom:20, backgroundColor: '#ffffff'}}>
+            <ScrollView style={{paddingTop:15, backgroundColor: '#ffffff'}}>
 
-                <View style={{paddingLeft:7, paddingBottom:50}}>      
+                {/* Header Section */}
+                <View style={{paddingLeft:7, paddingBottom:10}}>      
                     <Text style={styles.HeaderTitle}>Frequently Asked Questions</Text>  
 
                     <Divider style={{ backgroundColor: '#B1DDF9', width:'85%', alignSelf:'center', margin:10, padding:1}}/>
                    
                 </View>
 
-                <View style={styles.container}>
-                    <View contentContainerStyle={{ paddingTop: 30 }}>
+                <View style={{padding:1, paddingBottom:10}}>      
+                    <Text style={styles.SubHeader}>About COVID-19 Vaccines</Text>
+                    <Divider style={{ backgroundColor: '#B1DDF9', width:'75%',padding:1, bottom:20, left:25}}/> 
+
+                    <Text style={styles.Text}>The COVID-19 vaccines can protect you in several key ways:</Text>
+                        <Text style={styles.Text2}>-They can greatly reduce your chance of getting seriously ill if you get COVID-19</Text>
+                        <Text style={styles.Text2}>-Completing the vaccine series reduces your chances of hospitalization and lowers your risk of dying from COVID-19
+                            They are highly effective at preventing COVID-19
+                        </Text>
+                        <Text style={styles.Text2}>-They add to the number of people in the community who are protected from getting COVID-19, making it harder for the disease to spread</Text>
+                    
+                    <View style={{paddingTop:20}}>
+                        <Text style={styles.Text}>Experts continue to conduct more studies about the ability of the vaccine to keep people from spreading the virus to others.</Text>
+                        <Text style={styles.Text2}>-Once you are fully vaccinated, it is still possible to get COVID-19, but it’s a much smaller chance than if you weren’t vaccinated. </Text>
+                        <Text style={styles.Text2}>-You’re also very unlikely to get really sick or need to go to the hospital. The studies found that each of the vaccines had at least 85 percent efficacy in preventing SEVERE COVID-19 illness.</Text>
+                    
+                    </View>
+
+                    <View style={{paddingTop:20}}>
+                        <Text style={styles.Text}>The vaccines also prevented many people from getting ANY COVID-19 symptoms:</Text>
+                        <Text style={styles.Text2}>-Johnson & Johnson (Janssen), 74 percent </Text>
+                        <Text style={styles.Text2}>-Pfizer-BioNTech, 95 percent</Text>
+                        <Text style={styles.Text2}>-Moderna, 94 percent </Text>                
+                    </View>
+
+                    {/* Vaccine Info Section */}
+                    <View style={{paddingTop:20}}>
+                        <Text style={styles.Text}>Pfizer-BioNTech COVID-19 Vaccine </Text>
+                        <Text style={styles.Text2}>Authorized for emergency use in persons age 16 years and older. This is a two-dose vaccine, given 21 days apart. You will not be considered fully protected until one to two weeks after you receive the second dose. 
+                            The clinical trials showed no major unanticipated adverse events. This vaccine arrived in Washington on December 14.</Text>
+                        <Text style={styles.Text2}>In Pfizer-BioNTech Vaccine Clinical Trials (U.S. Trial Data):</Text>
+                        <Text style={styles.Text2}> - 10% of participants identified as Black/African American.</Text> 
+                        <Text style={styles.Text2}> - 13% of participants identified as Hispanic/Latinx.</Text> 
+                        <Text style={styles.Text2}> - 6% identified as Asian.</Text>                
+                        <Text style={styles.Text2}> -1.3% identified as Native American.</Text>    
+                        <Text style={styles.Text2}> - 69.7% identified as White.</Text>                                           
+                    </View>
+
+                    <View style={{paddingTop:20}}>
+                        <Text style={styles.Text}>Moderna COVID-19 Vaccine </Text>
+                        <Text style={styles.Text2}>Authorized for emergency use in individuals age 18 years and older. This is a two-dose vaccine, given 28 days apart. You are not considered fully protected until one to two weeks after you get the second dose. 
+                            The clinical trials showed no major unanticipated adverse events. We received our first shipment of this vaccine the week of December 21.</Text>
+                        <Text style={styles.Text2}>In Moderna Vaccine Clinical Trials (U.S. Trial Data):</Text>
+                        <Text style={styles.Text2}> - 10% of participants identified as Black/African American.</Text>
+                        <Text style={styles.Text2}> - 20% of participants identified as Hispanic/Latinx.</Text>                
+                        <Text style={styles.Text2}> - 4% identified as Asian.</Text>
+                        <Text style={styles.Text2}> - 3% identified as 'of other descent'. </Text> 
+                        <Text style={styles.Text2}> - 63% identified as White. </Text>                                                               
+                    </View>
+
+                    <View style={{paddingTop:20}}>
+                        <Text style={styles.Text}>Johnson & Johnson - Janssen COVID-19 Vaccine</Text>
+                        <Text style={styles.Text2}>Authorized for emergency use in individuals age 18 years and older. This is a single dose (one shot) vaccine. You are not considered fully protected until one to two weeks after you get the vaccine. 
+                            The clinical trials showed no major unanticipated adverse events. We received our first shipment of this vaccine the week of March 1.</Text>
+                        <Text style={styles.Text2}>In Johnson & Johnson Vaccine Clinical Trials (Global Trial Data)</Text>
+                        <Text style={styles.Text2}>Approximately:</Text>
+                            <Text style={styles.Text2}> - 17% of participants identified as Black/African American.</Text> 
+                            <Text style={styles.Text2}> - About 45% of all participants identified as Hispanic/Latino.</Text> 
+                            <Text style={styles.Text2}> - 3.5% identified as Asian.</Text>     
+                            <Text style={styles.Text2}> - 8.4% identified as American Indian or Alaska Native.</Text> 
+                            <Text style={styles.Text2}> - 0.25% identified as Native Hawaiian or other Pacific Islander.</Text>  
+                            <Text style={styles.Text2}> - 8.6% identified with multiple races, or race was unknown or not reported.</Text> 
+                            <Text style={styles.Text2}> - 62% identified as White.</Text>                  
+                    </View>
+
+                    <Divider style={{ backgroundColor: '#B1DDF9', width:'85%', alignSelf:'center', margin:10, padding:1}}/>
+                   
+                </View>
+
+                {/* Accordion FAQ Section */}
+                <ScrollView style={styles.Container}>
+
+                    <Text style={styles.SubHeader}>General FAQs</Text>
+                    <Divider style={{ backgroundColor: '#B1DDF9', width:'25%',padding:1, bottom:20, left:25}}/>                   
                     
                     <Accordion
                         activeSections={activeSections}
-                        sections={faqdata}//Import data here
+                        sections={generalFaqData}
                         renderHeader={renderHeader}
-                       
                         renderContent={renderContent}
                         duration={400}
                         onChange={this.setSections}
                         //Was scrollView
                     />
-                    </View>
-                </View>
-                
 
-                {/* Tier A Section 
-                <View style={{paddingLeft:7, paddingBottom:20}}>      
-                    <Text style={styles.Title}>Tier A</Text>  
-                    <Divider style={{ backgroundColor: '#B1DDF9', width:'15%', margin:1, padding:1}}/>            
-                </View>
-
-                <View style={{paddingLeft:7,paddingBottom:30,flexDirection:'row'}}>
-
-                    <View>
-                        <Button 
-                            buttonStyle={styles.Circle}
-                            containerStyle={styles.CircleContainer}
-                            titleStyle={styles.Circle}
-                            title="A1"
-                            > 
-                        </Button>
-
-                        <Button 
-                            buttonStyle={styles.Circle}
-                            containerStyle={styles.CircleContainer}
-                            titleStyle={styles.Circle}
-                            title="A2"
-                            > 
-                        </Button>
-                    </View>
+                    <Text style={styles.SubHeader}>Covid-19 FAQ</Text>
+                    <Divider style={{ backgroundColor: '#B1DDF9', width:'25%', padding:1, bottom:20, left:25}}/>
                     
-                    <View style={styles.Container}> 
-                        <Text style={styles.ContainerTitle}>December 2020 - Present 2021</Text> 
-                        <Text style={styles.ContainerText}>-High-risk healthcare workers in health care settings</Text>
-                        <Text style={styles.ContainerText}>-High-risk first responders</Text> 
-                        <Text style={styles.ContainerText}>-Long-term care facility residents</Text> 
-                        <Text style={styles.ContainerText}>-All other workers at risk in health care settings</Text>         
-                    </View> 
-                   
-                </View>*/}
+                    <Accordion
+                        activeSections={activeSections}
+                        sections={covidFaqData}
+                        renderHeader={renderHeader}
+                        renderContent={renderContent}
+                        duration={400}
+                        onChange={this.setSections}
+                     
+                        
+                    />
+
+                    {/* Footer/Links Section */}
+                    <Text style={styles.SubHeader}>More Information From Sources</Text>
+                    <Divider style={{ backgroundColor: '#B1DDF9', width:'85%', padding:1, bottom:20, left:25}}/>        
+
+                    <View style={{padding:5}}>
+                        <Text>
+                            <Icon
+                                name='launch'
+                                type= 'material-icons' 
+                                color='#70BAFF'
+                                bottom={20}
+                                onPress={() => navigation.navigate({/*OPENS UP BROWSER EXTENSION to https://www.cdc.gov/coronavirus/2019-ncov/vaccines/faq.html*/})} 
+                            />
+                            <Text style={styles.Title}> Center For Disease Control</Text> 
+                        </Text>
+                    </View>
+
+                    <View style={{padding:5}}>
+                        <Text>
+                            <Icon
+                                name='launch'
+                                type= 'material-icons' 
+                                color='#70BAFF'
+                                bottom={20}
+                                onPress={() => navigation.navigate({/*OPENS UP BROWSER EXTENSION to  https://www.doh.wa.gov/Emergencies/COVID19/Vaccine*/})} 
+                            />
+                            <Text style={styles.Title}> WA Department Of Health</Text> 
+                        </Text>
+                    </View>
+
+                </ScrollView>
 
             </ScrollView>
         )
@@ -185,144 +235,70 @@ const styles = StyleSheet.create({
     },
     SubHeader: {
         color: '#000',
-        textAlign:'center',
         fontSize: 23,
         fontFamily:'SourceSansPro_700Bold',
         letterSpacing: 1,
-        paddingTop:5
+        paddingLeft:7,
+        paddingTop:15,
+        paddingBottom:15
     },
-    Title: { //Provider Font Styling//
+    Title: { 
         color: '#000',
         fontSize: 22,
         fontFamily:'SourceSansPro_700Bold',
         letterSpacing: 1,
-        paddingBottom:3
         
     },
-    Text: {
-        fontSize: 15,
-        fontFamily:'SourceSansPro_600SemiBold',
+    Text:{
+        fontSize: 16,
+        fontFamily:'SourceSansPro_700Bold',  
+        //alignSelf:'center',
+        //width:248,
         letterSpacing: 1,
-        paddingTop:10,
-        color:'#7F7F7F'
-      
-        
+        paddingLeft:7,
+        paddingTop:3
     },
     Text2: {
         fontSize: 15,
-        fontFamily:'SourceSansPro_700Bold',
+        fontFamily:'SourceSansPro_600SemiBold',
         letterSpacing: 1,
-        paddingTop:7,
-        color:'#000'//#70BAFF-Alt. Color//
-        
-        
+        paddingTop:5,
+        paddingLeft:7,
+        color:'#7F7F7F'
+
     },
-    Button: {
-        backgroundColor:'#70BAFF',
-        borderRadius:25,
-        padding:4,
-        paddingTop:6,
-        paddingBottom:6,
-        alignSelf: "center",
-        fontSize: 25,
-        //bottom:1.5 = reveals light blue bg//
-  
-    },
-    ButtonContainer: {
-        elevation:15,
-        alignSelf: "center",
-        backgroundColor:'#B1DDF9',
-        shadowColor:'#70BAFF',
-        padding:1.5,
-        borderRadius:25,
-    },
+    //Accordion Styling//
     Container:{
-        backgroundColor: '#B1DDF9',
+        backgroundColor: '#fff',
         opacity:0.70,
-        padding:15,
-        borderRadius:20,
-        left:13 
-    },
-    ContainerTitle:{
-        fontSize: 18,
-        fontFamily:'SourceSansPro_700Bold',
-        alignSelf:'center',
-        paddingBottom:10
-    },
-    ContainerText:{
-        fontSize: 16,
-        fontFamily:'SourceSansPro_700Bold',  
-        alignSelf:'center',
-        width:248,
-        letterSpacing: 1,
-        paddingTop:3
-    },
-    Link:{
-        textAlign:'center',
-        fontSize: 16,
-        fontFamily:'SourceSansPro_700Bold',
-        color: '#70BAFF',
-        paddingTop:10
+        paddingTop:20,
+        paddingBottom:150,
         
     },
-    container: {
-        flex: 1,
-        backgroundColor: '#F5FCFF',
-        //paddingTop: Constants.statusBarHeight,
-      },
-      title: {
-        textAlign:'center',
-        fontSize: 22,
-        fontWeight: '300',
-        marginBottom: 20,
-      },
-      header: {
-        backgroundColor: '#F5FCFF',
+    header: {
+        backgroundColor: '#70BAFF',
+        padding: 11,
+    },
+    headerText: {
+        fontSize: 17,
+        fontFamily:'SourceSansPro_700Bold',
+        letterSpacing: 1,
+        color: '#000',
+    },
+    content: {
+        fontFamily:'SourceSansPro_700Bold',
+        fontSize: 17,
         padding: 10,
-      },
-      headerText: {
-        //textAlign: 'center',
-        fontSize: 16,
-        fontWeight: '500',
-      },
-      content: {
-        padding: 20,
+        letterSpacing: 1,
         backgroundColor: '#fff',
-      },
-      active: {
-        backgroundColor: 'rgba(255,255,255,1)',
-      },
-      inactive: {
-        backgroundColor: 'rgba(245,252,255,1)',
-      },
-      selectors: {
-        marginBottom: 10,
-        flexDirection: 'row',
-        justifyContent: 'center',
-      },
-      selector: {
-        backgroundColor: '#F5FCFF',
-        padding: 10,
-      },
-      activeSelector: {
-        fontWeight: 'bold',
-      },
-      selectTitle: {
-        fontSize: 14,
-        fontWeight: '500',
-        padding: 10,
-      },
-      multipleToggle: {
-        flexDirection: 'row',
-        justifyContent: 'center',
-        marginVertical: 30,
-        alignItems: 'center',
-      },
-      multipleToggle__title: {
-        fontSize: 16,
-        marginRight: 8,
-      },
-    
+    },
+    active: {
+        fontSize: 17,
+    },
+    inactive: {
+        backgroundColor: 'rgba(177,221,249,1)',
+    },
+
     
 });
 

@@ -217,10 +217,9 @@ function AppNavigator() {
     <App.Navigator>
       
       <App.Screen name="Home"  component={HomeStackNavigator}/> 
-      <App.Screen name="Covid-19 Vaccine FAQ" component={EligibilityStackNavigator}/>
       <App.Screen name="WA Vaccine Phases" component={VaccinePhasesStackNavigator}/>
       <App.Screen name="Vaccine Eligibility Test" component={EligibilityStackNavigator} />
-      <App.Screen name="FAQ" component={FaqStackNavigator}/>
+      <App.Screen name="Covid-19 Vaccine FAQ" component={FaqStackNavigator}/>
 
     </App.Navigator>
   )
