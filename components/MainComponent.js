@@ -10,8 +10,7 @@ import Header from '../shared/HeaderComponent';
 import Eligibility from './EligibilityComponent';
 import VaccinePhases from './VaccinePhasesComponent';
 import RadiusProviderResults from './RadiusProviderResultsComponent';
-import FAQ from './FaqComponent';
-import FaqAccordion from './Exampl';
+import FaqAccordion from './FaqComponent';
 
 
 
