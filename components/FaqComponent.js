@@ -1,32 +1,80 @@
 import React, { Component } from 'react';
-import { View, ScrollView, Text, StyleSheet} from 'react-native';
-import { Button, Divider } from 'react-native-elements';
+import { View, ScrollView, Text, StyleSheet, FlatList} from 'react-native';
+import { Button, Divider, ListItem, Avatar } from 'react-native-elements';
+import { PROVIDERDATA } from '../shared/ProviderData';
 
 
-class VaccinePhases extends Component {
+function List ({providerdata}) {
+
+
+    const renderItem = ({ item }) => {
+        return (
+        <ListItem bottomDivider>
+            {/*<Avatar source={{uri: item.avatar_url}} />*/}
+                <ListItem.Content>
+                <ListItem.Title>{item.name}</ListItem.Title>
+                <ListItem.Subtitle>{item.id}</ListItem.Subtitle>
+                <View >
+                    
+                    <Text>5 months ago</Text>
+                </View>
+                </ListItem.Content>
+            <ListItem.Chevron 
+            />
+        </ListItem>
+        )
+    };
+
+    return (
+        <View>
+            <FlatList
+                data={providerdata}
+                renderItem={renderItem}
+                //keyExtractor = (item, index) => index.toString()
+                keyExtractor={item => item.id.toString()} //Because all the Providers have a unique ID, we can set this to use the ID//
+            />
+        </View>
+    )
+
+
+
+};
+
+
+class FAQ extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            providerdata: PROVIDERDATA,
+        };
+       
+    }
 
 
     static navigationOptions = {
-        title: 'Vaccine Phases',
+        title: 'FAQ',
     };
 
     render () {
 
         const { navigate } = this.props.navigation;
+        const providerdata = this.state.providerdata;
 
         return (
+
+
            
             <ScrollView style={{paddingTop:15,paddingBottom:20, backgroundColor: '#ffffff'}}>
 
                 <View style={{paddingLeft:7, paddingBottom:50}}>      
-                    <Text style={styles.HeaderTitle}>Washington{"'"}s<Text style={styles.HeaderTitle2}> Covid-19 </Text>Vaccine Phases</Text>  
+                    <Text style={styles.HeaderTitle}>Frequently Asked Questions</Text>  
 
                     <Divider style={{ backgroundColor: '#B1DDF9', width:'85%', alignSelf:'center', margin:10, padding:1}}/>
-
-                    <Text style={styles.SubHeader}>Tiers A & B </Text> 
                    
                 </View>
+                <List providerdata={providerdata}/>
 
+                
 
                 {/* Tier A Section */}
                 <View style={{paddingLeft:7, paddingBottom:20}}>      
@@ -236,6 +284,7 @@ class VaccinePhases extends Component {
 }
 
 
+
 //StyleSheet//
 
 const styles = StyleSheet.create({
@@ -358,4 +407,4 @@ const styles = StyleSheet.create({
 });
 
 
-export default VaccinePhases;  
+export default FAQ;  

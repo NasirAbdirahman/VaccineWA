@@ -10,6 +10,8 @@ import Header from '../shared/HeaderComponent';
 import Eligibility from './EligibilityComponent';
 import VaccinePhases from './VaccinePhasesComponent';
 import RadiusProviderResults from './RadiusProviderResultsComponent';
+import FAQ from './FaqComponent';
+import FaqAccordion from './Exampl';
 
 
 
@@ -128,6 +130,7 @@ function EligibilityStackNavigator() {
   );
 }
 
+//Vaccine Phases Navigator//
 
 const VaccinePhasesStack = createStackNavigator();
 
@@ -167,6 +170,45 @@ function VaccinePhasesStackNavigator() {
 }
 
 
+//FAQ Navigator//
+
+const FaqStack = createStackNavigator();
+
+function FaqStackNavigator() {
+  return (
+    <FaqStack.Navigator initialRouteName="FAQ">
+      <FaqStack.Screen 
+        name="FAQ" 
+        component={FaqAccordion} 
+        options = { ({ navigation }) => {
+          return {
+            headerTitle: () => <Header navigation = {navigation} title='FAQ'/> ,
+            headerTitleContainerStyle: {
+                paddingBottom: 15,
+                paddingTop: 10,
+                
+              },  
+            }
+        }}
+      />
+      {/*<FaqStack.Screen 
+        name="Eligibility" 
+        component={Eligibility} 
+        options = { ({ navigation }) => {
+          return {
+            headerTitle: () => <Header navigation = {navigation} title='Eligibility'/> ,
+            headerTitleContainerStyle: {
+                paddingBottom: 15,
+                paddingTop: 10,
+                
+              },  
+          }
+        }}
+      />*/}
+    </FaqStack.Navigator>
+  )
+}
+
 
 //Drawer Navigator
 const App = createDrawerNavigator();
@@ -179,7 +221,7 @@ function AppNavigator() {
       <App.Screen name="Covid-19 Vaccine FAQ" component={EligibilityStackNavigator}/>
       <App.Screen name="WA Vaccine Phases" component={VaccinePhasesStackNavigator}/>
       <App.Screen name="Vaccine Eligibility Test" component={EligibilityStackNavigator} />
-      <App.Screen name="FAQ" component={HomeStackNavigator}/>
+      <App.Screen name="FAQ" component={FaqStackNavigator}/>
 
     </App.Navigator>
   )
