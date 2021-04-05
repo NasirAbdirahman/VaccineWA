@@ -1,28 +1,26 @@
 import React, { Component } from 'react';
-import { View, Text, StyleSheet, FlatList } from 'react-native';
+import { View, Text, StyleSheet, FlatList, Linking } from 'react-native';
 import { Divider, Icon, Button} from 'react-native-elements';
 import { PROVIDERDATA } from '../shared/ProviderData'; 
+import * as WebBrowser from 'expo-web-browser';
  
 
 // Reviews the Scheduling Link provided //      
 function RenderScheduling({providerdata}) {
 
-    const renderSchedulingLink= ({item}) => {
+    const renderSchedulingLink = ({item}) => {
+
+        const schedulingSite = () => WebBrowser.openBrowserAsync(item.schedulingLink);
 
         if (item.schedulingLink === "None" ) {
             return (
                 <View>
                     <View>
                         <Button 
-                            buttonStyle={styles.Button}
-                            containerStyle={styles.ButtonContainer}
-                            titleStyle={styles.Button}
+                            buttonStyle={styles.RedButton}
+                            containerStyle={styles.RedButtonContainer}
+                            titleStyle={styles.RedButton}
                             title="No Scheduling Appointment Link"
-                            //icon={{
-                                //name:'launch',
-                                //type: 'material-icons' ,
-                                //color:'#fff'
-                            //}}
                             > 
                         </Button>
                     </View>
@@ -42,7 +40,7 @@ function RenderScheduling({providerdata}) {
                             type: 'material-icons' ,
                             color:'#fff'
                         }}
-                        onPress={() =>  navigation.goBack()} Not going anywhere
+                        onPress={schedulingSite}
                         > 
                     </Button>
                 </View>
@@ -65,11 +63,15 @@ function RenderScheduling({providerdata}) {
 
 // Reviews the Website Link Provided //  
 function RenderSite ({providerdata}) {
+
     const renderSiteLink= ({item}) => {
+
+        const webSite = () => WebBrowser.openBrowserAsync(item.siteLink);
+
         if (item.siteLink === "None" ) {
             return (
                 <View>
-                    <View style={{paddingTop:5,left:40}}>
+                    <View style={{paddingTop:5,left:80}}>
                         <Text> 
                             <Icon 
                                 name= 'highlight-off'
@@ -85,14 +87,15 @@ function RenderSite ({providerdata}) {
             ) 
         } else (item.siteLink); {
             return (
-                <View style={{paddingTop:5,left:40}}>
-                    <Text>
+                <View style={{paddingTop:5,left:80}}>
+                    <Text> 
                         <Icon
                             name='launch'
                             type= 'material-icons' 
                             color='#70BAFF'
                             top={3}
-                            onPress={() => navigation.navigate()} 
+                            onPress={webSite}
+                            size={30}
                         />
                         <Text style={styles.Text}> Website</Text> 
                     </Text>
@@ -146,6 +149,7 @@ function RenderPhone({providerdata}) {
                             type= 'material-icons' 
                             color='#70BAFF'
                             top={3}
+                            size={30}
                             onPress={() => navigation.navigate({/*OPENS UP PHONE API*/})} 
                         />
                     <Text style={styles.Text}> Phone</Text> 
@@ -172,9 +176,12 @@ function RenderPhone({providerdata}) {
 function RenderEmail({providerdata}) {
 
     const renderEmailAccount= ({item}) => {
+
+        const sendEmail = () => Linking.openURL(`mailto:nasir.a.abdirahman@outlook.com`) ;//(item.schedulingLink);
+
         if (item.email=== "None") {
             return (
-                <View style={{left:75}}>
+                <View style={{left:100}}>
                     <View>
                         <Text>
                             <Icon 
@@ -191,16 +198,18 @@ function RenderEmail({providerdata}) {
             ) 
         } else (item.email); {
             return (
-                <View style={{left:80}}>
+                <View style={{left:110}}>
                     <Text>
                         <Icon
-                            name='mail'
-                            type= 'material-icons' 
-                            color='#70BAFF'
-                            top={5}
-                            onPress={() => navigation.navigate()} 
-                            />
+                        name='mail'
+                        type= 'material-icons' 
+                        color='#70BAFF'
+                        top={5}
+                        size={30}
+                        onPress={sendEmail}
+                        />
                         <Text style={styles.Text}> Email</Text> 
+                        
                     </Text>
                 </View>
             )
@@ -446,10 +455,10 @@ function RenderProvider ({providerdata, navigation}) {
 
                    {/*Contact Information*/}
                     <View style={{paddingTop:7,paddingBottom:7}}>
-                        <RenderScheduling providerdata={providerdata}/>
+                        <RenderScheduling providerdata={providerdata} />
                     </View>
 
-                    <View style={{paddingTop:10,flexDirection: "row"}}>
+                    <View style={{paddingLeft:20, paddingTop:10,flexDirection: "row"}}>
                         <View >
                             <Text style={styles.Text}>
                                 <Icon
@@ -459,7 +468,7 @@ function RenderProvider ({providerdata, navigation}) {
                                     top={3}
                                     onPress={() => navigation.navigate({/*OPEN UP MAPS API*/})} 
                                 />
-                                <Text style={styles.Text} > Directions</Text>
+                                <Text style={styles.Text}> Directions</Text>
                             </Text>
                         </View>
 
@@ -467,7 +476,7 @@ function RenderProvider ({providerdata, navigation}) {
                         
                     </View>
 
-                    <View style={{paddingTop:10, flexDirection: "row"}}>
+                    <View style={{paddingLeft:20, paddingTop:30, flexDirection: "row"}}>
                         <RenderPhone providerdata={providerdata}/>
                         <RenderEmail providerdata={providerdata}/>
                     </View>
@@ -561,8 +570,7 @@ class Provider extends Component {
     static navigationOptions = {
         title: 'Provider'
     };
-
-
+    
 
     render () {
         const { navigation } = this.props;
@@ -634,6 +642,23 @@ const styles = StyleSheet.create({
         alignSelf: "center",
         backgroundColor:'#B1DDF9',
         shadowColor:'#70BAFF',
+        padding:1.5,
+        borderRadius:25,
+    },
+    RedButton: {
+        backgroundColor:'#FF0000',
+        borderRadius:25,
+        padding:6,
+        paddingTop:6,
+        paddingBottom:6,
+        alignSelf: "center",
+        fontSize: 20,
+    },
+    RedButtonContainer: {
+        elevation:15,
+        alignSelf: "center",
+        backgroundColor:'#FF0000',
+        shadowColor:'#FF0000',
         padding:1.5,
         borderRadius:25,
     },
