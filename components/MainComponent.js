@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
-import { View } from 'react-native';
+import { View, StyleSheet, Image, Text } from 'react-native';
+import { Divider} from 'react-native-elements';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-import { createDrawerNavigator } from '@react-navigation/drawer';
+import { createDrawerNavigator, DrawerContentScrollView, DrawerItemList } from '@react-navigation/drawer';
 import Home from './HomeComponent';
 import Provider from './ProviderComponent';
 import Results from './ResultsComponent';
@@ -190,35 +191,50 @@ function FaqStackNavigator() {
             }
         }}
       />
-      {/*<FaqStack.Screen 
-        name="Eligibility" 
-        component={Eligibility} 
-        options = { ({ navigation }) => {
-          return {
-            headerTitle: () => <Header navigation = {navigation} title='Eligibility'/> ,
-            headerTitleContainerStyle: {
-                paddingBottom: 15,
-                paddingTop: 10,
-                
-              },  
-          }
-        }}
-      />*/}
     </FaqStack.Navigator>
   )
 }
 
 
-//Drawer Navigator
+//Custom DrawerContent W/Logo//
+
+function CustomDrawerContent(props) {
+  return (
+    <DrawerContentScrollView style={styles.container} //Custom Props recommended by RN navigation docs//
+    forceInset={{top: 'always', horizontal: 'never'}}{...props}>
+        <View style={styles.drawerHeader}> 
+          <Image source={require('../assets/vaccineWaLogo.png')} style={styles.drawerImage} />
+          <Text style={styles.drawerHeaderText}>For A Healthy Washington</Text>
+          <Divider style={{ backgroundColor: '#B1DDF9', width:'100%', alignSelf:'center', padding:2, marginTop:10}}/>
+        </View>
+      <DrawerItemList {...props} /* shows all the items in the side drawer*/ />
+    </DrawerContentScrollView>
+  );
+}
+
+
+
+//Main Drawer Navigator
 const App = createDrawerNavigator();
 
-function AppNavigator() {
+function AppNavigator( ) {
   return (
-    <App.Navigator>
-      
+    <App.Navigator
+      drawerContent={(props) => <CustomDrawerContent {...props} />}
+      drawerContentOptions={{
+        activeTintColor: '#000',
+        activeBackgroundColor:'#B1DDF9',
+        inactiveTintColor:'#000',
+        fontFamily:'SourceSansPro_700Bold',
+        fontSize:18,
+        borderTopRightRadius:25,
+        itemStyle: { marginVertical: 15},
+      }}
+      drawerStyle={styles.drawerStyle}
+      >
       <App.Screen name="Home"  component={HomeStackNavigator}/> 
       <App.Screen name="WA Vaccine Phases" component={VaccinePhasesStackNavigator}/>
-      <App.Screen name="Vaccine Eligibility Test" component={EligibilityStackNavigator} />
+      <App.Screen name="Vaccine Eligibility Test"component={EligibilityStackNavigator} />
       <App.Screen name="Covid-19 Vaccine FAQ" component={FaqStackNavigator}/>
 
     </App.Navigator>
@@ -244,16 +260,34 @@ class Main extends Component {
   }
 }
 
-/*const styles= StyleSheet.create({
-  DrawerNavigator:{
-      color: '#70BAFF',
-      //textAlign:'center',
-      fontSize: 50,
-      //fontFamily:'Scheherazade_700Bold',
-      //letterSpacing: 1
+const styles= StyleSheet.create({
+  container: {
+    flex: 1,
   },
-  
-})*/
+  drawerStyle: {
+    backgroundColor: '#fff',
+    width: 240,
+    borderTopRightRadius:25,
+  },
+  //Logo Header Section
+  drawerHeader: {
+    height: 140,
+    alignItems: 'center',
+    justifyContent: 'center'
+  },
+  drawerHeaderText: {
+    fontFamily:'SourceSansPro_600SemiBold',
+    fontSize:16,
+    letterSpacing: 1,
+    textAlign:'center',
+  },
+  drawerImage: {
+    margin: 10,
+    height: 60,
+    width: 200,
+  },
+ 
+})
 
 
 export default Main;

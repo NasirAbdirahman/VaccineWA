@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { View, Text, StyleSheet } from 'react-native';
-import { Input, Button, Divider, Tooltip } from 'react-native-elements';
+import { View, Text, TextInput, StyleSheet } from 'react-native';
+import { Button, Divider } from 'react-native-elements';
 import Modal from 'react-native-modal';
 
 
@@ -24,6 +24,7 @@ class Home extends Component {
         this.setState({showModal : !this.state.showModal})
     }
     
+    
   
 
     render () {
@@ -40,30 +41,6 @@ class Home extends Component {
                 
                 <Text style={styles.Title}>Enter Your Zip Code</Text>
                 <Text style={styles.Title}>We'll Find The Closest Providers</Text>
-                {/* Pop Up Eligibility Question
-                
-                <Tooltip
-                    popover={ 
-                        <View>
-                            <Text style={styles.TooltipText}>Are You Eligibile For The Covid-19 Vaccine?{"\n"}{"\n"}Take The Official Quiz? </Text>
-                            <Button 
-                                buttonStyle={styles.Button}
-                                //containerStyle={styles.ButtonContainer}
-                                //titleStyle={styles.TooltipText}
-                                title="Quiz"
-                                onPress={() =>  navigate('Eligibility')}> 
-                            </Button>
-                        </View>
-                    
-                    }
-                    containerStyle={styles.TooltipContainer}
-                    height={130}
-                    width={200}
-                    withPointer={false} 
-                    >
-                    <Text style={styles.Tooltip}>?</Text>
-
-                </Tooltip>*/}
 
                 {/* Pop Up Eligibility Question*/}
                 <Text style={styles.ModalTrigger} onPress={this.toggleModal}> ?</Text>
@@ -92,17 +69,33 @@ class Home extends Component {
                     </View>
 
                 </Modal>
+
+                {/* ZipCode Input Section */}
                   
-                    
-                
-                <View style={{paddingBottom:30}}>
-                    {/*<Text style={styles.Title}>Type A 5-Digit Zip Code</Text>*/}
-                    <Input placeholder='5-Digit ZIP Code' 
+                <View style={{paddingBottom:50, alignSelf:'center'}}>
+                    <TextInput 
+                        placeholder='5-Digit ZIP Code' 
+                        keyboardType="numeric"
+                        clearButtonMode='always'
+                        maxLength={5}
+                        returnKeyLabel='search'
+
                         style={styles.Input}
                         value={this.state.zipcode}
                         onChangeText= {(zipcode) => this.setState({zipcode})}
                     />
-                </View>
+                </View>  
+
+                {/* Another ZipCode Input, RNE Input
+
+                  <Input placeholder='5-Digit ZIP Code' 
+                        style={styles.Input}
+                        value={this.state.zipcode}
+                        onChangeText= {(zipcode) => this.setState({zipcode})}
+                    />
+
+                */}
+
 
                 {/* If we allow radius Search to be incorportated. Code will be functioning*/}
                 {/*<Text style={styles.Title}>Within</Text>
@@ -126,7 +119,9 @@ class Home extends Component {
                 
                 
                 <Text style={{fontSize: 18,fontFamily:'SourceSansPro_600SemiBold',alignSelf:'center', paddingTop:140}}>
-                    Made With ❤️ for Washington</Text>
+                    Made With ❤️ for Washington
+                </Text>
+                
             </View>
         )
     }
@@ -192,7 +187,11 @@ const styles= StyleSheet.create({
         paddingTop:100,
         paddingBottom:5,
         fontFamily:'SourceSansPro_600SemiBold',
+        fontSize:20,
         letterSpacing: 1,
+        textAlign:'center',
+        borderBottomWidth:0.5,
+        width:250
     },
 
     //Modal Styling//

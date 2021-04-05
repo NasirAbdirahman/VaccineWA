@@ -152,18 +152,18 @@ function RenderVaccineType({providerdata}) {
             )
         } else (item.availability === "No"); { 
             return (
-            <View>
-                <Text style={styles.Text}> Vaccines Are Currently UnAvailable</Text>
-                <Text style={styles.Text2}> In Stock:
-                    <Icon 
-                        name= 'highlight-off'
-                        type= 'material-icons' 
-                        color='#FF0000'
-                        left={1}
+                <View>
+                    <Text style={styles.Text}> Vaccines Are Currently UnAvailable</Text>
+                    <Text style={styles.Text2}> In Stock:
+                        <Icon 
+                            name= 'highlight-off'
+                            type= 'material-icons' 
+                            color='#FF0000'
+                            left={1}
                             top={2} 
-                    /> 
+                        /> 
                     </Text>
-            </View> 
+                </View> 
             )
         }
     };

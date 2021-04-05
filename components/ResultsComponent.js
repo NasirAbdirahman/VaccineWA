@@ -146,51 +146,43 @@ function RenderZipRadius ({zipcodedata, navigation}) {
 function RenderProviders ({providerdata, navigation}) {
 
     const renderProviderItem = ({item}) => {
-        //if(item) {
-            return  (
-                <View>
-                    <View style={{paddingTop:10, paddingLeft:7}}>
-            
-                        <Text style={styles.Title}>{item.name} </Text>
-                        
-                        <Text style={styles.Title2}>{item.address},{item.zipCode}</Text>
-                        <Text style={styles.Title2}> 
-                            In Stock:
-                            <Icon 
-                                name={item.availability === "Yes" ? 'check-circle' : 'highlight-off' }
-                                type= 'material-icons' 
-                                color={item.availability === "Yes" ? Icon.color='#70BAFF': Icon.color='#FF0000'}
-                            /> 
-                        </Text> 
+        return  (
+            <View>
+                <View style={{paddingTop:10, paddingLeft:7}}>
+        
+                    <Text style={styles.Title}>{item.name} </Text>
+                    
+                    <Text style={styles.Title2}>{item.address},{item.zipCode}</Text>
+                    <Text style={styles.Title2}> 
+                        In Stock:
+                        <Icon 
+                            name={item.availability === "Yes" ? 'check-circle' : 'highlight-off' }
+                            type= 'material-icons' 
+                            color={item.availability === "Yes" ? Icon.color='#70BAFF': Icon.color='#FF0000'}
+                        /> 
+                    </Text> 
 
-                        <Text style={styles.Text}>Last Updated: {item.lastUpdated} </Text>
+                    <Text style={styles.Text}>Last Updated: {item.lastUpdated} </Text>
 
-                        <View style={{left:140, bottom:55 }}>
-                            <Button
-                                buttonStyle={styles.Button}
-                                containerStyle={styles.ButtonContainer}
-                                icon={{
-                                    name:'forward',//keyboard-arrow-right//
-                                    type: 'material-icons' ,
-                                    color:'#fff',
-                                }}
-                                onPress={() => navigation.navigate('Provider', {providerId: item.id})}
-                            />
-                        </View>       
-                    </View>
-
-                    <Divider style={{ backgroundColor: '#B1DDF9', width:'100%', alignSelf:'center', margin:1, padding:1}}/>
-                
+                    <View style={{left:140, bottom:55 }}>
+                        <Button
+                            buttonStyle={styles.Button}
+                            containerStyle={styles.ButtonContainer}
+                            icon={{
+                                name:'forward',//keyboard-arrow-right//
+                                type: 'material-icons' ,
+                                color:'#fff',
+                            }}
+                            onPress={() => navigation.navigate('Provider', {providerId: item.id})}
+                        />
+                    </View>       
                 </View>
-            );
-        //} else (providerdata.length = '0'); {
-            //return (
-                //<View>
-                   // <Text>Sorry No Providers In This ZipCode</Text>
-               // </View>
 
-            //)
-        //}
+                <Divider style={{ backgroundColor: '#B1DDF9', width:'100%', alignSelf:'center', margin:1, padding:1}}/>
+            
+            </View>
+        );
+        
             
     };
 
@@ -202,7 +194,6 @@ function RenderProviders ({providerdata, navigation}) {
                 keyExtractor={item => item.id.toString()} //Because all the Providers have a unique ID, we can set this to use the ID//
             />
         </View>
-      
 
     );
 }
@@ -236,53 +227,85 @@ class Results extends Component {
         const zipCode = this.props.route.params.zipCode;
         {/*const radiusZip = this.props.route.params.radius; If we allow radius Search to be incorportated. Code will be functioning*/}
         
-
         const providerdata = this.state.providerdata.filter(provider => provider.zipCode === zipCode);
         const zipcodedata = this.state.zipcodedata.filter(zipcode => zipcode.providerId === zipCode)
         const totalProviders = providerdata.length; //Displays Number of Providers found after the filter//
         
         
-        
+        if (providerdata.length >= 1) {
+            return(
+                <ScrollView style={{paddingTop:15,paddingBottom:20, backgroundColor: '#ffffff'}}>
+                
+                    <Text style={styles.HeaderTitle}>We Found <Text style={styles.HeaderTitle2}>{totalProviders}</Text> Providers Near You</Text>
 
+                    <View style={{paddingLeft:7, paddingBottom:30}}>
+                        <Text style={styles.Text}>Showing all results within <Text style={styles.Text2}>{zipCode}</Text> </Text>
+                        <Text style={styles.Text}>Vaccine availability is subject to change. Most locations <Text style={styles.Text2}>Require</Text> appointments</Text>
+                        <Text style={styles.Text}>Click a location with Vaccines <Text style={styles.Text2}>'In Stock'</Text> to move forward.</Text>
+                    
+                        <Button 
+                            buttonStyle={styles.Button}
+                            containerStyle={styles.ButtonContainer}
+                            titleStyle={styles.Button}
+                            
+                            title="Edit Your Search"
+                            onPress={() =>  navigation.goBack()}> 
+                        </Button>
+
+                        <Divider style={{ backgroundColor: '#B1DDF9', width:'85%', alignSelf:'center', top:18, padding:1}}/>
+                    </View>
+                    
+                    <RenderProviders providerdata={providerdata} navigation={navigation}/>
+                    
+                    {/* Provides a radius of Zipcodes*/}
+                    <View style={{paddingLeft:7, paddingBottom:45, paddingTop:25}}>
+
+                        <Text style={styles.SubHeader}>These Zipcodes are within 15 miles of {zipCode}</Text>{/* Huge Title that explains there are more providers close to you too*/}
+                        <Text style={styles.SubHeaderText}>Search their providers as well</Text>
+
+                        <Divider style={{ backgroundColor: '#B1DDF9', width:'85%', alignSelf:'center', top:18, padding:1}}/>
+                    </View>
+
+                    <RenderZipRadius zipcodedata={zipcodedata} navigation={navigation}/>
     
-        return (
+                </ScrollView>
             
-            <ScrollView style={{paddingTop:15,paddingBottom:20, backgroundColor: '#ffffff'}}>
-                
-                <Text style={styles.HeaderTitle}>We Found <Text style={styles.HeaderTitle2}>{totalProviders}</Text> Providers Near You</Text>
 
-                <View style={{paddingLeft:7, paddingBottom:30}}>
-                    <Text style={styles.Text}>Showing all results within <Text style={styles.Text2}>{zipCode}</Text> </Text>
-                    <Text style={styles.Text}>Vaccine availability is subject to change. Most locations <Text style={styles.Text2}>Require</Text> appointments</Text>
-                    <Text style={styles.Text}>Click a location with Vaccines <Text style={styles.Text2}>'In Stock'</Text> to move forward.</Text>
-                
-                    <Button 
-                        buttonStyle={styles.Button}
-                        containerStyle={styles.ButtonContainer}
-                        titleStyle={styles.Button}
-                        
-                        title="Edit Your Search"
-                        onPress={() =>  navigation.goBack()}> 
-                    </Button>
+            ); 
+        
+            {/* Provides alternate Options If Their are no Providers in the Zipcodes*/}
+        } else if (providerdata.length < 1) {
+            return(
 
-                    <Divider style={{ backgroundColor: '#B1DDF9', width:'85%', alignSelf:'center', top:18, padding:1}}/>
-                </View>
-                
-                <RenderProviders providerdata={providerdata} navigation={navigation}/>
+                <ScrollView style={{paddingTop:15,paddingBottom:20, backgroundColor: '#ffffff'}}>
+                   
+                    <Text style={styles.HeaderTitle}>Their Are <Text style={styles.HeaderTitle2}>{totalProviders}</Text> Providers In {zipCode}</Text>
+                    
 
-                <View style={{paddingLeft:7, paddingBottom:45, paddingTop:25}}>
+                    <View style={{paddingLeft:7, paddingBottom:30}}>
+                        <Text style={styles.Text}>Please double-check Your ZipCode Or Review The closest ZipCodes to <Text style={styles.Text2}>{zipCode}</Text> Below</Text>   
+                    </View>
 
-                    <Text style={styles.SubHeader}>These Zipcodes are within 15 miles of your searched zipcode</Text>{/* Huge Title that explains there are more providers close to you too*/}
-                    <Text style={styles.SubHeaderText}>Search their providers as well</Text>
+                    <View style={{paddingLeft:7, paddingBottom:30}}>
+                        <Button 
+                            buttonStyle={styles.Button}
+                            containerStyle={styles.ButtonContainer}
+                            titleStyle={styles.Button}
+                            
+                            title="Edit Your Search"
+                            onPress={() =>  navigation.goBack()}> 
+                        </Button>
 
-                    <Divider style={{ backgroundColor: '#B1DDF9', width:'85%', alignSelf:'center', top:18, padding:1}}/>
-                </View>
+                        <Divider style={{ backgroundColor: '#B1DDF9', width:'85%', alignSelf:'center', top:18, padding:1}}/>
+                    </View>
 
-                <RenderZipRadius zipcodedata={zipcodedata} navigation={navigation}/>
-  
-            </ScrollView>
-            
-        )
+                    <RenderZipRadius zipcodedata={zipcodedata} navigation={navigation}/>
+
+                </ScrollView>
+            )
+
+        }
+
     }
 }
 
@@ -344,8 +367,7 @@ const styles = StyleSheet.create({
         letterSpacing: 1,
         paddingTop:7,
         color:'#000'//#70BAFF-Alt. Color//
-        
-        
+          
     },
     Button: {
         backgroundColor:'#70BAFF',
