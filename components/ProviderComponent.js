@@ -2,6 +2,223 @@ import React, { Component } from 'react';
 import { View, Text, StyleSheet, FlatList } from 'react-native';
 import { Divider, Icon, Button} from 'react-native-elements';
 import { PROVIDERDATA } from '../shared/ProviderData'; 
+ 
+
+// Reviews the Scheduling Link provided //      
+function RenderScheduling({providerdata}) {
+
+    const renderSchedulingLink= ({item}) => {
+
+        if (item.schedulingLink === "None" ) {
+            return (
+                <View>
+                    <View>
+                        <Button 
+                            buttonStyle={styles.Button}
+                            containerStyle={styles.ButtonContainer}
+                            titleStyle={styles.Button}
+                            title="No Scheduling Appointment Link"
+                            //icon={{
+                                //name:'launch',
+                                //type: 'material-icons' ,
+                                //color:'#fff'
+                            //}}
+                            > 
+                        </Button>
+                    </View>
+                </View>
+            ) 
+        } else (item.schedulingLink); {
+            return (
+                <View style={{paddingTop:7,paddingBottom:7}}
+                >
+                    <Button 
+                        buttonStyle={styles.Button}
+                        containerStyle={styles.ButtonContainer}
+                        titleStyle={styles.Button}
+                        title="Check Available Appointments"
+                        icon={{
+                            name:'launch',
+                            type: 'material-icons' ,
+                            color:'#fff'
+                        }}
+                        onPress={() =>  navigation.goBack()} Not going anywhere
+                        > 
+                    </Button>
+                </View>
+            )
+        }
+    }
+
+    return (
+        <View>
+            <FlatList
+                data={providerdata}
+                renderItem={renderSchedulingLink}
+                keyExtractor={item => item.id.toString()}
+                listKey="Scheduling"
+            />
+        </View>
+
+    );
+}
+
+// Reviews the Website Link Provided //  
+function RenderSite ({providerdata}) {
+    const renderSiteLink= ({item}) => {
+        if (item.siteLink === "None" ) {
+            return (
+                <View>
+                    <View style={{paddingTop:5,left:40}}>
+                        <Text> 
+                            <Icon 
+                                name= 'highlight-off'
+                                type= 'material-icons' 
+                                color='#FF0000'
+                                left={1}
+                                top={3} 
+                            /> 
+                            <Text style={styles.Text2}> No Website</Text>
+                        </Text>
+                    </View>
+                </View>
+            ) 
+        } else (item.siteLink); {
+            return (
+                <View style={{paddingTop:5,left:40}}>
+                    <Text>
+                        <Icon
+                            name='launch'
+                            type= 'material-icons' 
+                            color='#70BAFF'
+                            top={3}
+                            onPress={() => navigation.navigate()} 
+                        />
+                        <Text style={styles.Text}> Website</Text> 
+                    </Text>
+                </View>
+            )
+        }
+    }
+
+    return (
+        <View>
+            <FlatList
+                data={providerdata}
+                renderItem={renderSiteLink}
+                keyExtractor={item => item.id.toString()}
+                listKey="Website"
+            />
+        </View>
+
+    );
+
+}  
+
+// Reviews the Phone Number Provided //      
+function RenderPhone({providerdata}) {
+
+    const renderPhoneNumber = ({item}) => {
+
+        if (item.phone === "None") {
+            return (
+                <View>
+                    <View>
+                        <Text>
+                            <Icon 
+                                name= 'highlight-off'
+                                type= 'material-icons' 
+                                color='#FF0000'
+                                left={1}
+                                top={2.5} 
+                            /> 
+                            <Text style={styles.Text2}> No Phone</Text>
+                        </Text>
+                    </View>
+                </View>
+            ) 
+        } else (item.phone); {
+            return (
+                <View>
+                    <Text>
+                        <Icon
+                            name='call'
+                            type= 'material-icons' 
+                            color='#70BAFF'
+                            top={3}
+                            onPress={() => navigation.navigate({/*OPENS UP PHONE API*/})} 
+                        />
+                    <Text style={styles.Text}> Phone</Text> 
+                    </Text>
+                </View>
+            )
+        }
+    }
+
+    return (
+        <View>
+            <FlatList
+                data={providerdata}
+                renderItem={renderPhoneNumber}
+                keyExtractor={item => item.id.toString()}
+                listKey="Phone"
+            />
+        </View>
+
+    );
+}
+
+// Reviews the Email Provided//      
+function RenderEmail({providerdata}) {
+
+    const renderEmailAccount= ({item}) => {
+        if (item.email=== "None") {
+            return (
+                <View style={{left:75}}>
+                    <View>
+                        <Text>
+                            <Icon 
+                                name= 'highlight-off'
+                                type= 'material-icons' 
+                                color='#FF0000'
+                                left={1}
+                                top={2.5} 
+                            /> 
+                            <Text style={styles.Text2}> No Email</Text>
+                        </Text> 
+                    </View>
+                </View>
+            ) 
+        } else (item.email); {
+            return (
+                <View style={{left:80}}>
+                    <Text>
+                        <Icon
+                            name='mail'
+                            type= 'material-icons' 
+                            color='#70BAFF'
+                            top={5}
+                            onPress={() => navigation.navigate()} 
+                            />
+                        <Text style={styles.Text}> Email</Text> 
+                    </Text>
+                </View>
+            )
+        }
+    }
+
+    return (
+        <View>
+            <FlatList
+                data={providerdata}
+                renderItem={renderEmailAccount}
+                keyExtractor={item => item.id.toString()}
+                listKey="Email" 
+            />
+        </View>
+
+    );
+}
 
 // Reviews the Vaccine Type offered and Informs the User//      
 function RenderVaccineType({providerdata}) {
@@ -174,13 +391,14 @@ function RenderVaccineType({providerdata}) {
             <FlatList
                 data={providerdata}
                 renderItem={renderVaccine}
-                keyExtractor={item => item.id.toString()} //Because all the Providers have a unique ID, we can set this to use the ID//
+                keyExtractor={item => item.id.toString()}
+                listKey="Vaccine Type"
             />
         </View>
 
     );
 
-}   
+}  
 
 
 // Displays The provider Data//
@@ -226,21 +444,9 @@ function RenderProvider ({providerdata, navigation}) {
                         <Text style={styles.Text2}>Find out if you can get a Covid-19 vaccine at this location.</Text>
                     </View>
 
-                    {/*Contact Information For Every Provider*/}
+                   {/*Contact Information*/}
                     <View style={{paddingTop:7,paddingBottom:7}}>
-                        <Button 
-                            buttonStyle={styles.Button}
-                            containerStyle={styles.ButtonContainer}
-                            titleStyle={styles.Button}
-                            title="Check Available Appointments"
-                            icon={{
-                                name:'launch',
-                                type: 'material-icons' ,
-                                color:'#fff'
-                            }}
-                            onPress={() =>  navigation.goBack()} //Not going anywhere//
-                            > 
-                        </Button>
+                        <RenderScheduling providerdata={providerdata}/>
                     </View>
 
                     <View style={{paddingTop:10,flexDirection: "row"}}>
@@ -253,56 +459,23 @@ function RenderProvider ({providerdata, navigation}) {
                                     top={3}
                                     onPress={() => navigation.navigate({/*OPEN UP MAPS API*/})} 
                                 />
-                                <Text style={styles.Text}> Directions</Text>
+                                <Text style={styles.Text} > Directions</Text>
                             </Text>
                         </View>
 
-                        <View style={{paddingTop:5,left:40}}>
-                            <Text>
-                                <Icon
-                                    name='launch'
-                                    type= 'material-icons' 
-                                    color='#70BAFF'
-                                    top={3}
-                                    onPress={() => navigation.navigate({/*OPENS UP BROWSER EXTENSION*/})} 
-                                />
-                                <Text style={styles.Text}> Website</Text> 
-                            </Text>
-                        </View>
+                        <RenderSite providerdata={providerdata}/>
+                        
                     </View>
 
-                    <View style={{paddingTop:10, flexDirection: "row",}}>
-                        <View>
-                            <Text>
-                                <Icon
-                                    name='call'
-                                    type= 'material-icons' 
-                                    color='#70BAFF'
-                                    top={3}
-                                    onPress={() => navigation.navigate({/*OPENS UP PHONE API*/})} 
-                                />
-                            <Text style={styles.Text}> Phone</Text> 
-                            </Text>
-                        </View>
-
-                        <View style={{left:80}}>
-                            <Text>
-                                <Icon
-                                    name='mail'
-                                    type= 'material-icons' 
-                                    color='#70BAFF'
-                                    top={5}
-                                    onPress={() => navigation.navigate({/*OPENS UP MAIL API*/} )} 
-                                    
-                                />
-                                <Text style={styles.Text}> Email</Text> 
-                            </Text>
-                            
-                        </View>
+                    <View style={{paddingTop:10, flexDirection: "row"}}>
+                        <RenderPhone providerdata={providerdata}/>
+                        <RenderEmail providerdata={providerdata}/>
                     </View>
+
                 </View>
 
                 <Divider style={{ backgroundColor: '#B1DDF9', width:'85%', alignSelf:'center', margin: 10, padding:1}}/>
+
 
                 {/* Instructions & Information For Every Provider*/}
                 <View style={{paddingTop:10,paddingLeft:7, paddingBottom:20}}>
@@ -398,9 +571,9 @@ class Provider extends Component {
         const providerdata = this.state.providerdata.filter(provider => provider.id === providerId);
         
         return ( //Removed ScrollView & Warning disappeared. Does not chnage functionality//
-            <View style={{paddingTop:10,paddingBottom:20, backgroundColor: '#ffffff'}}> 
-                <RenderProvider providerdata={providerdata} navigation={navigation}/>  
-            </View>    
+            <View style={{paddingTop:10, backgroundColor: '#ffffff'}}>
+                <RenderProvider providerdata={providerdata} navigation={navigation}/>                          
+            </View>
             
         ) 
     }

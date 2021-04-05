@@ -283,7 +283,7 @@ class Results extends Component {
                     
 
                     <View style={{paddingLeft:7, paddingBottom:30}}>
-                        <Text style={styles.Text}>Please double-check Your ZipCode Or Review The closest ZipCodes to <Text style={styles.Text2}>{zipCode}</Text> Below</Text>   
+                        <Text style={styles.Text}>Please double-check Your ZipCode {'\n'}Or Review The closest ZipCodes to <Text style={styles.Text2}>{zipCode}</Text> Below</Text>   
                     </View>
 
                     <View style={{paddingLeft:7, paddingBottom:30}}>

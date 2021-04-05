@@ -277,3 +277,96 @@ function RenderProviders ({providerdata, navigation}) {
        
 //Attempting to Pass ZipCode to results page while restting state//
 {/*onPress={() =>  navigation.navigate('Results',this.setState({zipCode : ''}))}*/}{/* Wanted it to refresh page with the zipcode here as state,but NO.*/}
+
+
+
+//Different Provider Contact Implementation//
+
+{/* Provider Information*/}         
+    <View style={{paddingTop:10,paddingLeft:7, paddingBottom:20}}>
+        
+        <View style={{paddingBottom:10}}>
+            <Text style={styles.HeaderTitle}>{item.name}</Text>
+        </View>
+
+        <View style={{paddingBottom:10}}>
+            <Text style={styles.Text}>{item.address}, {item.zipCode}</Text>
+            <Text style={styles.Text2}>Vaccine availability is subject to change.</Text>
+            <Text style={styles.Text2}>Find out if you can get a Covid-19 vaccine at this location.</Text>
+        </View>
+
+        {/*Contact Information For Every Provider*/}
+        <View style={{paddingTop:7,paddingBottom:7}}>
+            <Button 
+                buttonStyle={styles.Button}
+                containerStyle={styles.ButtonContainer}
+                titleStyle={styles.Button}
+                title="Check Available Appointments"
+                icon={{
+                    name:'launch',
+                    type: 'material-icons' ,
+                    color:'#fff'
+                }}
+                onPress={() =>  navigation.goBack()} //Not going anywhere//
+                > 
+            </Button>
+        </View>
+
+        <View style={{paddingTop:10,flexDirection: "row"}}>
+            <View >
+                <Text style={styles.Text}>
+                    <Icon
+                        name='directions'
+                        type= 'material-icons' 
+                        color='#70BAFF'
+                        top={3}
+                        onPress={() => navigation.navigate({/*OPEN UP MAPS API*/})} 
+                    />
+                    <Text style={styles.Text} > Directions</Text>
+                </Text>
+            </View>
+
+            <View style={{paddingTop:5,left:40}}>
+                <Text>
+                    <Icon
+                        name='launch'
+                        type= 'material-icons' 
+                        color='#70BAFF'
+                        top={3}
+                        onPress={() => navigation.navigate({/*OPENS UP BROWSER EXTENSION*/})} 
+                    />
+                    <Text style={styles.Text}> Website</Text> 
+                </Text>
+            </View>
+        </View>
+
+        <View style={{paddingTop:10, flexDirection: "row",}}>
+            <View>
+                <Text>
+                    <Icon
+                        name='call'
+                        type= 'material-icons' 
+                        color='#70BAFF'
+                        top={3}
+                        onPress={() => navigation.navigate({/*OPENS UP PHONE API*/})} 
+                    />
+                <Text style={styles.Text}> Phone</Text> 
+                </Text>
+            </View>
+
+            <View style={{left:80}}>
+                <Text>
+                    <Icon
+                        name='mail'
+                        type= 'material-icons' 
+                        color='#70BAFF'
+                        top={5}
+                        onPress={() => navigation.navigate({/*OPENS UP MAIL API*/} )} 
+                        
+                    />
+                    <Text style={styles.Text}> Email</Text> 
+                </Text>
+                
+            </View>
+        </View>
+    </View>
