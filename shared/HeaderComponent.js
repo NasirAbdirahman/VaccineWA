@@ -8,7 +8,7 @@ export default function Header({navigation, /*title*/}) {
         <View style={styles.Header}>
              <Image
                 style={styles.Image}
-                source = {require('../assets/vaccineWaLogo.png')}
+                source = {require('../assets/logo.png')}
                 resizeMode='stretch'
             
             />

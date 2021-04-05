@@ -203,7 +203,7 @@ function CustomDrawerContent(props) {
     <DrawerContentScrollView style={styles.container} //Custom Props recommended by RN navigation docs//
     forceInset={{top: 'always', horizontal: 'never'}}{...props}>
         <View style={styles.drawerHeader}> 
-          <Image source={require('../assets/vaccineWaLogo.png')} style={styles.drawerImage} />
+          <Image source={require('../assets/logo.png')} style={styles.drawerImage} />
           <Text style={styles.drawerHeaderText}>For A Healthy Washington</Text>
           <Divider style={{ backgroundColor: '#B1DDF9', width:'100%', alignSelf:'center', padding:2, marginTop:10}}/>
         </View>
