@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, ScrollView, Text, StyleSheet, FlatList} from 'react-native';
+import { View, ScrollView, Text, StyleSheet, FlatList, Pressable} from 'react-native';
 import { Button, Divider, Icon } from 'react-native-elements';
 import { PROVIDERDATA } from '../shared/ProviderData';
 import { ZIPCODEDATA } from '../shared/ZipCodeRadiusData';
@@ -148,35 +148,39 @@ function RenderProviders ({providerdata, navigation}) {
     const renderProviderItem = ({item}) => {
         return  (
             <View>
-                <View style={{paddingTop:10, paddingLeft:7}}>
-        
-                    <Text style={styles.Title}>{item.name} </Text>
+                <Pressable onPress={() => navigation.navigate('Provider', {providerId: item.id})}>
+                    <View style={{paddingTop:10, paddingLeft:7}}>
+            
+                        <Text style={styles.Title}>{item.name} </Text>
+                        
+                        <Text style={styles.Title2}>{item.address},{item.zipCode}</Text>
+                        <Text style={styles.Title2}> 
+                            In Stock:
+                            <Icon 
+                                name={item.availability === "Yes" ? 'check-circle' : 'highlight-off' }
+                                type= 'material-icons' 
+                                color={item.availability === "Yes" ? Icon.color='#70BAFF': Icon.color='#FF0000'}
+                            /> 
+                        </Text> 
+
+                        <Text style={styles.Text}>Last Updated: {item.lastUpdated} </Text>
+
                     
-                    <Text style={styles.Title2}>{item.address},{item.zipCode}</Text>
-                    <Text style={styles.Title2}> 
-                        In Stock:
-                        <Icon 
-                            name={item.availability === "Yes" ? 'check-circle' : 'highlight-off' }
-                            type= 'material-icons' 
-                            color={item.availability === "Yes" ? Icon.color='#70BAFF': Icon.color='#FF0000'}
-                        /> 
-                    </Text> 
-
-                    <Text style={styles.Text}>Last Updated: {item.lastUpdated} </Text>
-
-                    <View style={{left:140, bottom:55 }}>
-                        <Button
-                            buttonStyle={styles.Button}
-                            containerStyle={styles.ButtonContainer}
-                            icon={{
-                                name:'forward',//keyboard-arrow-right//
-                                type: 'material-icons' ,
-                                color:'#fff',
-                            }}
-                            onPress={() => navigation.navigate('Provider', {providerId: item.id})}
-                        />
-                    </View>       
-                </View>
+                            <View style={{left:140, bottom:55 }}>
+                                <Button
+                                    buttonStyle={styles.Button}
+                                    containerStyle={styles.ButtonContainer}
+                                    icon={{
+                                        name:'forward',//keyboard-arrow-right//
+                                        type: 'material-icons' ,
+                                        color:'#fff',
+                                    }}
+                                    onPress={() => navigation.navigate('Provider', {providerId: item.id})}
+                                />
+                            </View> 
+                            
+                    </View>
+                </Pressable>
 
                 <Divider style={{ backgroundColor: '#B1DDF9', width:'100%', alignSelf:'center', margin:1, padding:1}}/>
             
@@ -231,6 +235,7 @@ class Results extends Component {
         const zipcodedata = this.state.zipcodedata.filter(zipcode => zipcode.providerId === zipCode)
         const totalProviders = providerdata.length; //Displays Number of Providers found after the filter//
         
+        //const goBack = () => navigation.goBack();
         
         if (providerdata.length >= 1) {
             return(
@@ -242,14 +247,14 @@ class Results extends Component {
                         <Text style={styles.Text}>Showing all results within <Text style={styles.Text2}>{zipCode}</Text> </Text>
                         <Text style={styles.Text}>Vaccine availability is subject to change. Most locations <Text style={styles.Text2}>Require</Text> appointments</Text>
                         <Text style={styles.Text}>Click a location with Vaccines <Text style={styles.Text2}>'In Stock'</Text> to move forward.</Text>
-                    
+
                         <Button 
                             buttonStyle={styles.Button}
                             containerStyle={styles.ButtonContainer}
                             titleStyle={styles.Button}
-                            
                             title="Edit Your Search"
-                            onPress={() =>  navigation.goBack()}> 
+                            onPress={() =>  navigation.goBack()}
+                            >
                         </Button>
 
                         <Divider style={{ backgroundColor: '#B1DDF9', width:'85%', alignSelf:'center', top:18, padding:1}}/>

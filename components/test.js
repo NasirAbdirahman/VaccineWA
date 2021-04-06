@@ -1,29 +1,28 @@
 import React, { Component } from 'react';
-import { View, Text, StyleSheet, FlatList, Pressable } from 'react-native';
+import { View, Text, StyleSheet, FlatList, ScrollView } from 'react-native';
 import { Divider, Icon, Button} from 'react-native-elements';
 import { PROVIDERDATA } from '../shared/ProviderData'; 
-import * as WebBrowser from 'expo-web-browser';
-import * as MailComposer from 'expo-mail-composer';
-import * as Linking from 'expo-linking';
  
 
 // Reviews the Scheduling Link provided //      
 function RenderScheduling({providerdata}) {
 
-    const renderSchedulingLink = ({item}) => {
-        
-        //Opens Up the browser in App//
-        const schedulingSite = () => WebBrowser.openBrowserAsync(item.schedulingLink);
+    const renderSchedulingLink= ({item}) => {
 
         if (item.schedulingLink === "None" ) {
             return (
                 <View>
                     <View>
                         <Button 
-                            buttonStyle={styles.RedButton}
-                            containerStyle={styles.RedButtonContainer}
-                            titleStyle={styles.RedButton}
+                            buttonStyle={styles.Button}
+                            containerStyle={styles.ButtonContainer}
+                            titleStyle={styles.Button}
                             title="No Scheduling Appointment Link"
+                            //icon={{
+                                //name:'launch',
+                                //type: 'material-icons' ,
+                                //color:'#fff'
+                            //}}
                             > 
                         </Button>
                     </View>
@@ -31,21 +30,21 @@ function RenderScheduling({providerdata}) {
             ) 
         } else (item.schedulingLink); {
             return (
-                <View style={{paddingTop:7,paddingBottom:7}}>
-                    <Pressable>
-                        <Button 
-                            buttonStyle={styles.Button}
-                            containerStyle={styles.ButtonContainer}
-                            titleStyle={styles.Button}
-                            title="Check Available Appointments"
-                            icon={{
-                                name:'launch',
-                                type: 'material-icons' ,
-                                color:'#fff'
-                            }}
-                            onPress={schedulingSite}
-                        /> 
-                    </Pressable>
+                <View style={{paddingTop:7,paddingBottom:7}}
+                >
+                    <Button 
+                        buttonStyle={styles.Button}
+                        containerStyle={styles.ButtonContainer}
+                        titleStyle={styles.Button}
+                        title="Check Available Appointments"
+                        icon={{
+                            name:'launch',
+                            type: 'material-icons' ,
+                            color:'#fff'
+                        }}
+                        onPress={() =>  navigation.goBack()} Not going anywhere
+                        > 
+                    </Button>
                 </View>
             )
         }
@@ -56,8 +55,7 @@ function RenderScheduling({providerdata}) {
             <FlatList
                 data={providerdata}
                 renderItem={renderSchedulingLink}
-                keyExtractor={item => item.id.toString()}
-                listKey="Scheduling"
+                keyExtractor={item => item.id.toString()} //Because all the Providers have a unique ID, we can set this to use the ID//
             />
         </View>
 
@@ -66,44 +64,36 @@ function RenderScheduling({providerdata}) {
 
 // Reviews the Website Link Provided //  
 function RenderSite ({providerdata}) {
-
     const renderSiteLink= ({item}) => {
-        
-        //Opens Up the browser in App//
-        const webSite = () => WebBrowser.openBrowserAsync(item.siteLink);
-
         if (item.siteLink === "None" ) {
             return (
                 <View>
-                    <View style={{paddingTop:5}}>
-                        <Text> 
-                            <Icon 
-                                name= 'highlight-off'
+                    <Text style={styles.Text2}>No Website Link Was Provided.</Text>
+                    <View style={{paddingTop:5,left:40}}>
+                        <Text>
+                            <Icon
+                                name='launch'
                                 type= 'material-icons' 
-                                color='#FF0000'
-                                left={1}
-                                top={3} 
-                            /> 
-                            <Text style={styles.Text2}> No Website</Text>
+                                color='#70BAFF'
+                                top={3}
+                            />
                         </Text>
                     </View>
                 </View>
             ) 
         } else (item.siteLink); {
             return (
-                <View style={{paddingTop:5}}>
-                    <Pressable onPress={webSite}>
-                        <Text> 
-                            <Icon
-                                name='launch'
-                                type= 'material-icons' 
-                                color='#70BAFF'
-                                top={3}
-                                size={25}
-                            />
-                            <Text style={styles.Text}> Website</Text> 
-                        </Text>
-                    </Pressable>
+                <View style={{paddingTop:5,left:40}}>
+                    <Text>
+                        <Icon
+                            name='launch'
+                            type= 'material-icons' 
+                            color='#70BAFF'
+                            top={3}
+                            onPress={() => navigation.navigate()} 
+                        />
+                        <Text style={styles.Text}> Website</Text> 
+                    </Text>
                 </View>
             )
         }
@@ -114,8 +104,7 @@ function RenderSite ({providerdata}) {
             <FlatList
                 data={providerdata}
                 renderItem={renderSiteLink}
-                keyExtractor={item => item.id.toString()}
-                listKey="Website"
+                keyExtractor={item => item.id.toString()} //Because all the Providers have a unique ID, we can set this to use the ID//
             />
         </View>
 
@@ -127,24 +116,19 @@ function RenderSite ({providerdata}) {
 function RenderPhone({providerdata}) {
 
     const renderPhoneNumber = ({item}) => {
-        
-        //Open Up the Phone Api to make calls, MAY NEED TO ADD Ios FUNCTIONALITY, ISO= 'tel://' //
-        const phoneCall = () => {Linking.openURL('tel:' + item.phone)};
 
         if (item.phone === "None") {
             return (
                 <View>
+                    <Text style={styles.Text2}>No Phone Number Was Provided.</Text>
                     <View>
-                       <Text>
-                            <Icon 
-                                name= 'highlight-off'
+                        <Text>
+                            <Icon
+                                name='call'
                                 type= 'material-icons' 
-                                color='#FF0000'
-                                left={1}
-                                top={2.5} 
-                                size={25}
-                            /> 
-                            <Text style={styles.Text2}> No Phone</Text>
+                                color='#70BAFF'
+                                top={3}   
+                            />
                         </Text>
                     </View>
                 </View>
@@ -152,18 +136,16 @@ function RenderPhone({providerdata}) {
         } else (item.phone); {
             return (
                 <View>
-                    <Pressable onPress={() => phoneCall()} >
-                        <Text>
-                            <Icon
-                                name='call'
-                                type= 'material-icons' 
-                                color='#70BAFF'
-                                top={3}
-                                size={25}
-                            />
-                            <Text style={styles.Text}> Phone</Text> 
-                        </Text>
-                    </Pressable>
+                    <Text>
+                        <Icon
+                            name='call'
+                            type= 'material-icons' 
+                            color='#70BAFF'
+                            top={3}
+                            onPress={() => navigation.navigate({/*OPENS UP PHONE API*/})} 
+                        />
+                    <Text style={styles.Text}> Phone</Text> 
+                    </Text>
                 </View>
             )
         }
@@ -175,61 +157,46 @@ function RenderPhone({providerdata}) {
                 data={providerdata}
                 renderItem={renderPhoneNumber}
                 keyExtractor={item => item.id.toString()}
-                listKey="Phone"
             />
         </View>
 
     );
 }
 
-// Reviews the Email Provided// 
+// Reviews the Email Provided//      
 function RenderEmail({providerdata}) {
 
-    const renderEmailAccount = ({item}) => {
-
-        //Function that uses MailComposer API//
-        const sendMail = () => { 
-            MailComposer.composeAsync({
-                recipients: [item.email],
-                subject: 'Covid-19 Vaccine Appointment',
-                body: 'To whom it may concern:'
-            })
-        }
-
-        if (item.email === "None") {
-            return (
-                <View >
-                    <View>
-                        <Text>
-                            <Icon 
-                                name= 'highlight-off'
-                                type= 'material-icons' 
-                                color='#FF0000'
-                                left={1}
-                                top={2.5} 
-                                size={25}
-                            /> 
-                            <Text style={styles.Text2}> No Email</Text>
-                        </Text> 
-                    </View>
-                </View>
-            ) 
-        } else (item.email); {
+    const renderEmailAccount= ({item}) => {
+        if (item.email=== "None") {
             return (
                 <View>
-                    <Pressable onPress={() => sendMail()}>
+                    <Text style={styles.Text2}>No Email Was Provided.</Text>
+                    <View>
                         <Text>
                             <Icon
                                 name='mail'
                                 type= 'material-icons' 
                                 color='#70BAFF'
-                                top={5}
-                                size={25}
-                                iconStyle={styles.Email}
-                            />                
-                            <Text style={styles.Text}> Email</Text>   
+                                top={5}   
+                            />
                         </Text>
-                    </Pressable>
+                    </View>
+                </View>
+            ) 
+        } else (item.email); {
+            return (
+                <View style={{left:80}}
+                >
+                    <Text>
+                        <Icon
+                            name='mail'
+                            type= 'material-icons' 
+                            color='#70BAFF'
+                            top={5}
+                            onPress={() => navigation.navigate()} 
+                            />
+                        <Text style={styles.Text}> Email</Text> 
+                    </Text>
                 </View>
             )
         }
@@ -240,8 +207,7 @@ function RenderEmail({providerdata}) {
             <FlatList
                 data={providerdata}
                 renderItem={renderEmailAccount}
-                keyExtractor={item => item.id.toString()}
-                listKey="Email" 
+                keyExtractor={item => item.id.toString()} //Because all the Providers have a unique ID, we can set this to use the ID//
             />
         </View>
 
@@ -266,6 +232,7 @@ function RenderVaccineType({providerdata}) {
                             top={2} 
                         /> 
                     </Text>
+                    <Text style={styles.Text2}>Last Updated: {item.lastUpdated}</Text>
                 </View>
             ) 
         } else if (item.availability === "Yes" && item.vaccineTypes === "Pfizer" ) {
@@ -382,7 +349,7 @@ function RenderVaccineType({providerdata}) {
             return (
                 <View>
                     <Text style={styles.Text}>Unknown</Text>
-                    <Text style={styles.Text2}>Vaccines are available but the Provider has not stated the type</Text>
+                    <Text style={styles.Text}>Vaccines are available but the Provider has not stated the type</Text>
                     <Text style={styles.Text2}>In Stock:
                         <Icon 
                             name={'check-circle'}
@@ -398,8 +365,8 @@ function RenderVaccineType({providerdata}) {
         } else (item.availability === "No"); { 
             return (
                 <View>
-                    <Text style={styles.Text}>Vaccines Are Currently UnAvailable</Text>
-                    <Text style={styles.Text2}>In Stock:
+                    <Text style={styles.Text}> Vaccines Are Currently UnAvailable</Text>
+                    <Text style={styles.Text2}> In Stock:
                         <Icon 
                             name= 'highlight-off'
                             type= 'material-icons' 
@@ -419,8 +386,7 @@ function RenderVaccineType({providerdata}) {
             <FlatList
                 data={providerdata}
                 renderItem={renderVaccine}
-                keyExtractor={item => item.id.toString()}
-                listKey="Vaccine Type"
+                keyExtractor={item => item.id.toString()} //Because all the Providers have a unique ID, we can set this to use the ID//
             />
         </View>
 
@@ -433,7 +399,6 @@ function RenderVaccineType({providerdata}) {
 function RenderProvider ({providerdata, navigation}) {
 
     const renderProviderDetails = ({item}) => {
-
         return (
             <View>
 
@@ -446,7 +411,9 @@ function RenderProvider ({providerdata, navigation}) {
                             icon={{
                                 name:'arrow-back',//arrow-back-ios//
                                 type: 'material-icons' ,
-                                color:'#fff'   
+                                color:'#fff',
+                                
+                                
                             }}
                             //title="Return To Search Results"
                             //titleStyle={styles.titleStyle}
@@ -459,7 +426,7 @@ function RenderProvider ({providerdata, navigation}) {
                 <Divider style={{ backgroundColor: '#B1DDF9', width:'100%', alignSelf:'center', margin: 10, padding:1}}/>
 
                 {/* Provider Information*/}         
-                <View style={{paddingTop:10,paddingLeft:7, paddingBottom:30}}>
+                <View style={{paddingTop:10,paddingLeft:7}}>
                     
                     <View style={{paddingBottom:10}}>
                         <Text style={styles.HeaderTitle}>{item.name}</Text>
@@ -471,102 +438,15 @@ function RenderProvider ({providerdata, navigation}) {
                         <Text style={styles.Text2}>Find out if you can get a Covid-19 vaccine at this location.</Text>
                     </View>
 
-                   {/*Scheuling Information*/}
-                    <View style={{paddingTop:7,paddingBottom:7}}>
-                        <RenderScheduling providerdata={providerdata} />
-                    </View>
-
-                        
-                    {/*Directions & Website*/}             
-                    <View style={{paddingLeft:20, paddingTop:20,flexDirection: "row"}}>
-                        <View style={{flex:1}}>
-                            <Pressable >{/*onPress={() => navigation.navigate('Results')} GO TO MAPS API*/}
-                                <Text style={styles.Text}>
-                                    <Icon
-                                        name='directions'
-                                        type= 'material-icons' 
-                                        color='#70BAFF'
-                                        top={3}
-                                        size={25}  
-                                    />
-                                    <Text style={styles.Text}> Directions</Text>
-                                </Text>
-                            </Pressable>
-                        </View>
-                     
-
-                        <View style={{flex:1}}>
-                            <RenderSite providerdata={providerdata}/>
-                        </View> 
-
-                    </View>
-
-
-                        {/*Phone & Email*/}  
-                    <View style={{paddingLeft:20,paddingTop:30, flexDirection: "row"}}>
-                        <View style={{flex:1 ,paddingRight:15, }}>
-                            <RenderPhone providerdata={providerdata}/>
-                        </View>
-
-                        <View style={{flex:1}}>
-                            <RenderEmail providerdata={providerdata} />  
-                        </View>     
-                    </View>
-
-                </View>
-
-                <Divider style={{ backgroundColor: '#B1DDF9', width:'85%', alignSelf:'center', margin: 10, padding:1}}/>
-
-
-                {/* Instructions & Information For Every Provider*/}
-                <View style={{paddingTop:20,paddingLeft:7, paddingBottom:20}}>
-                    <View style={{paddingBottom:10}}>
-                        <Text style={styles.Title}>Vaccine Types At This Location</Text>
-                    </View>
-
-                    <View>
-                        {/* Render Vaccine Function*/}
-                        <RenderVaccineType providerdata={providerdata}/>
-                        <Text style={styles.Text2}>Last Updated: {item.lastUpdated}</Text>
-                        <Text /*NEEDS TO LINK TO INFO */style={styles.Link}>Covid-19 Vaccine Variations? </Text> 
-
-                    </View> 
-                </View>
-
-                <Divider style={{ backgroundColor: '#B1DDF9', width:'100%', alignSelf:'center', margin: 10, padding:1}}/>
-
-                <View style={{paddingTop:20,paddingLeft:7, paddingBottom:20}}>
-                    <View>
-                        <Text style={styles.Title}>Hours Of Operation</Text>
-                        <Text style={styles.Text2}>Sunday  -  10am - 6pm</Text> 
-                        <Text style={styles.Text2}>Monday  -  10am - 6pm</Text>
-                        <Text style={styles.Text2}>Tuesday  -  10am - 6pm</Text>
-                        <Text style={styles.Text2}>Wednesday  -  10am - 6pm</Text>
-                        <Text style={styles.Text2}>Thursday  -  10am - 6pm</Text>
-                        <Text style={styles.Text2}>Friday  -  10am - 6pm</Text>
-                        <Text style={styles.Text2}>Saturday  -  10am - 6pm</Text>
-                    </View>
-                </View>
-
-                <Divider style={{ backgroundColor: '#B1DDF9', width:'100%', alignSelf:'center', margin: 10, padding:1}}/>
-
-                <View style={{paddingTop:20,paddingLeft:7, paddingBottom:20}}>
+                    <View style={{paddingTop:10,paddingLeft:7, paddingBottom:20}}>
                     <View>
                         <Text style={styles.Title}>Provider Instructions For The Public</Text>
-                        <Text style={styles.Text}>{item.instructions}</Text>    
+                        <Text style={styles.Text}>{item.instructions}</Text>   
                     </View>
                 </View>
 
-                <Divider style={{ backgroundColor: '#B1DDF9', width:'100%', alignSelf:'center', margin: 10, padding:1}}/>
-
-                <View style={{paddingTop:20,paddingLeft:7, paddingBottom:20}}>
-                    <Text style={styles.Title}>Things To Know</Text>
-                    <Text style={styles.Text2}>Vaccine Availability Is Subject To Change. </Text> 
-                    <Text style={styles.Text2}>Vaccines By Appointment Only.</Text>
-                    <Text style={styles.Text2}>You Must Wear A Mask To The Appointment.</Text>
-                    <Text style={styles.Text2}>Please Wear A Short Sleeved Shirt.</Text>
                 </View>
-                         
+
             </View>
                  
         );
@@ -600,7 +480,8 @@ class Provider extends Component {
     static navigationOptions = {
         title: 'Provider'
     };
-    
+
+
 
     render () {
         const { navigation } = this.props;
@@ -609,9 +490,89 @@ class Provider extends Component {
         const providerdata = this.state.providerdata.filter(provider => provider.id === providerId);
         
         return ( //Removed ScrollView & Warning disappeared. Does not chnage functionality//
-            <View style={{paddingTop:10, backgroundColor: '#ffffff'}}>
-                <RenderProvider providerdata={providerdata} navigation={navigation}/>   
-            </View>
+           
+            <ScrollView style={{paddingTop:10,paddingBottom:200, backgroundColor: '#ffffff'}}> 
+                <View>
+                    <RenderProvider providerdata={providerdata} navigation={navigation}/> 
+                </View> 
+
+                {/*Contact Information For Every Provider*/}
+                <View style={{paddingTop:7,paddingBottom:7}}>
+                    <RenderScheduling providerdata={providerdata}/>
+                </View>
+
+                <Divider style={{ backgroundColor: '#B1DDF9', width:'100%', alignSelf:'center', margin: 10, padding:1}}/>
+
+                <View style={{paddingTop:10,flexDirection: "row"}}>
+                    <View >
+                        <Text style={styles.Text}>
+                            <Icon
+                                name='directions'
+                                type= 'material-icons' 
+                                color='#70BAFF'
+                                top={3}
+                                onPress={() => navigation.navigate({/*OPEN UP MAPS API*/})} 
+                            />
+                            <Text style={styles.Text} > Directions</Text>
+                        </Text>
+                    </View>
+
+                    
+                    <RenderSite providerdata={providerdata}/>
+                    
+                </View>
+
+
+                <View style={{paddingTop:10, flexDirection: "row",}}>
+                    <RenderPhone providerdata={providerdata}/>
+                    <RenderEmail providerdata={providerdata}/>
+                </View>
+
+                <Divider style={{ backgroundColor: '#B1DDF9', width:'100%', alignSelf:'center', margin: 10, padding:1}}/>
+
+                {/* Instructions & Information For Every Provider*/}
+                <View style={{paddingTop:10,paddingLeft:7, paddingBottom:20}}>
+                    <View style={{paddingBottom:10}}>
+                        <Text style={styles.Title}>Vaccine Types Available At This Location</Text>
+                    </View>
+
+                    <View>
+                        {/* Render Vaccine Function*/}
+                        <RenderVaccineType providerdata={providerdata}/>
+                        
+                        <Text /*NEEDS TO LINK TO INFO */style={styles.Link}>Covid-19 Vaccine Variations? </Text> 
+
+                    </View> 
+                </View>
+
+                <Divider style={{ backgroundColor: '#B1DDF9', width:'100%', alignSelf:'center', margin: 10, padding:1}}/>
+               
+                <View style={{paddingTop:10,paddingLeft:7, paddingBottom:20}}>
+                    <View>
+                        <Text style={styles.Title}>Hours</Text>
+                        <Text style={styles.Text2}>Sunday  -  10am - 6pm</Text> 
+                        <Text style={styles.Text2}>Monday  -  10am - 6pm</Text>
+                        <Text style={styles.Text2}>Tuesday  -  10am - 6pm</Text>
+                        <Text style={styles.Text2}>Wednesday  -  10am - 6pm</Text>
+                        <Text style={styles.Text2}>Thursday  -  10am - 6pm</Text>
+                        <Text style={styles.Text2}>Friday  -  10am - 6pm</Text>
+                        <Text style={styles.Text2}>Saturday  -  10am - 6pm</Text>
+                    </View> 
+                </View>
+
+                <Divider style={{ backgroundColor: '#B1DDF9', width:'100%', alignSelf:'center', margin: 10, padding:1}}/>
+
+                
+
+                <View style={{paddingTop:10,paddingLeft:7, paddingBottom:20}}>
+                    <Text style={styles.Title}>Things To Know</Text>
+                    <Text style={styles.Text2}>Vaccine Availability Is Subject To Change. </Text> 
+                    <Text style={styles.Text2}>Vaccines By Appointment Only.</Text>
+                    <Text style={styles.Text2}>You Must Wear A Mask To The Appointment.</Text>
+                    <Text style={styles.Text2}>Please Wear A Short Sleeved Shirt.</Text>
+                </View>
+
+            </ScrollView>  
             
         ) 
     }
@@ -623,7 +584,7 @@ class Provider extends Component {
 const styles = StyleSheet.create({
     HeaderTitle: {
         color: '#000',
-        fontSize: 24,
+        fontSize: 23,
         fontFamily:'SourceSansPro_700Bold',
         letterSpacing: 1,
         fontWeight:'bold'
@@ -631,13 +592,13 @@ const styles = StyleSheet.create({
     },
     Title: { //Provider Font Styling//
         color: '#000',
-        fontSize: 20,
+        fontSize: 19,
         fontFamily:'SourceSansPro_700Bold',
         letterSpacing: 1,
         paddingBottom:5,
     },
     Text: {
-        fontSize: 17.5,
+        fontSize: 17,
         fontFamily:'SourceSansPro_600SemiBold',
         letterSpacing: 1,
         paddingTop:5,
@@ -668,41 +629,6 @@ const styles = StyleSheet.create({
         fontSize: 20,
     },
     ButtonContainer: {
-        elevation:15,
-        alignSelf: "center",
-        backgroundColor:'#B1DDF9',
-        shadowColor:'#70BAFF',
-        padding:1.5,
-        borderRadius:25,
-    },
-    RedButton: {
-        backgroundColor:'#FF0000',
-        borderRadius:25,
-        padding:6,
-        paddingTop:6,
-        paddingBottom:6,
-        alignSelf: "center",
-        fontSize: 20,
-    },
-    RedButtonContainer: {
-        elevation:15,
-        alignSelf: "center",
-        backgroundColor:'#FF0000',
-        shadowColor:'#FF0000',
-        padding:1.5,
-        borderRadius:25,
-    },
-    SecondaryButton: {
-        backgroundColor:'#B1DDF9',
-        borderRadius:25,
-        padding:6,
-        paddingTop:6,
-        paddingBottom:6,
-        alignSelf: "center",
-        fontSize: 16,
-        //color:'#000'
-    },
-    SecondaryButtonContainer: {
         elevation:15,
         alignSelf: "center",
         backgroundColor:'#B1DDF9',
