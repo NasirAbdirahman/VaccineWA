@@ -33,11 +33,11 @@ class Home extends Component {
 
         return (
             
-            <View style={{paddingTop:15, paddingBottom:200, backgroundColor: '#ffffff'}}>
+            <View style={{paddingTop:30, paddingBottom:200, backgroundColor: '#ffffff'}}>
 
                 <Text style={styles.HeaderTitle}>Find A <Text style={styles.HeaderTitle2}>Covid-19 </Text>Vaccine</Text>
                
-                <Divider style={{ backgroundColor: '#B1DDF9', width:'85%', alignSelf:'center', padding:1, marginBottom:30}}/>
+                <Divider style={{ backgroundColor: '#B1DDF9', width:'85%', alignSelf:'center', padding:1, marginBottom:50}}/>
                 
                 <Text style={styles.Title}>Enter Your Zip Code</Text>
                 <Text style={styles.Title}>We'll Find The Closest Providers</Text>
@@ -72,7 +72,7 @@ class Home extends Component {
 
                 {/* ZipCode Input Section */}
                   
-                <View style={{paddingBottom:50, alignSelf:'center'}}>
+                <View style={{paddingBottom:60, alignSelf:'center'}}>
                     <TextInput 
                         placeholder='5-Digit ZIP Code' 
                         keyboardType="numeric"
@@ -118,7 +118,7 @@ class Home extends Component {
                 </Button>
                 
                 
-                <Text style={{fontSize: 18,fontFamily:'SourceSansPro_600SemiBold',alignSelf:'center', paddingTop:140}}>
+                <Text style={{fontSize: 18,fontFamily:'SourceSansPro_600SemiBold',alignSelf:'center', paddingTop:100}}>
                     Made With ❤️ for Washington
                 </Text>
                 

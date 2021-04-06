@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
-import { View, Text, StyleSheet, FlatList, Linking } from 'react-native';
+import { View, Text, StyleSheet, FlatList } from 'react-native';
 import { Divider, Icon, Button} from 'react-native-elements';
 import { PROVIDERDATA } from '../shared/ProviderData'; 
 import * as WebBrowser from 'expo-web-browser';
+import * as MailComposer from 'expo-mail-composer';
  
 
 // Reviews the Scheduling Link provided //      
@@ -172,14 +173,22 @@ function RenderPhone({providerdata}) {
     );
 }
 
-// Reviews the Email Provided//      
+// Reviews the Email Provided// 
+
 function RenderEmail({providerdata}) {
 
     const renderEmailAccount= ({item}) => {
 
-        const sendEmail = () => Linking.openURL(`mailto:nasir.a.abdirahman@outlook.com`) ;//(item.schedulingLink);
+        const sendMail = () => { //Function that uses MailComposer API//
+            MailComposer.composeAsync({
+                recipients: [item.email],
+                subject: 'Covid-19 Vaccine Appointment',
+                body: 'To whom it may concern:'
+            })
+        }
 
-        if (item.email=== "None") {
+
+        if (item.email === "None") {
             return (
                 <View style={{left:100}}>
                     <View>
@@ -198,16 +207,17 @@ function RenderEmail({providerdata}) {
             ) 
         } else (item.email); {
             return (
-                <View style={{left:110}}>
+                <View style={{left:115}}>
                     <Text>
                         <Icon
-                        name='mail'
-                        type= 'material-icons' 
-                        color='#70BAFF'
-                        top={5}
-                        size={30}
-                        onPress={sendEmail}
-                        />
+                            name='mail'
+                            type= 'material-icons' 
+                            color='#70BAFF'
+                            top={5}
+                            size={30}
+                            iconStyle={styles.Email}
+                            onPress={() => sendMail()}
+                            />                
                         <Text style={styles.Text}> Email</Text> 
                         
                     </Text>
@@ -363,7 +373,7 @@ function RenderVaccineType({providerdata}) {
             return (
                 <View>
                     <Text style={styles.Text}>Unknown</Text>
-                    <Text style={styles.Text}>Vaccines are available but the Provider has not stated the type</Text>
+                    <Text style={styles.Text2}>Vaccines are available but the Provider has not stated the type</Text>
                     <Text style={styles.Text2}>In Stock:
                         <Icon 
                             name={'check-circle'}
@@ -379,8 +389,8 @@ function RenderVaccineType({providerdata}) {
         } else (item.availability === "No"); { 
             return (
                 <View>
-                    <Text style={styles.Text}> Vaccines Are Currently UnAvailable</Text>
-                    <Text style={styles.Text2}> In Stock:
+                    <Text style={styles.Text}>Vaccines Are Currently UnAvailable</Text>
+                    <Text style={styles.Text2}>In Stock:
                         <Icon 
                             name= 'highlight-off'
                             type= 'material-icons' 
@@ -414,6 +424,7 @@ function RenderVaccineType({providerdata}) {
 function RenderProvider ({providerdata, navigation}) {
 
     const renderProviderDetails = ({item}) => {
+
         return (
             <View>
 
@@ -478,7 +489,9 @@ function RenderProvider ({providerdata, navigation}) {
 
                     <View style={{paddingLeft:20, paddingTop:30, flexDirection: "row"}}>
                         <RenderPhone providerdata={providerdata}/>
-                        <RenderEmail providerdata={providerdata}/>
+                        <RenderEmail providerdata={providerdata} />
+                        
+                        
                     </View>
 
                 </View>
@@ -489,7 +502,7 @@ function RenderProvider ({providerdata, navigation}) {
                 {/* Instructions & Information For Every Provider*/}
                 <View style={{paddingTop:10,paddingLeft:7, paddingBottom:20}}>
                     <View style={{paddingBottom:10}}>
-                        <Text style={styles.Title}>Vaccine Types Available At This Location</Text>
+                        <Text style={styles.Title}>Vaccine Types At This Location</Text>
                     </View>
 
                     <View>
@@ -505,7 +518,7 @@ function RenderProvider ({providerdata, navigation}) {
 
                 <View style={{paddingTop:10,paddingLeft:7, paddingBottom:20}}>
                     <View>
-                        <Text style={styles.Title}>Hours</Text>
+                        <Text style={styles.Title}>Hours Of Operation</Text>
                         <Text style={styles.Text2}>Sunday  -  10am - 6pm</Text> 
                         <Text style={styles.Text2}>Monday  -  10am - 6pm</Text>
                         <Text style={styles.Text2}>Tuesday  -  10am - 6pm</Text>
@@ -580,7 +593,7 @@ class Provider extends Component {
         
         return ( //Removed ScrollView & Warning disappeared. Does not chnage functionality//
             <View style={{paddingTop:10, backgroundColor: '#ffffff'}}>
-                <RenderProvider providerdata={providerdata} navigation={navigation}/>                          
+                <RenderProvider providerdata={providerdata} navigation={navigation}/>   
             </View>
             
         ) 
@@ -593,7 +606,7 @@ class Provider extends Component {
 const styles = StyleSheet.create({
     HeaderTitle: {
         color: '#000',
-        fontSize: 23,
+        fontSize: 24,
         fontFamily:'SourceSansPro_700Bold',
         letterSpacing: 1,
         fontWeight:'bold'
@@ -601,13 +614,13 @@ const styles = StyleSheet.create({
     },
     Title: { //Provider Font Styling//
         color: '#000',
-        fontSize: 19,
+        fontSize: 20,
         fontFamily:'SourceSansPro_700Bold',
         letterSpacing: 1,
         paddingBottom:5,
     },
     Text: {
-        fontSize: 17,
+        fontSize: 17.5,
         fontFamily:'SourceSansPro_600SemiBold',
         letterSpacing: 1,
         paddingTop:5,

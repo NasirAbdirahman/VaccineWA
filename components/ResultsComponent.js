@@ -236,7 +236,7 @@ class Results extends Component {
             return(
                 <ScrollView style={{paddingTop:15,paddingBottom:20, backgroundColor: '#ffffff'}}>
                 
-                    <Text style={styles.HeaderTitle}>We Found <Text style={styles.HeaderTitle2}>{totalProviders}</Text> Providers Near You</Text>
+                    <Text style={styles.HeaderTitle}>We Found <Text style={styles.HeaderTitle2}>{totalProviders}</Text> Provider(s)</Text>
 
                     <View style={{paddingLeft:7, paddingBottom:30}}>
                         <Text style={styles.Text}>Showing all results within <Text style={styles.Text2}>{zipCode}</Text> </Text>
@@ -316,7 +316,7 @@ const styles = StyleSheet.create({
     HeaderTitle: {
         color: '#000',
         textAlign:'center',
-        fontSize: 25,
+        fontSize: 27,
         fontFamily:'SourceSansPro_700Bold',
         letterSpacing: 1,
     },
