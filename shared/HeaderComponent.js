@@ -3,7 +3,7 @@ import { View, StyleSheet, Text } from 'react-native';
 import {Image} from 'react-native-elements';
 import { MaterialIcons } from '@expo/vector-icons';
 
-export default function Header({navigation, /*title*/}) {
+export default function Header({navigation}) {
     return (
         <View style={styles.Header}>
              <Image

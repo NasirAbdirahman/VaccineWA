@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import { View, ScrollView, Text, StyleSheet} from 'react-native';
+import { View, ScrollView, Text, StyleSheet, Pressable} from 'react-native';
 import { Button, Divider } from 'react-native-elements';
+import * as WebBrowser from 'expo-web-browser';
 
 
 class VaccinePhases extends Component {
@@ -10,9 +11,14 @@ class VaccinePhases extends Component {
         title: 'Vaccine Phases',
     };
 
+    
+
     render () {
 
         const { navigate } = this.props.navigation;
+
+        //Open Up Link to DOH //
+        const dohPDF = () => WebBrowser.openBrowserAsync('https://doh.wa.gov/VaccinationPhasesInfographic.pdf');
 
         return (
            
@@ -208,7 +214,10 @@ class VaccinePhases extends Component {
                     </Text> 
                     <Text style={styles.Text2}>NOTE: Immigration and health insurance status do not impact eligibility.</Text> 
                     <Text style={styles.Text2}>The timeline represented here is tentative and subject to change based on vaccine supply and demand.</Text>
-                    <Text style={styles.Text}>Visit <Text /*NEEDS TO LINK TO Pdf*/style={styles.Link}>doh.wa.gov/VaccinationPhasesInfographic.pdf</Text> to find out more about Washington's Covid-19 Vaccine Phases.</Text>     
+                    
+                    <Pressable onPress={() => dohPDF()}>
+                        <Text style={styles.Text}>Visit <Text style={styles.Link}>doh.wa.gov/VaccinationPhasesInfographic.pdf</Text> to find out more about Washington's Covid-19 Vaccine Phases.</Text>     
+                    </Pressable>
                 </View>
 
                 <Divider style={{ backgroundColor: '#B1DDF9', width:'85%', alignSelf:'center', margin:10, padding:1}}/>

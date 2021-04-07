@@ -78,6 +78,17 @@ function HomeStackNavigator() {
         }} 
         
       />
+      <HomeStack.Screen 
+        name='Faq' 
+        component={FaqAccordion} 
+        options = {({ navigation }) => {
+          return {
+            headerTitle: () => <Header navigation = {navigation} title='Faq'/>,
+            //headerLeft: () => null   //Removes the Back Arrow in The Header//
+          }
+        }} 
+        
+      />
     </HomeStack.Navigator>  
   );
 }
@@ -105,17 +116,18 @@ function EligibilityStackNavigator() {
           }
         }}
       />
-      {/* Form Start Screen
+      
       <EligibilityStack.Screen 
         name="Vaccine Phases" 
         component={VaccinePhases} 
         options = { ({ navigation}) => {
           return {
             headerTitle: () => <Header navigation = {navigation} title='Vaccine Phases'/> ,
-            headerLeft: () => null //Removes the Back Arrow in The Header//
+            //headerLeft: () => null //Removes the Back Arrow in The Header//
           }
         }}
       />
+      {/* Form Start Screen
       <Eligibilitytack.Screen 
         name="Provider" 
         component={Provider} 
@@ -149,6 +161,7 @@ function VaccinePhasesStackNavigator() {
                 
               },  
             }
+            //headerLeft: () => null //Removes the Back Arrow in The Header//
         }}
       />
       <VaccinePhasesStack.Screen 
@@ -158,10 +171,10 @@ function VaccinePhasesStackNavigator() {
           return {
             headerTitle: () => <Header navigation = {navigation} title='Eligibility'/> ,
             headerTitleContainerStyle: {
-                paddingBottom: 15,
-                paddingTop: 10,
-                
-              },  
+              paddingBottom: 15,
+              paddingTop: 10,
+            },
+            //headerLeft: () => null //Removes the Back Arrow in The Header//  
           }
         }}
       />

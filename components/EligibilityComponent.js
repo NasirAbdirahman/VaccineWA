@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import { View, ScrollView, Text, StyleSheet} from 'react-native';
+import { View, ScrollView, Text, StyleSheet, Pressable} from 'react-native';
 import { Button, Divider } from 'react-native-elements';
+import * as WebBrowser from 'expo-web-browser';
 
 
 class Eligibility extends Component {
@@ -11,6 +12,11 @@ class Eligibility extends Component {
     };
 
     render () {
+
+        const { navigate } = this.props.navigation;
+
+        //Open Up Link to DOH //
+        const dohPDF = () => WebBrowser.openBrowserAsync('https://doh.wa.gov/VaccinationPhasesInfographic.pdf');
 
         return (
             
@@ -42,8 +48,14 @@ class Eligibility extends Component {
                     <Text style={styles.Text}>Due to a limited vaccine supply, we need to provide the vaccine in phases. 
                         We are starting with <Text style={styles.Text2}>people who are most at risk such as healthcare workers, elders, vulnerable individuals, and high-risk critical workers.</Text> Our goal is for this process to be as fair and transparent as possible. 
                     </Text> 
-                    <Text style={styles.Text}>Visit <Text /*NEEDS TO LINK TO Pdf*/style={styles.Link}>doh.wa.gov/VaccinationPhasesInfographic.pdf</Text> to find out more about Washington's Covid-19 Vaccine Phases.</Text>
-                    <Text style={styles.Text}>Or View<Text /*NEEDS TO LINK TO Phases Page*/style={styles.Link}> Washington's Covid-19 Vaccine Phases On The App </Text></Text>
+
+                    <Pressable onPress={() => dohPDF()}>
+                        <Text style={styles.Text}>Visit <Text style={styles.Link}>doh.wa.gov/VaccinationPhasesInfographic.pdf</Text> to find out more about Washington's Covid-19 Vaccine Phases.</Text>
+                    </Pressable>
+
+                    <Pressable onPress={() => navigate('Vaccine Phases')}>
+                        <Text style={styles.Text}>Or View<Text style={styles.Link}> Washington's Covid-19 Vaccine Phases On The App </Text></Text>
+                    </Pressable>
                     
                 </View>
 

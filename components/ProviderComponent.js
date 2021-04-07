@@ -519,25 +519,35 @@ function RenderProvider ({providerdata, navigation}) {
 
 
                 {/* Instructions & Information For Every Provider*/}
+
+                    {/* Vaccine Information*/}
                 <View style={{paddingTop:20,paddingLeft:7, paddingBottom:20}}>
                     <View style={{paddingBottom:10}}>
                         <Text style={styles.Title}>Vaccine Types At This Location</Text>
                     </View>
 
                     <View>
-                        {/* Render Vaccine Function*/}
                         <RenderVaccineType providerdata={providerdata}/>
+                        
                         <Text style={styles.Text2}>Last Updated: {item.lastUpdated}</Text>
-                        <Text /*NEEDS TO LINK TO INFO */style={styles.Link}>Covid-19 Vaccine Variations? </Text> 
+
+                        <Pressable onPress={() => navigation.navigate('Faq')}>
+                            <View style={{paddingTop:10}}>
+                                <Text style={styles.Link}>Covid-19 Vaccine Variations? </Text> 
+                            </View>
+                        </Pressable>
 
                     </View> 
                 </View>
 
                 <Divider style={{ backgroundColor: '#B1DDF9', width:'100%', alignSelf:'center', margin: 10, padding:1}}/>
 
+                    {/* Hours Of OPeration*/}
                 <View style={{paddingTop:20,paddingLeft:7, paddingBottom:20}}>
-                    <View>
+                    <View style={{paddingBottom:7}}>
                         <Text style={styles.Title}>Hours Of Operation</Text>
+                    </View>
+                    <View>
                         <Text style={styles.Text2}>Sunday  -  10am - 6pm</Text> 
                         <Text style={styles.Text2}>Monday  -  10am - 6pm</Text>
                         <Text style={styles.Text2}>Tuesday  -  10am - 6pm</Text>
@@ -549,7 +559,8 @@ function RenderProvider ({providerdata, navigation}) {
                 </View>
 
                 <Divider style={{ backgroundColor: '#B1DDF9', width:'100%', alignSelf:'center', margin: 10, padding:1}}/>
-
+                
+                    {/* Provider Instructions*/}
                 <View style={{paddingTop:20,paddingLeft:7, paddingBottom:20}}>
                     <View>
                         <Text style={styles.Title}>Provider Instructions For The Public</Text>
@@ -558,7 +569,8 @@ function RenderProvider ({providerdata, navigation}) {
                 </View>
 
                 <Divider style={{ backgroundColor: '#B1DDF9', width:'100%', alignSelf:'center', margin: 10, padding:1}}/>
-
+                
+                    {/* Extra Instructions*/}
                 <View style={{paddingTop:20,paddingLeft:7, paddingBottom:20}}>
                     <Text style={styles.Title}>Things To Know</Text>
                     <Text style={styles.Text2}>Vaccine Availability Is Subject To Change. </Text> 

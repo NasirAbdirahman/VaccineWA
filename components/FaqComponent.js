@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { View, ScrollView, Text, StyleSheet } from 'react-native';
-import { Button, Divider, Icon} from 'react-native-elements';
+import { Divider, Icon} from 'react-native-elements';
 import Accordion from 'react-native-collapsible/Accordion';
 import { FAQDATA } from '../shared/FaqData';
 
@@ -39,7 +39,7 @@ class FaqAccordion extends Component {
 
 
     static navigationOptions = {
-        title: 'FAQ',
+        title: 'Faq',
     };
 
 
@@ -79,8 +79,9 @@ class FaqAccordion extends Component {
                 </View>
 
                 <View style={{padding:1, paddingBottom:10}}>      
-                    <Text style={styles.SubHeader}>About COVID-19 Vaccines</Text>
-                    <Divider style={{ backgroundColor: '#B1DDF9', width:'75%',padding:1, bottom:20, left:25}}/> 
+                    <Text style={styles.SubHeader}>About <Text style={styles.SubHeader2}>COVID-19</Text> Vaccines</Text>
+
+                    <Divider style={{ backgroundColor: '#B1DDF9', width:'75%',padding:1, bottom:20, left:10}}/> 
 
                     <Text style={styles.Text}>The COVID-19 vaccines can protect you in several key ways:</Text>
                         <Text style={styles.Text2}>-They can greatly reduce your chance of getting seriously ill if you get COVID-19</Text>
@@ -148,11 +149,13 @@ class FaqAccordion extends Component {
                 </View>
 
                 {/* Accordion FAQ Section */}
-                <ScrollView style={styles.Container}>
-
-                    <Text style={styles.SubHeader}>General FAQs</Text>
-                    <Divider style={{ backgroundColor: '#B1DDF9', width:'25%',padding:1, bottom:20, left:25}}/>                   
+                <View style={styles.Container}>
                     
+                    <View style={{paddingBottom:5}}>
+                        <Text style={styles.SubHeader}>General FAQs</Text>
+                        <Divider style={{ backgroundColor: '#B1DDF9', width:'25%',padding:1, bottom:20, left:10}}/>  
+                    </View>                 
+                        
                     <Accordion
                         activeSections={activeSections}
                         sections={generalFaqData}
@@ -160,11 +163,13 @@ class FaqAccordion extends Component {
                         renderContent={renderContent}
                         duration={400}
                         onChange={this.setSections}
-                        //Was scrollView
                     />
+                   
 
-                    <Text style={styles.SubHeader}>Covid-19 FAQ</Text>
-                    <Divider style={{ backgroundColor: '#B1DDF9', width:'25%', padding:1, bottom:20, left:25}}/>
+                    <View style={{paddingTop:25, paddingBottom:1}}>
+                        <Text style={styles.SubHeader}>Covid-19 FAQ</Text>
+                        <Divider style={{ backgroundColor: '#B1DDF9', width:'25%', padding:1, bottom:20, left:10}}/>
+                    </View>
                     
                     <Accordion
                         activeSections={activeSections}
@@ -172,42 +177,43 @@ class FaqAccordion extends Component {
                         renderHeader={renderHeader}
                         renderContent={renderContent}
                         duration={400}
-                        onChange={this.setSections}
-                     
-                        
+                        onChange={this.setSections}    
                     />
+                
 
-                    {/* Footer/Links Section */}
-                    <Text style={styles.SubHeader}>More Information From Sources</Text>
-                    <Divider style={{ backgroundColor: '#B1DDF9', width:'85%', padding:1, bottom:20, left:25}}/>        
+                    {/* Footer/Extra Links Section */}
+                    <View style={{paddingTop:30}}>
+                        <Text style={styles.SubHeader}>More Information From Sources</Text>
+                        <Divider style={{ backgroundColor: '#B1DDF9', width:'85%', padding:1, bottom:20, left:10}}/>        
 
-                    <View style={{padding:5}}>
-                        <Text>
-                            <Icon
-                                name='launch'
-                                type= 'material-icons' 
-                                color='#70BAFF'
-                                bottom={20}
-                                onPress={() => navigation.navigate({/*OPENS UP BROWSER EXTENSION to https://www.cdc.gov/coronavirus/2019-ncov/vaccines/faq.html*/})} 
-                            />
-                            <Text style={styles.Title}> Center For Disease Control</Text> 
-                        </Text>
+                        <View style={{padding:5}}>
+                            <Text>
+                                <Icon
+                                    name='launch'
+                                    type= 'material-icons' 
+                                    color='#70BAFF'
+                                    bottom={20}
+                                    onPress={() => navigation.navigate({/*OPENS UP BROWSER EXTENSION to https://www.cdc.gov/coronavirus/2019-ncov/vaccines/faq.html*/})} 
+                                />
+                                <Text style={styles.Title}> Center For Disease Control</Text> 
+                            </Text>
+                        </View>
+
+                        <View style={{padding:5}}>
+                            <Text>
+                                <Icon
+                                    name='launch'
+                                    type= 'material-icons' 
+                                    color='#70BAFF'
+                                    bottom={20}
+                                    onPress={() => navigation.navigate({/*OPENS UP BROWSER EXTENSION to  https://www.doh.wa.gov/Emergencies/COVID19/Vaccine*/})} 
+                                />
+                                <Text style={styles.Title}> WA Department Of Health</Text> 
+                            </Text>
+                        </View>
                     </View>
 
-                    <View style={{padding:5}}>
-                        <Text>
-                            <Icon
-                                name='launch'
-                                type= 'material-icons' 
-                                color='#70BAFF'
-                                bottom={20}
-                                onPress={() => navigation.navigate({/*OPENS UP BROWSER EXTENSION to  https://www.doh.wa.gov/Emergencies/COVID19/Vaccine*/})} 
-                            />
-                            <Text style={styles.Title}> WA Department Of Health</Text> 
-                        </Text>
-                    </View>
-
-                </ScrollView>
+                </View>
 
             </ScrollView>
         )
@@ -226,20 +232,22 @@ const styles = StyleSheet.create({
         fontFamily:'SourceSansPro_700Bold',
         letterSpacing: 1,
     },
-    HeaderTitle2: {
-        color: '#70BAFF',
-        textAlign:'center',
-        fontSize: 35,
-        letterSpacing: 1,
-        
-    },
     SubHeader: {
         color: '#000',
         fontSize: 23,
         fontFamily:'SourceSansPro_700Bold',
         letterSpacing: 1,
         paddingLeft:7,
-        paddingTop:15,
+        //paddingTop:15,
+        paddingBottom:15
+    },
+    SubHeader2: {
+        color: '#70BAFF',
+        fontSize: 23,
+        fontFamily:'SourceSansPro_700Bold',
+        letterSpacing: 1,
+        paddingLeft:7,
+        //paddingTop:15,
         paddingBottom:15
     },
     Title: { 
@@ -252,8 +260,6 @@ const styles = StyleSheet.create({
     Text:{
         fontSize: 16,
         fontFamily:'SourceSansPro_700Bold',  
-        //alignSelf:'center',
-        //width:248,
         letterSpacing: 1,
         paddingLeft:7,
         paddingTop:3
@@ -273,10 +279,11 @@ const styles = StyleSheet.create({
         opacity:0.70,
         paddingTop:20,
         paddingBottom:150,
+        padding:10,
         
     },
     header: {
-        backgroundColor: '#70BAFF',
+        backgroundColor: 'rgba(177,221,249,1)',
         padding: 11,
     },
     headerText: {
@@ -294,9 +301,10 @@ const styles = StyleSheet.create({
     },
     active: {
         fontSize: 17,
+        fontFamily:'SourceSansPro_700Bold',
     },
     inactive: {
-        backgroundColor: 'rgba(177,221,249,1)',
+        backgroundColor: '#fff',
     },
 
     
