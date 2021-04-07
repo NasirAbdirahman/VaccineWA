@@ -20,6 +20,9 @@ class VaccinePhases extends Component {
         //Open Up Link to DOH //
         const dohPDF = () => WebBrowser.openBrowserAsync('https://doh.wa.gov/VaccinationPhasesInfographic.pdf');
 
+        //Link to AllInWa Initiative//
+        const allInWa = () => WebBrowser.openBrowserAsync('https://allinwa.org/vaccine-equity-initiative/');
+
         return (
            
             <ScrollView style={{paddingTop:15,paddingBottom:20, backgroundColor: '#ffffff'}}>
@@ -188,9 +191,9 @@ class VaccinePhases extends Component {
                 <Divider style={{ backgroundColor: '#B1DDF9', width:'100%', alignSelf:'center', margin:10, padding:1}}/>
 
                 {/* Future Phases Section */}
-                <View style={{paddingTop:30, paddingBottom:30}}>      
-                    <Text style={styles.SubHeader}>Future Phases</Text>  
-                    <Divider style={{ backgroundColor: '#B1DDF9', width:'25%', alignSelf:'center', margin:1, padding:1}}/>            
+                <View style={{paddingLeft:7, paddingTop:30, paddingBottom:30}}>      
+                    <Text style={styles.Title}>Future Phases</Text>  
+                    <Divider style={{ backgroundColor: '#B1DDF9', width:'40%', margin:1, padding:1}}/>            
                 </View>
 
                 <View style={{paddingBottom:30,alignSelf:'center', right:20}}>
@@ -206,7 +209,7 @@ class VaccinePhases extends Component {
 
 
                 {/* Information Section */}
-                <View style={{paddingLeft:7, paddingTop:10, paddingBottom:15}}>
+                <View style={{paddingLeft:7, paddingTop:20, paddingBottom:15}}>
                     <Text style={styles.Title}>Focus On Equity</Text>
                     <Text style={styles.Text}>This approach prioritizes population groups who have been disproportionately impacted by COVID-19 due to external social factors and systemic inequities, including people of color; people with limited English proficiency; 
                         people in shared housing, crowded housing, and multigenerational homes; people in poverty and low-wage earners; people with disabilities that are connected to underlying health conditions that may put them at higher risk of COVID-19; 
@@ -215,15 +218,29 @@ class VaccinePhases extends Component {
                     <Text style={styles.Text2}>NOTE: Immigration and health insurance status do not impact eligibility.</Text> 
                     <Text style={styles.Text2}>The timeline represented here is tentative and subject to change based on vaccine supply and demand.</Text>
                     
-                    <Pressable onPress={() => dohPDF()}>
+                    <Pressable onPress={() => dohPDF()} style={{paddingBottom:15}}>
                         <Text style={styles.Text}>Visit <Text style={styles.Link}>doh.wa.gov/VaccinationPhasesInfographic.pdf</Text> to find out more about Washington's Covid-19 Vaccine Phases.</Text>     
                     </Pressable>
+
+                    <Divider style={{ backgroundColor: '#B1DDF9', width:'85%', alignSelf:'center', margin:10, padding:1}}/>
+                    
+                    <View style={{paddingTop:15}}>
+                        <Text style={styles.Title}>Support Equitable Vaccine Access In Washington</Text>
+                        <Text style={styles.Text}><Text style={styles.Text2}>All In WA’s Vaccine Equity Initiative supports equitable vaccine access </Text>by streamlining and targeting funds to trusted, community-based organizations that can conduct linguistically and culturally-specific vaccine education and outreach, as well as address access, mobility and transportation barriers.</Text>
+                        
+                        <Pressable onPress={() => allInWa()} style={{paddingBottom:15}}>
+                            <Text style={styles.Link}>Learn More</Text>      
+                        </Pressable>
+                    </View>
+                    
+
                 </View>
 
-                <Divider style={{ backgroundColor: '#B1DDF9', width:'85%', alignSelf:'center', margin:10, padding:1}}/>
+                <Divider style={{ backgroundColor: '#B1DDF9', width:'100%', alignSelf:'center', margin:10, padding:1}}/>
 
                 {/* Eligibility Section */}
-                <View style={{paddingLeft:7,paddingTop:10, paddingBottom:40}}>
+                <View style={{paddingLeft:7,paddingTop:20, paddingBottom:40}}>
+
                     <Text style={styles.SubHeader}>Are You Eligible For A Vaccine?</Text>
 
                     <View style={{paddingTop:15}}>

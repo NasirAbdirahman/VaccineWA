@@ -226,6 +226,10 @@ class FaqAccordion extends Component {
 
                     </View>
 
+                    <View style={{paddingLeft:7, paddingTop:30}}>
+                        <Text style={styles.Text}>Note: </Text><Text style={styles.Text2}>All Content On This Page Is Provided By The CDC and/or The Washington State Dept. of Health.</Text>                   
+                    </View>
+
                 </View>
 
             </ScrollView>
@@ -299,7 +303,7 @@ const styles = StyleSheet.create({
         backgroundColor: '#fff',
         opacity:0.70,
         paddingTop:20,
-        paddingBottom:150,
+        paddingBottom:50,
         padding:10,
         
     },
