@@ -641,7 +641,8 @@ const styles = StyleSheet.create({
         fontWeight:'bold'
         
     },
-    Title: { //Provider Font Styling//
+     //Provider Font Styling//
+    Title: {
         color: '#000',
         fontSize: 20,
         fontFamily:'SourceSansPro_700Bold',
@@ -662,7 +663,7 @@ const styles = StyleSheet.create({
         fontFamily:'SourceSansPro_600SemiBold',
         letterSpacing: 1,
         paddingBottom:3,
-        color:'#7F7F7F'//#70BAFF-Alt. Color//  
+        color:'#7F7F7F'
     },
     Text3: {
         fontFamily:'SourceSansPro_600SemiBold',
@@ -704,28 +705,12 @@ const styles = StyleSheet.create({
         padding:1.5,
         borderRadius:25,
     },
-    SecondaryButton: {
-        backgroundColor:'#B1DDF9',
-        borderRadius:25,
-        padding:6,
-        paddingTop:6,
-        paddingBottom:6,
-        alignSelf: "center",
-        fontSize: 16,
-        //color:'#000'
-    },
-    SecondaryButtonContainer: {
-        elevation:15,
-        alignSelf: "center",
-        backgroundColor:'#B1DDF9',
-        shadowColor:'#70BAFF',
-        padding:1.5,
-        borderRadius:25,
-    },
     Link:{
         textAlign:'center',
         fontSize: 16,
         fontFamily:'SourceSansPro_700Bold',
+        textDecorationStyle:'solid',
+        textDecorationLine:'underline',
         color: '#70BAFF',
         paddingTop:10
         

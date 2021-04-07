@@ -164,9 +164,10 @@ const styles = StyleSheet.create({
     Link:{
         fontSize: 15,
         fontFamily:'SourceSansPro_700Bold',
+        textDecorationStyle:'solid',
+        textDecorationLine:'underline',
         color: '#70BAFF',
-        paddingTop:10
-        
+        paddingTop:10 
     },
     
 });

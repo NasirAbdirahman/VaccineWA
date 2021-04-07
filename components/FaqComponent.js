@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
-import { View, ScrollView, Text, StyleSheet } from 'react-native';
-import { Divider, Icon} from 'react-native-elements';
+import { View, ScrollView, Text, StyleSheet,Pressable } from 'react-native';
+import { Divider, Icon } from 'react-native-elements';
 import Accordion from 'react-native-collapsible/Accordion';
 import { FAQDATA } from '../shared/FaqData';
+import * as WebBrowser from 'expo-web-browser';
 
 
 //Renders The Header/Title of each Question//
@@ -63,6 +64,11 @@ class FaqAccordion extends Component {
         const generalFaqData = this.state.faqdata.filter(question => question.id < 35);
         const covidFaqData = this.state.faqdata.filter(question => question.id > 34);
         const { activeSections } = this.state;
+
+        //Open Up Link to CDC //
+        const cdcGov = () => WebBrowser.openBrowserAsync('https://www.cdc.gov/coronavirus/2019-ncov/vaccines/faq.html');
+        //Open Up Link to WA DOH //
+        const waDoh = () => WebBrowser.openBrowserAsync('https://www.doh.wa.gov/Emergencies/COVID19/Vaccine');
 
 
 
@@ -153,7 +159,7 @@ class FaqAccordion extends Component {
                     
                     <View style={{paddingBottom:5}}>
                         <Text style={styles.SubHeader}>General FAQs</Text>
-                        <Divider style={{ backgroundColor: '#B1DDF9', width:'25%',padding:1, bottom:20, left:10}}/>  
+                        <Divider style={{ backgroundColor: '#B1DDF9', width:'40%',padding:1, bottom:20, left:10}}/>  
                     </View>                 
                         
                     <Accordion
@@ -168,7 +174,7 @@ class FaqAccordion extends Component {
 
                     <View style={{paddingTop:25, paddingBottom:1}}>
                         <Text style={styles.SubHeader}>Covid-19 FAQ</Text>
-                        <Divider style={{ backgroundColor: '#B1DDF9', width:'25%', padding:1, bottom:20, left:10}}/>
+                        <Divider style={{ backgroundColor: '#B1DDF9', width:'40%', padding:1, bottom:20, left:10}}/>
                     </View>
                     
                     <Accordion
@@ -179,38 +185,45 @@ class FaqAccordion extends Component {
                         duration={400}
                         onChange={this.setSections}    
                     />
+
+                    <Divider style={{ backgroundColor: '#B1DDF9', width:'100%', alignSelf:'center', margin:10, padding:1}}/>
                 
 
                     {/* Footer/Extra Links Section */}
                     <View style={{paddingTop:30}}>
-                        <Text style={styles.SubHeader}>More Information From Sources</Text>
+                        <Text style={styles.SubHeader}>More Information From Trusted Sources</Text>
                         <Divider style={{ backgroundColor: '#B1DDF9', width:'85%', padding:1, bottom:20, left:10}}/>        
 
-                        <View style={{padding:5}}>
-                            <Text>
-                                <Icon
-                                    name='launch'
-                                    type= 'material-icons' 
-                                    color='#70BAFF'
-                                    bottom={20}
-                                    onPress={() => navigation.navigate({/*OPENS UP BROWSER EXTENSION to https://www.cdc.gov/coronavirus/2019-ncov/vaccines/faq.html*/})} 
-                                />
-                                <Text style={styles.Title}> Center For Disease Control</Text> 
-                            </Text>
-                        </View>
+                        <Pressable onPress={() => cdcGov()}>
+                            <View style={{paddingLeft:7, paddingTop:10}}>
+                                <Text>
+                                    <Icon
+                                        name='launch'
+                                        type= 'material-icons' 
+                                        color='#70BAFF'
+                                        size={30}
+                                        onPress={() => cdcGov()} 
+                                    />
+                                    <Text style={styles.Link}>Center For Disease Control</Text> 
+                                </Text>
+                            </View>
+                        </Pressable>
 
-                        <View style={{padding:5}}>
-                            <Text>
-                                <Icon
-                                    name='launch'
-                                    type= 'material-icons' 
-                                    color='#70BAFF'
-                                    bottom={20}
-                                    onPress={() => navigation.navigate({/*OPENS UP BROWSER EXTENSION to  https://www.doh.wa.gov/Emergencies/COVID19/Vaccine*/})} 
-                                />
-                                <Text style={styles.Title}> WA Department Of Health</Text> 
-                            </Text>
-                        </View>
+                        <Pressable onPress={() => waDoh()} >
+                            <View style={{paddingLeft:7, paddingTop:20}}>
+                                <Text>
+                                    <Icon
+                                        name='launch'
+                                        type= 'material-icons' 
+                                        color='#70BAFF'
+                                        size={30}
+                                        onPress={() => waDoh()} 
+                                    />
+                                    <Text style={styles.Link}>WA Department Of Health</Text> 
+                                </Text>
+                            </View>
+                        </Pressable>
+
                     </View>
 
                 </View>
@@ -272,6 +285,14 @@ const styles = StyleSheet.create({
         paddingLeft:7,
         color:'#7F7F7F'
 
+    },
+    Link:{
+        fontSize: 21,
+        fontFamily:'SourceSansPro_700Bold',
+        textDecorationStyle:'solid',
+        textDecorationLine:'underline',
+        color: '#70BAFF',
+        paddingTop:10 
     },
     //Accordion Styling//
     Container:{

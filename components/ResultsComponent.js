@@ -10,9 +10,11 @@ function RenderZipRadius ({zipcodedata, navigation}) {
     const renderRadius = ({item}) => {
         return (
             <View>
-                <View style={{flexDirection: "row",paddingTop:10,paddingBottom:10, paddingLeft:7}}>
-                        <Text style={styles.SubHeader}>{item.zip1}</Text>
-                        <View style={{bottom:10,left:240}}>
+
+                <Pressable onPress={() => navigation.navigate('Radius Provider Results', {providerId: item.zip1})}>  
+                    <View style={{flexDirection: "row",paddingTop:10,paddingBottom:15, paddingLeft:15}}>
+                        <Text style={styles.SubHeaderTitle}>{item.zip1}</Text>
+                        <View style={{left:215}}>
                             <Button
                                 buttonStyle={styles.Button}
                                 containerStyle={styles.ButtonContainer}
@@ -23,84 +25,93 @@ function RenderZipRadius ({zipcodedata, navigation}) {
                                 }}
                                 onPress={() => navigation.navigate('Radius Provider Results', {providerId: item.zip1})}
                             />
-                        </View> 
-                </View>
+                        </View>
+                    </View>
+                </Pressable>
 
                 <Divider style={{ backgroundColor: '#B1DDF9', width:'100%', alignSelf:'center', margin:1, padding:1}}/> 
 
-                <View style={{flexDirection: "row",paddingTop:30,paddingBottom:10, paddingLeft:7}}> 
-                    <Text style={styles.SubHeader}>{item.zip2}</Text>                   
-                    <View style={{bottom:10,left:240}}>
-                        <Button
-                            buttonStyle={styles.Button}
-                            containerStyle={styles.ButtonContainer}
-                            icon={{
-                                name:'forward',//keyboard-arrow-right//
-                                type: 'material-icons' ,
-                                color:'#fff',
-                            }}
-                            onPress={() => navigation.navigate('Radius Provider Results', {providerId: item.zip2})}
-                        />
-                        
-                    </View>               
-                </View>
+                <Pressable onPress={() => navigation.navigate('Radius Provider Results', {providerId: item.zip2})}>
+                    <View style={{flexDirection: "row",paddingTop:30,paddingBottom:15, paddingLeft:15}}> 
+                        <Text style={styles.SubHeaderTitle}>{item.zip2}</Text>                   
+                        <View style={{left:215}}>
+                            <Button
+                                buttonStyle={styles.Button}
+                                containerStyle={styles.ButtonContainer}
+                                icon={{
+                                    name:'forward',//keyboard-arrow-right//
+                                    type: 'material-icons' ,
+                                    color:'#fff',
+                                }}
+                                onPress={() => navigation.navigate('Radius Provider Results', {providerId: item.zip2})}
+                            />
+                            
+                        </View>               
+                    </View>
+                </Pressable>
 
                 <Divider style={{ backgroundColor: '#B1DDF9', width:'100%', alignSelf:'center', margin:1, padding:1}}/> 
 
-                <View style={{flexDirection: "row",paddingTop:30,paddingBottom:10, paddingLeft:7}}> 
-                    <Text style={styles.SubHeader}>{item.zip3}</Text>
-                    <View style={{bottom:10,left:240}}>
-                        <Button
-                            buttonStyle={styles.Button}
-                            containerStyle={styles.ButtonContainer}
-                            icon={{
-                                name:'forward',//keyboard-arrow-right//
-                                type: 'material-icons' ,
-                                color:'#fff',
-                            }}
-                            onPress={() => navigation.navigate('Radius Provider Results', {providerId: item.zip3})}
-                        />
-                        
-                    </View>               
-                </View>
+                <Pressable onPress={() => navigation.navigate('Radius Provider Results', {providerId: item.zip3})}>
+                    <View style={{flexDirection: "row",paddingTop:30,paddingBottom:15, paddingLeft:15}}> 
+                        <Text style={styles.SubHeaderTitle}>{item.zip3}</Text>
+                        <View style={{left:215}}>
+                            <Button
+                                buttonStyle={styles.Button}
+                                containerStyle={styles.ButtonContainer}
+                                icon={{
+                                    name:'forward',//keyboard-arrow-right//
+                                    type: 'material-icons' ,
+                                    color:'#fff',
+                                }}
+                                onPress={() => navigation.navigate('Radius Provider Results', {providerId: item.zip3})}
+                            />
+                            
+                        </View>               
+                    </View>
+                </Pressable>
 
                 <Divider style={{ backgroundColor: '#B1DDF9', width:'100%', alignSelf:'center', margin:1, padding:1}}/> 
 
-                <View style={{flexDirection: "row",paddingTop:30,paddingBottom:10, paddingLeft:7}}> 
-                    <Text style={styles.SubHeader}>{item.zip4}</Text>
-                    <View style={{bottom:10,left:240}}>
-                        <Button
-                            buttonStyle={styles.Button}
-                            containerStyle={styles.ButtonContainer}
-                            icon={{
-                                name:'forward',//keyboard-arrow-right//
-                                type: 'material-icons' ,
-                                color:'#fff',
-                            }}
-                            onPress={() => navigation.navigate('Radius Provider Results', {providerId: item.zip4})}
-                        />
-                        
-                    </View>               
-                </View>
+                <Pressable onPress={() => navigation.navigate('Radius Provider Results', {providerId:item.zip4})}>
+                    <View style={{flexDirection: "row",paddingTop:30,paddingBottom:15, paddingLeft:15}}> 
+                        <Text style={styles.SubHeaderTitle}>{item.zip4}</Text>
+                        <View style={{left:215}}>
+                            <Button
+                                buttonStyle={styles.Button}
+                                containerStyle={styles.ButtonContainer}
+                                icon={{
+                                    name:'forward',//keyboard-arrow-right//
+                                    type: 'material-icons' ,
+                                    color:'#fff',
+                                }}
+                                onPress={() => navigation.navigate('Radius Provider Results', {providerId: item.zip4})}
+                            />
+                            
+                        </View>               
+                    </View>
+                </Pressable>
 
                 <Divider style={{ backgroundColor: '#B1DDF9', width:'100%', alignSelf:'center', margin:1, padding:1}}/> 
 
-                <View style={{flexDirection: "row",paddingTop:30,paddingBottom:30, paddingLeft:7}}> 
-                    <Text style={styles.SubHeader}>{item.zip5}</Text>
-                    <View style={{bottom:10,left:240}}>
-                        <Button
-                            buttonStyle={styles.Button}
-                            containerStyle={styles.ButtonContainer}
-                            icon={{
-                                name:'forward',//keyboard-arrow-right//
-                                type: 'material-icons' ,
-                                color:'#fff',
-                            }}
-                            onPress={() => navigation.navigate('Radius Provider Results', {providerId: item.zip5})}
-                        />
-                        
-                    </View>               
-                </View>
+                <Pressable onPress={() => navigation.navigate('Radius Provider Results', {providerId: item.zip5})}>
+                    <View style={{flexDirection: "row",paddingTop:30,paddingBottom:30, paddingLeft:15}}> 
+                        <Text style={styles.SubHeaderTitle}>{item.zip5}</Text>
+                        <View style={{left:215}}>
+                            <Button
+                                buttonStyle={styles.Button}
+                                containerStyle={styles.ButtonContainer}
+                                icon={{
+                                    name:'forward',//keyboard-arrow-right//
+                                    type: 'material-icons' ,
+                                    color:'#fff',
+                                }}
+                                onPress={() => navigation.navigate('Radius Provider Results', {providerId: item.zip5})}
+                            />
+                            
+                        </View>               
+                    </View>
+                </Pressable>
 
                 {/* Another Style to Render ZipCodes 
                 <View style={{flexDirection: "row",paddingTop:20, paddingBottom:30, paddingLeft:7}}> 
@@ -263,14 +274,14 @@ class Results extends Component {
                     <RenderProviders providerdata={providerdata} navigation={navigation}/>
                     
                     {/* Provides a radius of Zipcodes*/}
-                    <View style={{paddingLeft:7, paddingBottom:45, paddingTop:25}}>
+                    <View style={{paddingLeft:7, paddingBottom:65, paddingTop:45}}>
 
-                        <Text style={styles.SubHeader}>These Zipcodes are within 15 miles of {zipCode}</Text>{/* Huge Title that explains there are more providers close to you too*/}
+                        <Text style={styles.SubHeader}>These Zipcodes are within 15 miles of<Text style={styles.SubHeader2}> {zipCode}</Text></Text>{/* Huge Title that explains there are more providers close to you too*/}
                         <Text style={styles.SubHeaderText}>Search their providers as well</Text>
 
                         <Divider style={{ backgroundColor: '#B1DDF9', width:'85%', alignSelf:'center', top:18, padding:1}}/>
                     </View>
-
+                  
                     <RenderZipRadius zipcodedata={zipcodedata} navigation={navigation}/>
     
                 </ScrollView>
@@ -331,10 +342,23 @@ const styles = StyleSheet.create({
         fontSize: 35,
         letterSpacing: 1,    
     },
+    //Radius ZipCodes Styling
     SubHeader: {
         color: '#000',
-        //textAlign:'center',
         fontSize: 23,
+        fontFamily:'SourceSansPro_700Bold',
+        letterSpacing: 1,
+    },
+    SubHeader2: {
+        color: '#70BAFF',
+        textAlign:'center',
+        fontSize: 32,
+        letterSpacing: 1,    
+    },
+    SubHeaderTitle: {
+        color: '#000',
+        fontSize: 30,
+        textAlign:'right',
         fontFamily:'SourceSansPro_700Bold',
         letterSpacing: 1,
     },
@@ -345,7 +369,8 @@ const styles = StyleSheet.create({
         paddingTop:5,
         color:'#7F7F7F'
     },
-    Title: { //Provider Font Styling//
+    //Provider Font Styling//
+    Title: { 
         color: '#000',
         fontSize: 18,
         fontFamily:'SourceSansPro_700Bold',

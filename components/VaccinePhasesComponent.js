@@ -270,7 +270,8 @@ const styles = StyleSheet.create({
         letterSpacing: 1,
         paddingTop:5
     },
-    Title: { //Provider Font Styling//
+    //Provider Font Styling//
+    Title: { 
         color: '#000',
         fontSize: 22,
         fontFamily:'SourceSansPro_700Bold',
@@ -292,7 +293,7 @@ const styles = StyleSheet.create({
         fontFamily:'SourceSansPro_700Bold',
         letterSpacing: 1,
         paddingTop:7,
-        color:'#000'//#70BAFF-Alt. Color//
+        color:'#000'
         
         
     },
@@ -359,6 +360,8 @@ const styles = StyleSheet.create({
         textAlign:'center',
         fontSize: 16,
         fontFamily:'SourceSansPro_700Bold',
+        textDecorationStyle:'solid',
+        textDecorationLine:'underline',
         color: '#70BAFF',
         paddingTop:10
         

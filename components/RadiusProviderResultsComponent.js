@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, ScrollView, Text, StyleSheet, FlatList } from 'react-native';
+import { View, ScrollView, Text, StyleSheet, FlatList,Pressable } from 'react-native';
 import { Divider, Icon, Button} from 'react-native-elements';
 import { PROVIDERDATA } from '../shared/ProviderData'; 
 
@@ -12,38 +12,40 @@ function RenderRadiusProviders ({providerdata, navigation}) {
        
         return  (
             <View>
-                <View style={{paddingTop:10, paddingLeft:7}}>
-        
-                    <Text style={styles.Title}>{item.name} </Text>
-                    
-                    <Text style={styles.Title2}>{item.address},{item.zipCode}</Text>
-                    <Text style={styles.Title2}> 
-                        In Stock:
-                        <Icon 
-                            name={item.availability === "Yes" ? 'check-circle' : 'highlight-off' }
-                            type= 'material-icons' 
-                            color={item.availability === "Yes" ? Icon.color='#70BAFF': Icon.color='#FF0000'}
-                        /> 
-                    </Text> 
-
-                    <Text style={styles.Text}>Last Updated: {item.lastUpdated} </Text>
-
-                    <View style={{left:140, bottom:55 }}>
-                        <Button
-                            buttonStyle={styles.Button}
-                            containerStyle={styles.ButtonContainer}
-                            icon={{
-                                name:'forward',//keyboard-arrow-right//
-                                type: 'material-icons' ,
-                                color:'#fff',
-                            }}
-                            onPress={() => navigation.navigate('Provider', {providerId: item.id})}
-                        />
-                    </View>       
-                </View>
-
-                <Divider style={{ backgroundColor: '#B1DDF9', width:'100%', alignSelf:'center', margin:1, padding:1}}/>
+                <Pressable onPress={() => navigation.navigate('Provider', {providerId: item.id})}>
+                    <View style={{paddingTop:10, paddingLeft:7}}>
             
+                        <Text style={styles.Title}>{item.name} </Text>
+                        
+                        <Text style={styles.Title2}>{item.address},{item.zipCode}</Text>
+                        <Text style={styles.Title2}> 
+                            In Stock:
+                            <Icon 
+                                name={item.availability === "Yes" ? 'check-circle' : 'highlight-off' }
+                                type= 'material-icons' 
+                                color={item.availability === "Yes" ? Icon.color='#70BAFF': Icon.color='#FF0000'}
+                            /> 
+                        </Text> 
+
+                        <Text style={styles.Text}>Last Updated: {item.lastUpdated} </Text>
+
+                        <View style={{left:140, bottom:55 }}>
+                            <Button
+                                buttonStyle={styles.Button}
+                                containerStyle={styles.ButtonContainer}
+                                icon={{
+                                    name:'forward',//keyboard-arrow-right//
+                                    type: 'material-icons' ,
+                                    color:'#fff',
+                                }}
+                                onPress={() => navigation.navigate('Provider', {providerId: item.id})}
+                            />
+                        </View>       
+                    </View>
+
+                    <Divider style={{ backgroundColor: '#B1DDF9', width:'100%', alignSelf:'center', margin:1, padding:1}}/>
+
+                </Pressable>
             </View>
             
         );
@@ -95,14 +97,16 @@ class RadiusProviderResults extends Component {
                     <Text style={styles.Text}>Vaccine availability is subject to change. Most locations <Text style={styles.Text2}>Require</Text> appointments</Text>
                     <Text style={styles.Text}>Click a location with Vaccines <Text style={styles.Text2}>'In Stock'</Text> to move forward.</Text>
                 
-                    <Button 
-                        buttonStyle={styles.Button}
-                        containerStyle={styles.ButtonContainer}
-                        titleStyle={styles.Button}
-                        
-                        title="Return To Initial Search"
-                        onPress={() =>  navigation.goBack()}> 
-                    </Button>
+                    <View style={{paddingTop:15,paddingBottom:10}}>
+                        <Button 
+                            buttonStyle={styles.Button}
+                            containerStyle={styles.ButtonContainer}
+                            titleStyle={styles.Button}
+                            
+                            title="Return To Initial Search"
+                            onPress={() =>  navigation.goBack()}> 
+                        </Button>
+                    </View>
 
                     <Divider style={{ backgroundColor: '#B1DDF9', width:'85%', alignSelf:'center', top:18, padding:1}}/>
                 </View>
@@ -122,15 +126,15 @@ const styles = StyleSheet.create({
     HeaderTitle: {
         color: '#000',
         textAlign:'center',
-        fontSize: 24,
+        fontSize: 22,
         fontFamily:'SourceSansPro_700Bold',
         letterSpacing: 1,    
     },
     HeaderTitle2: {
         color: '#70BAFF',
         textAlign:'center',
-        fontSize: 32,
-        letterSpacing: 1,    
+        fontSize: 30,
+        letterSpacing: 1   
     },
     Title: { //Provider Font Styling//
         color: '#000',

@@ -1,5 +1,5 @@
 
-1)Hides The Virtualized Scroll Warning
+1)Renders A VirtualizedList Scroll Warning
 
 function RenderProviders ({providerdata, navigation}) {
     return (
