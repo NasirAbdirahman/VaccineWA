@@ -1,5 +1,5 @@
 
-1)Renders A VirtualizedList Scroll Warning
+1)Removes A VirtualizedList Scroll Warning--MUST BE DONE ON ALL FUNCITONS WITH FLATLIST
 
 function RenderProviders ({providerdata, navigation}) {
     return (

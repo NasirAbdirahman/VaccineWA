@@ -5,6 +5,7 @@ import { PROVIDERDATA } from '../shared/ProviderData';
 import * as WebBrowser from 'expo-web-browser';
 import * as MailComposer from 'expo-mail-composer';
 import * as Linking from 'expo-linking';
+import openMap from 'react-native-open-maps';
  
 
 // Reviews the Scheduling Link provided //      
@@ -434,6 +435,10 @@ function RenderProvider ({providerdata, navigation}) {
 
     const renderProviderDetails = ({item}) => {
 
+        //Opens Up the Platform Specific Map Api render directions.//
+        const openDirections = () => openMap({end:JSON.stringify(item.address)});
+        //Can Also use query:JSON.stringify(item.name)--But renders incorrectly//
+
         return (
             <View>
 
@@ -448,8 +453,6 @@ function RenderProvider ({providerdata, navigation}) {
                                 type: 'material-icons' ,
                                 color:'#fff'   
                             }}
-                            //title="Return To Search Results"
-                            //titleStyle={styles.titleStyle}
                             onPress={() => navigation.goBack()} 
                         />  
                         <Text style={styles.Text3}> Return To Search Results</Text>
@@ -480,7 +483,7 @@ function RenderProvider ({providerdata, navigation}) {
                     {/*Directions & Website*/}             
                     <View style={{paddingLeft:20, paddingTop:20,flexDirection: "row"}}>
                         <View style={{flex:1}}>
-                            <Pressable >{/*onPress={() => navigation.navigate('Results')} GO TO MAPS API*/}
+                            <Pressable onPress={() => openDirections()}>
                                 <Text style={styles.Text}>
                                     <Icon
                                         name='directions'
@@ -488,6 +491,7 @@ function RenderProvider ({providerdata, navigation}) {
                                         color='#70BAFF'
                                         top={3}
                                         size={25}  
+                                        onPress={() => openDirections()}
                                     />
                                     <Text style={styles.Text}> Directions</Text>
                                 </Text>
