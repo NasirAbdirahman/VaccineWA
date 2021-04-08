@@ -246,7 +246,6 @@ class Results extends Component {
         const zipcodedata = this.state.zipcodedata.filter(zipcode => zipcode.providerId === zipCode)
         const totalProviders = providerdata.length; //Displays Number of Providers found after the filter//
         
-        //const goBack = () => navigation.goBack();
         
         if (providerdata.length >= 1) {
             return(
@@ -295,11 +294,11 @@ class Results extends Component {
 
                 <ScrollView style={{paddingTop:15,paddingBottom:20, backgroundColor: '#ffffff'}}>
                    
-                    <Text style={styles.HeaderTitle}>Their Are <Text style={styles.HeaderTitle2}>{totalProviders}</Text> Providers In {zipCode}</Text>
+                    <Text style={styles.HeaderTitle}>Their Are <Text style={styles.HeaderTitle2}>{totalProviders}</Text> Providers In <Text style={styles.HeaderTitle2}>{zipCode}</Text></Text>
                     
 
                     <View style={{paddingLeft:7, paddingBottom:30}}>
-                        <Text style={styles.Text}>Please double-check Your ZipCode {'\n'}Or Review The closest ZipCodes to <Text style={styles.Text2}>{zipCode}</Text> Below</Text>   
+                        <Text style={styles.Text}>Please double-check Your ZipCode Or {'\n'}Review The closest ZipCodes to <Text style={styles.Text2}>{zipCode}</Text> Below</Text>   
                     </View>
 
                     <View style={{paddingLeft:7, paddingBottom:30}}>

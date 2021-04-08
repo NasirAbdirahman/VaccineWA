@@ -5,7 +5,7 @@ import { PROVIDERDATA } from '../shared/ProviderData';
 
 
 
-// Displays the zipcodes that are in a 15 mile radius of the zipcode entered in by the User//  
+// Displays the Providers in A 15 Mile Radius of the zipcode entered in by the User//  
 function RenderRadiusProviders ({providerdata, navigation}) {
 
     const renderProviderItem = ({item}) => {
@@ -87,17 +87,55 @@ class RadiusProviderResults extends Component {
         const providerdata = this.state.providerdata.filter(provider => provider.zipCode === providerId);
         const totalProviders = providerdata.length; //Displays Number of Providers found after the filter//
         
-        return ( //Removed ScrollView & Warning disappeared. Does not chnage functionality//
-            <ScrollView style={{paddingTop:15,paddingBottom:20, backgroundColor: '#ffffff'}}>
-                
-                <Text style={styles.HeaderTitle}>We Found <Text style={styles.HeaderTitle2}>{totalProviders}</Text> Providers In <Text style={styles.HeaderTitle2}>{providerId}</Text></Text>
 
-                <View style={{paddingLeft:7, paddingBottom:30}}>
-                    <Text style={styles.Text}>Showing results in <Text style={styles.Text2}>{providerId}</Text><Text> Within 15 Miles Of Your ZipCode</Text></Text>
-                    <Text style={styles.Text}>Vaccine availability is subject to change. Most locations <Text style={styles.Text2}>Require</Text> appointments</Text>
-                    <Text style={styles.Text}>Click a location with Vaccines <Text style={styles.Text2}>'In Stock'</Text> to move forward.</Text>
-                
-                    <View style={{paddingTop:15,paddingBottom:10}}>
+        if (providerdata.length >= 1) {
+            return ( 
+                <ScrollView style={{paddingTop:15,paddingBottom:20, backgroundColor: '#ffffff'}}>
+                    
+                    <Text style={styles.HeaderTitle}>We Found <Text style={styles.HeaderTitle2}>{totalProviders}</Text> Provider(s) In <Text style={styles.HeaderTitle2}> {providerId}</Text></Text>
+
+                    <View style={{paddingLeft:7, paddingBottom:30}}>
+                        <Text style={styles.Text}>Showing results in <Text style={styles.Text2}>{providerId}</Text><Text> Within 15 Miles Of Your ZipCode</Text></Text>
+                        <Text style={styles.Text}>Vaccine availability is subject to change. Most locations <Text style={styles.Text2}>Require</Text> appointments</Text>
+                        <Text style={styles.Text}>Click a location with Vaccines <Text style={styles.Text2}>'In Stock'</Text> to move forward.</Text>
+                    
+                        <View style={{paddingTop:15,paddingBottom:10}}>
+                            <Button 
+                                buttonStyle={styles.Button}
+                                containerStyle={styles.ButtonContainer}
+                                titleStyle={styles.Button}
+                                
+                                title="Return To Initial Search"
+                                onPress={() =>  navigation.goBack()}> 
+                            </Button>
+                        </View>
+
+                        <Divider style={{ backgroundColor: '#B1DDF9', width:'85%', alignSelf:'center', top:18, padding:1}}/>
+                    </View>
+                    
+
+                    <RenderRadiusProviders providerdata={providerdata} navigation={navigation}/>
+
+                </ScrollView> 
+            );
+            
+            
+          {/* Provides alternate Options If Their are no Providers in the Zipcodes*/}
+        } else if (providerdata.length < 1) {
+            return(
+
+                <ScrollView style={{paddingTop:15,paddingBottom:20, backgroundColor: '#ffffff'}}>
+
+                    <View></View>
+                   
+                    <Text style={styles.HeaderTitle}>Their Are <Text style={styles.HeaderTitle2}>{totalProviders}</Text> Providers In <Text style={styles.HeaderTitle2}>{providerId} </Text> </Text>
+                    
+
+                    <View style={{paddingLeft:7, paddingBottom:30}}>
+                        <Text style={styles.Text}>Please Review The Other ZipCodes {'\n'}Or Review The Closest ZipCodes To<Text style={styles.Text2}> {providerId}</Text></Text>   
+                    </View>
+
+                    <View style={{paddingLeft:7, paddingBottom:30}}>
                         <Button 
                             buttonStyle={styles.Button}
                             containerStyle={styles.ButtonContainer}
@@ -106,16 +144,21 @@ class RadiusProviderResults extends Component {
                             title="Return To Initial Search"
                             onPress={() =>  navigation.goBack()}> 
                         </Button>
+
+                        <Divider style={{ backgroundColor: '#B1DDF9', width:'85%', alignSelf:'center', top:18, padding:1}}/>
                     </View>
 
-                    <Divider style={{ backgroundColor: '#B1DDF9', width:'85%', alignSelf:'center', top:18, padding:1}}/>
-                </View>
-                
+                    {/* WILL NOT FUNCTION UNTIL ZIPCODE RADIUS DATA IS COMPLETE
+                    Implement ZipRadius Providers of Radius Like results Component
+                    <RenderRadiusProviders providerdata={providerdata} navigation={navigation}/>*/}
 
-                <RenderRadiusProviders providerdata={providerdata} navigation={navigation}/>
+                </ScrollView>
+            )
 
-            </ScrollView> 
-        ) 
+        }
+
+
+        
     }
 }
 
@@ -126,7 +169,7 @@ const styles = StyleSheet.create({
     HeaderTitle: {
         color: '#000',
         textAlign:'center',
-        fontSize: 22,
+        fontSize: 25,
         fontFamily:'SourceSansPro_700Bold',
         letterSpacing: 1,    
     },
