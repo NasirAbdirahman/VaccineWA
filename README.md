@@ -15,11 +15,11 @@ Features:<br>
 •Expo Cli
 
 # Visuals
-![Home Page](/public/HomeComponent.jpg?raw=true "Home Page")
+![Home Page](/assets/public/HomeComponent.jpg?raw=true "Home Page")
 
-![Results Page](/public/ResultsComponent.jpg?raw=true "Results Page")
+![Results Page](/assets/public/ResultsComponent.jpg?raw=true "Results Page")
 
-![Provider Page](/public/ProviderComponent.jpg?raw=true "Provider Page")
+![Provider Page](/assets/public/ProviderComponent.jpg?raw=true "Provider Page")
 
 
 # Dependencies
