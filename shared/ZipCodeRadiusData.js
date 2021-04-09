@@ -1,3 +1,4 @@
+
 export const ZIPCODEDATA = [
     {
       id: 0,
@@ -258,7 +259,7 @@ export const ZIPCODEDATA = [
       zip2:'98089',
       zip3: '98189',
       zip4: '98198',
-      zip5:'99336'//98031- changed for demo of app
+      zip5:'98031'
     },
     {
       id: 29,

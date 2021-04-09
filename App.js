@@ -4,6 +4,8 @@ import AppLoading from 'expo-app-loading';
 import { useFonts, Scheherazade_700Bold } from '@expo-google-fonts/scheherazade';
 import { SourceSansPro_600SemiBold, SourceSansPro_700Bold } from '@expo-google-fonts/source-sans-pro';
 import { Lateef_400Regular } from '@expo-google-fonts/lateef';
+console.disableYellowBox = true; //Just for the demo
+
 
 
 export default function App() {
