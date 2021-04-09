@@ -44,11 +44,13 @@ If you believe you can update the below issues, please
 4.Push to the Branch (git push origin feature/AmazingFeature)<br>
 5.Open a Pull Request<br>
 
+The more people we can help, the better. 
+
+
 # License
 Distributed under the MIT License
 
 # Contact
-
 [Email Me](mailto:nasir.a.abdirahman@outlook.com)
 
 
