@@ -17,7 +17,7 @@ export const FAQDATA = [
     {
         id:5, title: "What is the Washington State COVID-19 Vaccination Plan?", content:"The COVID-19 vaccine is here in Washington. All of the vaccines authorized for emergency use by the FDA are currently being distributed across the state. The Centers for Disease Control and Prevention (CDC) required all states and territories to turn in an interim plan for COVID-19 vaccine distribution on Oct. 16, 2020. These plans are living documents and will change over time as we learn more about the vaccines and figure out the most equitable way to protect people.",
     },
-    {//Vaccine Distribution FAQs
+    {//Vaccine Distribution FAQ
         id:6, title: "How will vaccine distribution work?", content:"The CDC primarily will manage the distribution of COVID-19 vaccine. The current plan is to distribute the vaccine through two mechanisms:1)Use of a centralized distributor. 2)Direct shipments to Indian Health Services clinics; pharmacy chains; and large multi-state healthcare systems.As part of this planning effort, the federal government and the state are considering many factors such as prioritization of high-risk groups, vaccine supply and distribution, logistics, safety, and clinical guidance. Because the current top three vaccine candidates all require different temperatures, properly transporting and storing the vaccine at the right temperature is a large concern and big part of the planning. Vaccine distribution will adjust over time as the number of available doses increases, moving from limited to broader populations in a phased approach.",
     },
     {
