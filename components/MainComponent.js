@@ -75,6 +75,16 @@ function HomeStackNavigator() {
             headerTitle: () => <Header navigation = {navigation} title='Eligibility'/>,
             //headerLeft: () => null   //Removes the Back Arrow in The Header//
           }
+        }}  
+      />
+      <HomeStack.Screen 
+        name='Vaccine Phases' 
+        component={VaccinePhases} 
+        options = {({ navigation }) => {
+          return {
+            headerTitle: () => <Header navigation = {navigation} title='Vaccine Phases'/>,
+            //headerLeft: () => null   //Removes the Back Arrow in The Header//
+          }
         }} 
         
       />
@@ -127,7 +137,7 @@ function EligibilityStackNavigator() {
           }
         }}
       />
-      {/* Form Start Screen
+      {/* Form Start Screen--NO LONGER NEEDED
       <Eligibilitytack.Screen 
         name="Provider" 
         component={Provider} 

@@ -275,8 +275,13 @@ function RenderProviders ({providerdata, navigation}) {
 
         //const zipRadius = zipcodes.radius(98032, 5);
        
+
+
+
+//REDUX IS THE ANSWER TO CONTROL STATE//
 //Attempting to Pass ZipCode to results page while restting state//
 {/*onPress={() =>  navigation.navigate('Results',this.setState({zipCode : ''}))}*/}{/* Wanted it to refresh page with the zipcode here as state,but NO.*/}
+//REDUX IS THE ANSWER TO CONTROL STATE//
 
 
 

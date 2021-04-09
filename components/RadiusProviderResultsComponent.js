@@ -2,7 +2,157 @@ import React, { Component } from 'react';
 import { View, ScrollView, Text, StyleSheet, FlatList,Pressable } from 'react-native';
 import { Divider, Icon, Button} from 'react-native-elements';
 import { PROVIDERDATA } from '../shared/ProviderData'; 
+import { ZIPCODEDATA } from '../shared/ZipCodeRadiusData';
 
+
+// Displays the zipcodes that are in a 15 mile radius of the zipcode, if their are no providers// 
+function RenderZipRadius ({zipcodedata, navigation}) {
+
+    const renderRadius = ({item}) => {
+        return (
+            <View>
+
+                <Pressable onPress={() => navigation.navigate('Radius Provider Results', {providerId: item.zip1})}>  
+                    <View style={{flexDirection: "row",paddingTop:10,paddingBottom:15, paddingLeft:15}}>
+                        <Text style={styles.SubHeaderTitle}>{item.zip1}</Text>
+                        <View style={{left:215}}>
+                            <Button
+                                buttonStyle={styles.Button}
+                                containerStyle={styles.ButtonContainer}
+                                icon={{
+                                    name:'forward',//keyboard-arrow-right//
+                                    type: 'material-icons' ,
+                                    color:'#fff',
+                                }}
+                                onPress={() => navigation.navigate('Radius Provider Results', {providerId: item.zip1})}
+                            />
+                        </View>
+                    </View>
+                </Pressable>
+
+                <Divider style={{ backgroundColor: '#B1DDF9', width:'100%', alignSelf:'center', margin:1, padding:1}}/> 
+
+                <Pressable onPress={() => navigation.navigate('Radius Provider Results', {providerId: item.zip2})}>
+                    <View style={{flexDirection: "row",paddingTop:30,paddingBottom:15, paddingLeft:15}}> 
+                        <Text style={styles.SubHeaderTitle}>{item.zip2}</Text>                   
+                        <View style={{left:215}}>
+                            <Button
+                                buttonStyle={styles.Button}
+                                containerStyle={styles.ButtonContainer}
+                                icon={{
+                                    name:'forward',//keyboard-arrow-right//
+                                    type: 'material-icons' ,
+                                    color:'#fff',
+                                }}
+                                onPress={() => navigation.navigate('Radius Provider Results', {providerId: item.zip2})}
+                            />
+                            
+                        </View>               
+                    </View>
+                </Pressable>
+
+                <Divider style={{ backgroundColor: '#B1DDF9', width:'100%', alignSelf:'center', margin:1, padding:1}}/> 
+
+                <Pressable onPress={() => navigation.navigate('Radius Provider Results', {providerId: item.zip3})}>
+                    <View style={{flexDirection: "row",paddingTop:30,paddingBottom:15, paddingLeft:15}}> 
+                        <Text style={styles.SubHeaderTitle}>{item.zip3}</Text>
+                        <View style={{left:215}}>
+                            <Button
+                                buttonStyle={styles.Button}
+                                containerStyle={styles.ButtonContainer}
+                                icon={{
+                                    name:'forward',//keyboard-arrow-right//
+                                    type: 'material-icons' ,
+                                    color:'#fff',
+                                }}
+                                onPress={() => navigation.navigate('Radius Provider Results', {providerId: item.zip3})}
+                            />
+                            
+                        </View>               
+                    </View>
+                </Pressable>
+
+                <Divider style={{ backgroundColor: '#B1DDF9', width:'100%', alignSelf:'center', margin:1, padding:1}}/> 
+
+                <Pressable onPress={() => navigation.navigate('Radius Provider Results', {providerId:item.zip4})}>
+                    <View style={{flexDirection: "row",paddingTop:30,paddingBottom:15, paddingLeft:15}}> 
+                        <Text style={styles.SubHeaderTitle}>{item.zip4}</Text>
+                        <View style={{left:215}}>
+                            <Button
+                                buttonStyle={styles.Button}
+                                containerStyle={styles.ButtonContainer}
+                                icon={{
+                                    name:'forward',//keyboard-arrow-right//
+                                    type: 'material-icons' ,
+                                    color:'#fff',
+                                }}
+                                onPress={() => navigation.navigate('Radius Provider Results', {providerId: item.zip4})}
+                            />
+                            
+                        </View>               
+                    </View>
+                </Pressable>
+
+                <Divider style={{ backgroundColor: '#B1DDF9', width:'100%', alignSelf:'center', margin:1, padding:1}}/> 
+
+                <Pressable onPress={() => navigation.navigate('Radius Provider Results', {providerId: item.zip5})}>
+                    <View style={{flexDirection: "row",paddingTop:30,paddingBottom:30, paddingLeft:15}}> 
+                        <Text style={styles.SubHeaderTitle}>{item.zip5}</Text>
+                        <View style={{left:215}}>
+                            <Button
+                                buttonStyle={styles.Button}
+                                containerStyle={styles.ButtonContainer}
+                                icon={{
+                                    name:'forward',//keyboard-arrow-right//
+                                    type: 'material-icons' ,
+                                    color:'#fff',
+                                }}
+                                onPress={() => navigation.navigate('Radius Provider Results', {providerId: item.zip5})}
+                            />
+                            
+                        </View>               
+                    </View>
+                </Pressable>
+
+                {/* Another Style to Render ZipCodes 
+                <View style={{flexDirection: "row",paddingTop:20, paddingBottom:30, paddingLeft:7}}> 
+                    <View >
+                        <Button    
+                            buttonStyle={styles.Button}
+                            containerStyle={styles.ButtonContainer}
+                            titleStyle={styles.SubHeader}
+                            title={item.zip1}
+                            onPress={() =>  navigation.navigate('Radius Provider Results', {providerId: item.zip1})}> 
+                        </Button>
+                    </View>
+                    <View style={{left:40}}>
+                        <Button    
+                            buttonStyle={styles.Button}
+                            containerStyle={styles.ButtonContainer}
+                            titleStyle={styles.SubHeader}
+                            title={item.zip2}
+                            onPress={() =>  navigation.navigate('Radius Provider Results', {providerId: item.zip2})}> 
+                        </Button>
+                    </View>
+                </View>
+                */}
+                       
+            </View>
+   
+        )
+    }
+    return (
+        <View>
+            <FlatList
+                data={zipcodedata}
+                renderItem={renderRadius}
+                keyExtractor={item => item.id.toString()} //Because all the Providers have a unique ID, we can set this to use the ID//
+            />
+        </View>
+      
+
+    );
+}
 
 
 // Displays the Providers in A 15 Mile Radius of the zipcode entered in by the User//  
@@ -70,6 +220,7 @@ class RadiusProviderResults extends Component {
         super(props);
         this.state = {
             providerdata: PROVIDERDATA,
+            zipcodedata: ZIPCODEDATA,
         };
     }
 
@@ -85,6 +236,8 @@ class RadiusProviderResults extends Component {
        
         const providerId = this.props.route.params.providerId; 
         const providerdata = this.state.providerdata.filter(provider => provider.zipCode === providerId);
+        const zipcodedata = this.state.zipcodedata.filter(zipcode => zipcode.providerId === providerId)
+
         const totalProviders = providerdata.length; //Displays Number of Providers found after the filter//
         
 
@@ -128,11 +281,11 @@ class RadiusProviderResults extends Component {
 
                     <View></View>
                    
-                    <Text style={styles.HeaderTitle}>Their Are <Text style={styles.HeaderTitle2}>{totalProviders}</Text> Providers In <Text style={styles.HeaderTitle2}>{providerId} </Text> </Text>
+                    <Text style={styles.HeaderTitle}> Sorry,Their Are <Text style={styles.HeaderTitle2}>{totalProviders}</Text> Providers In <Text style={styles.HeaderTitle2}>{providerId} </Text> </Text>
                     
 
                     <View style={{paddingLeft:7, paddingBottom:30}}>
-                        <Text style={styles.Text}>Please Review The Other ZipCodes {'\n'}Or Review The Closest ZipCodes To<Text style={styles.Text2}> {providerId}</Text></Text>   
+                        <Text style={styles.Text}>Please Review The Other ZipCodes {'\n'}Or Review The Closest ZipCodes To<Text style={styles.Text2}> {providerId}</Text> Below</Text>   
                     </View>
 
                     <View style={{paddingLeft:7, paddingBottom:30}}>
@@ -148,9 +301,7 @@ class RadiusProviderResults extends Component {
                         <Divider style={{ backgroundColor: '#B1DDF9', width:'85%', alignSelf:'center', top:18, padding:1}}/>
                     </View>
 
-                    {/* WILL NOT FUNCTION UNTIL ZIPCODE RADIUS DATA IS COMPLETE
-                    Implement ZipRadius Providers of Radius Like results Component
-                    <RenderRadiusProviders providerdata={providerdata} navigation={navigation}/>*/}
+                    <RenderZipRadius zipcodedata={zipcodedata} navigation={navigation}/>
 
                 </ScrollView>
             )
@@ -178,6 +329,13 @@ const styles = StyleSheet.create({
         textAlign:'center',
         fontSize: 30,
         letterSpacing: 1   
+    },
+    SubHeaderTitle: {
+        color: '#000',
+        fontSize: 30,
+        textAlign:'right',
+        fontFamily:'SourceSansPro_700Bold',
+        letterSpacing: 1,
     },
     Title: { //Provider Font Styling//
         color: '#000',

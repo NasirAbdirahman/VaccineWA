@@ -18,6 +18,9 @@ class Eligibility extends Component {
         //Open Up Link to DOH //
         const dohPDF = () => WebBrowser.openBrowserAsync('https://doh.wa.gov/VaccinationPhasesInfographic.pdf');
 
+        //Open Up Link to DOH vaccine Allocation & prioritization Doc. //
+        const dohVAP = () => WebBrowser.openBrowserAsync('https://www.doh.wa.gov/Portals/1/Documents/1600/coronavirus/820-112-InterimVaccineAllocationPrioritization.pdf');
+
         return (
             
            
@@ -25,7 +28,9 @@ class Eligibility extends Component {
                  
                 <View style={{paddingLeft:7, paddingBottom:20}}>      
                     <Text style={styles.HeaderTitle}>Check your Covid-19 Vaccine Eligibility</Text>          
-                    <Text style={styles.Text}>By Answering the <Text style={styles.Text2}>Official State Phase Finder</Text> Questionnaire, you can see when You are eligible to receive the vaccine.</Text>  
+                   {/*} <Text style={styles.Text}>By Answering the <Text style={styles.Text2}>Official State Phase Finder</Text> Questionnaire, you can see when You are eligible to receive the vaccine.</Text> 
+                   I HAVE RULED OUT THE  ELIGIBILITY QUIZ COMPONENT B/C THE WA DOH HAS ELIMINATED THE NEED*/}
+                    <Text style={styles.Text}>By Viewing the <Text style={styles.Text2}>Official State Phase Framework for Vaccine Allocation and Prioritization</Text>, you can see when You are eligible to receive the vaccine.</Text>   
                 </View>
 
                 <View style={{paddingBottom:15}}>
@@ -34,8 +39,8 @@ class Eligibility extends Component {
                         containerStyle={styles.ButtonContainer}
                         titleStyle={styles.Button}
                         
-                        title="Start"
-                        //onPress={() =>  navigation.goBack()} {NEEDS TO GO TO FORM START}
+                        title="View The Framework"//Quiz Componet would have started here---WAS GOING TO GO TO FORM START//
+                        onPress={() => dohVAP()}
                         > 
                     </Button>
                    
@@ -44,9 +49,14 @@ class Eligibility extends Component {
                 <Divider style={{ backgroundColor: '#B1DDF9', width:'100%', alignSelf:'center', margin:10, padding:1}}/>
 
                 <View style={{paddingLeft:7, paddingTop:10, paddingBottom:15}}>
-                    <Text style={styles.Title}>Why A Questionnaire?</Text>
-                    <Text style={styles.Text}>Due to a limited vaccine supply, we need to provide the vaccine in phases. 
+                    <Text style={styles.Title}>Why A FRAMEWORK?</Text>
+                    {/*<Text style={styles.Title}>Why A Questionnaire?</Text> ELIMINATED THE NEED FOR QUIZ*/}
+                    <Text style={styles.Text}>Due to an initial limited supply of vaccine, there is not enough right now to offer it to everyone. This means we had to make tough decisions about who gets the vaccine first. <Text style={styles.Text2}>This is called vaccine allocation and prioritization.</Text>{'\n'}
                         We are starting with <Text style={styles.Text2}>people who are most at risk such as healthcare workers, elders, vulnerable individuals, and high-risk critical workers.</Text> Our goal is for this process to be as fair and transparent as possible. 
+                    </Text> 
+
+                    <Text style={styles.Text}>We developed Washington’s framework for vaccine allocation and prioritization through an ongoing, robust public process.<Text style={styles.Text2}>The framework balances federal guidance with the unique needs 
+                        of our state and seeks to address health inequities that stem from historical injustices.</Text> 
                     </Text> 
 
                     <Pressable onPress={() => dohPDF()}>

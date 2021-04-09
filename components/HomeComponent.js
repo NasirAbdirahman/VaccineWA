@@ -155,15 +155,6 @@ const styles= StyleSheet.create({
       
         
     },
-    /*Text: {
-        fontSize: 16,
-        fontFamily:'SourceSansPro_600SemiBold',
-        letterSpacing: 1,
-        paddingLeft:5,
-        paddingTop:7,
-        //color:'#fff'
-        
-    },*/
     Button: {
         backgroundColor:'#70BAFF',
         borderRadius:25,
@@ -197,7 +188,7 @@ const styles= StyleSheet.create({
     //Modal Styling//
     ModalContainer: {
         backgroundColor:'#B1DDF9',
-        opacity:0.80,
+        opacity:0.82,
         shadowColor:'#70BAFF',
         borderRadius:25,
         width:200,

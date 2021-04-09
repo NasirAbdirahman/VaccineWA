@@ -300,7 +300,46 @@ function RenderVaccineType({providerdata}) {
                 </View>
             )
 
-        } else if ( item.availability === "Yes" && item.vaccineTypes.includes("J&J/Janssen" && "Moderna")) {
+        } else if (item.availability === "Yes" && item.vaccineTypes.includes("J&J/Janssen" && "Moderna" && "Pfizer")) {
+            return(
+                <View>
+
+                    <Text style={styles.Text}>Johnson & Johnson’s Janssen Covid Vaccine</Text>
+                    <Text style={styles.Text2}>In Stock:
+                        <Icon 
+                            name={'check-circle'}
+                            type= 'material-icons' 
+                            color='#70BAFF'
+                            left={1}
+                            top={2} 
+                        /> 
+                    </Text>
+
+                    <Text style={styles.Text}>Moderna Covid Vaccine</Text>
+                    <Text style={styles.Text2}>In Stock:
+                        <Icon 
+                            name='check-circle'
+                            type= 'material-icons' 
+                            color='#70BAFF'
+                            left={1}
+                            top={2} 
+                        /> 
+                    </Text>
+
+                    <Text style={styles.Text}>Pfizer/BioNTech Covid Vaccine</Text> 
+                    <Text style={styles.Text2}>In Stock:
+                        <Icon 
+                            name={'check-circle'}
+                            type= 'material-icons' 
+                            color='#70BAFF'
+                            left={1}
+                            top={2} 
+                        /> 
+                    </Text>
+    
+                </View>
+            )
+        }   else if ( item.availability === "Yes" && item.vaccineTypes.includes("J&J/Janssen" && "Moderna")) {
             return (
                 <View>
                     <Text style={styles.Text}>Moderna Covid Vaccine </Text>
@@ -356,8 +395,8 @@ function RenderVaccineType({providerdata}) {
         } else if (item.availability === "Yes" && item.vaccineTypes.includes("Moderna" && "Pfizer")) {
             return(
                 <View>
-                     <Text style={styles.Text}>Moderna Covid Vaccine</Text>
-                     <Text style={styles.Text2}>In Stock:
+                    <Text style={styles.Text}>Moderna Covid Vaccine</Text>
+                    <Text style={styles.Text2}>In Stock:
                         <Icon 
                             name='check-circle'
                             type= 'material-icons' 
@@ -379,7 +418,7 @@ function RenderVaccineType({providerdata}) {
                     </Text>
                 </View>
             )
-        } else if (item.availability === "Yes" && item.vaccineTypes.includes("Unknown")) {
+        }   else if (item.availability === "Yes" && item.vaccineTypes.includes("Unknown")) {
             return (
                 <View>
                     <Text style={styles.Text}>Unknown</Text>
@@ -435,7 +474,7 @@ function RenderProvider ({providerdata, navigation}) {
 
     const renderProviderDetails = ({item}) => {
 
-        //Opens Up the Platform Specific Map Api render directions.//
+        //Opens Up the Platform Specific Map ApI to render directions.//
         const openDirections = () => openMap({end:JSON.stringify(item.address)});
         //Can Also use query:JSON.stringify(item.name)--But renders incorrectly//
 

@@ -4,7 +4,7 @@ import { Button, Divider, Icon } from 'react-native-elements';
 import { PROVIDERDATA } from '../shared/ProviderData';
 import { ZIPCODEDATA } from '../shared/ZipCodeRadiusData';
 
-// Displays the zipcodes that are in a 15 mile radius of the zipcode entered in by the User//  
+// Displays the zipcodes that are in a 15 mile radius of the zipcode searched by the User//  
 function RenderZipRadius ({zipcodedata, navigation}) {
 
     const renderRadius = ({item}) => {
@@ -236,7 +236,6 @@ class Results extends Component {
    
 
     render () {
-        //const { route } = this.props;// NO longer needed becasue route is passed into zipcode const//
         const { navigation } = this.props;
     
         const zipCode = this.props.route.params.zipCode;
@@ -244,6 +243,7 @@ class Results extends Component {
         
         const providerdata = this.state.providerdata.filter(provider => provider.zipCode === zipCode);
         const zipcodedata = this.state.zipcodedata.filter(zipcode => zipcode.providerId === zipCode)
+
         const totalProviders = providerdata.length; //Displays Number of Providers found after the filter//
         
         
