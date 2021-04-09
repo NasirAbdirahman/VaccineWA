@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "vaccinefinder",
-    "slug": "vaccinefinder",
+    "name": "VaccineWA",
+    "slug": "VaccineWA",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
