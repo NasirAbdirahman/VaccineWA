@@ -2,6 +2,7 @@
   "expo": {
     "name": "VaccineWA",
     "slug": "VaccineWA",
+    "description":"VaccineWA is a Covid-19 Vaccine Finder App for the residents of Washington State. It helps Washingtonians find a covid-19 vaccine in their zipcode. It filters throught a JSON file of all the providers in that zipcode and presents the information in a simple, intuitive UI.Users can search for providers within a zipCode in the state,view Washingon state's vaccine phases schedule,view the Vaccine Types availble at that location(if provided) find directions, email or call ahead, contact the provider and schedule an appointment.",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
