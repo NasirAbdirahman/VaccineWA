@@ -6,7 +6,7 @@ import * as WebBrowser from 'expo-web-browser';
 import * as MailComposer from 'expo-mail-composer';
 import * as Linking from 'expo-linking';
 import openMap from 'react-native-open-maps';
- 
+
 
 // Reviews the Scheduling Link provided //      
 function RenderScheduling({providerdata}) {
