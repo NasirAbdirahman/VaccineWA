@@ -1,8 +1,9 @@
 # VaccineWA Mobile App
+# This project was created in May 2021 during the height of the coronavirus outbreak. Unfortunately it was not accepted for use by the State of Washignton. It is now archived.
 
 # Description
 VaccineWA is a Covid-19 Vaccine Finder App for the residents of Washington State. It helps Washingtonians find a covid-19 vaccine in their zipcode. It filters throught a JSON file of all the providers I've gathered and presents the information in a simple, intuitive UI.
-The App currently uses a CSV from the WA DOH site,downloaded 3/9/21.It has every single vaccination sites' location and other pertinent information(as of that date). The project has been ARCHIVED.
+The App currently uses a CSV from the WA DOH site,downloaded 3/9/21.It has every single vaccination sites' location and other pertinent information(as of that date).
 
 Features:<br>
 •Users can search for providers within a zipCode in the state.<br>
